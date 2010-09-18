@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Endjin.Templify.Specificati
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{324E1002-58A6-4979-8331-2C3B3AB4C46C}"
 	ProjectSection(SolutionItems) = preProject
-		debug-settings.txt = debug-settings.txt
+		..\Artefacts\debug-settings.txt = ..\Artefacts\debug-settings.txt
 	EndProjectSection
 EndProject
 Global

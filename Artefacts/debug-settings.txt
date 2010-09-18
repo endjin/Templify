@@ -1,0 +1,2 @@
+-c C:\_Projects\OSS\Contrib\Sharp-Architecture\Artefacts\package-samples\sample-mvc-app\files
+-c C:\Temp\Package-Samples
