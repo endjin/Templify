@@ -7,6 +7,9 @@
         Width="300"
              Height="160"
              mc:Ignorable="d">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </Window.Resources>
     <StackPanel>
         <Grid>
             <Grid.RowDefinitions>
@@ -44,7 +47,15 @@
                 <TextBox x:Name="Name" Width="Auto" Text="WhoCanHelpMe" />
             </fwk:HintTextDecorator>
         </Grid>
-        <ProgressBar x:Name="progress" Width="Auto" Height="20" Minimum="0" Maximum="{Binding Path=MaxProgress}" Value="{Binding Path=CurrentProgress}" IsEnabled="{Binding Path=CanCreatePackage}"/>
+        <ProgressBar 
+            x:Name="progress" 
+            Width="Auto" 
+            Height="20" 
+            Minimum="0" 
+            Maximum="{Binding Path=MaxProgress}" 
+            Value="{Binding Path=CurrentProgress}" 
+            Visibility="{Binding Path=DeployingPackage, Converter={StaticResource BooleanToVisibilityConverter}}"
+            />
         <Button x:Name="DeployPackage">Deploy Package</Button>
         <Button x:Name="Exit">Exit</Button>
     </StackPanel>

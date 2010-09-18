@@ -2,6 +2,7 @@ namespace Endjin.Templify.Client.ViewModel
 {
     #region Using Directives
 
+    using System;
     using System.ComponentModel;
     using System.ComponentModel.Composition;
     using System.Windows;
@@ -36,6 +37,9 @@ namespace Endjin.Templify.Client.ViewModel
 
         private Package selectedPackage;
 
+        private bool deployingPackage;
+
+
         #endregion
 
         [ImportingConstructor]
@@ -55,6 +59,23 @@ namespace Endjin.Templify.Client.ViewModel
             get { return !string.IsNullOrWhiteSpace(this.Name) && this.SelectedPackage != null; }
         }
 
+        public bool DeployingPackage
+        {
+            get
+            {
+                return this.deployingPackage;
+            }
+
+            private set
+            {
+                if (this.deployingPackage != value)
+                {
+                    this.deployingPackage = value;
+                    this.NotifyOfPropertyChange(() => this.DeployingPackage);
+                }
+            }
+        }
+
         public int MaxProgress
         {
             get
@@ -64,8 +85,11 @@ namespace Endjin.Templify.Client.ViewModel
 
             set
             {
-                this.maxProgress = value;
-                this.NotifyOfPropertyChange(() => this.MaxProgress);
+                if (this.maxProgress != value)
+                {
+                    this.maxProgress = value;
+                    this.NotifyOfPropertyChange(() => this.MaxProgress);
+                }
             }
         }
 
@@ -78,8 +102,11 @@ namespace Endjin.Templify.Client.ViewModel
 
             set
             {
-                this.currentProgress = value;
-                this.NotifyOfPropertyChange(() => this.CurrentProgress);
+                if (this.currentProgress != value)
+                {
+                    this.currentProgress = value;
+                    this.NotifyOfPropertyChange(() => this.CurrentProgress);                    
+                }
             }
         }
 
@@ -92,9 +119,12 @@ namespace Endjin.Templify.Client.ViewModel
 
             set
             {
-                this.name = value;
-                this.NotifyOfPropertyChange(() => this.Name);
-                this.NotifyOfPropertyChange(() => this.CanDeployPackage);
+                if (this.name != value)
+                {
+                    this.name = value;
+                    this.NotifyOfPropertyChange(() => this.Name);
+                    this.NotifyOfPropertyChange(() => this.CanDeployPackage);
+                }
             }
         }
 
@@ -107,9 +137,12 @@ namespace Endjin.Templify.Client.ViewModel
  
             set
             {
-                this.selectedPackage = value;
-                this.NotifyOfPropertyChange(() => this.SelectedPackage);
-                this.NotifyOfPropertyChange(() => this.CanDeployPackage);
+                if (this.selectedPackage != value)
+                {
+                    this.selectedPackage = value;
+                    this.NotifyOfPropertyChange(() => this.SelectedPackage);
+                    this.NotifyOfPropertyChange(() => this.CanDeployPackage);
+                }
             }
         }
 
@@ -127,9 +160,12 @@ namespace Endjin.Templify.Client.ViewModel
 
             set
             {
-                this.packages = value;
-                this.NotifyOfPropertyChange(() => this.Packages);
-                this.NotifyOfPropertyChange(() => this.CanDeployPackage);
+                if (this.packages != value)
+                {
+                    this.packages = value;
+                    this.NotifyOfPropertyChange(() => this.Packages);
+                    this.NotifyOfPropertyChange(() => this.CanDeployPackage);
+                }
             }
         }
 
@@ -152,11 +188,22 @@ namespace Endjin.Templify.Client.ViewModel
 
         private void ExecutePackage(Package package)
         {
-            BackgroundWorkerManager.RunBackgroundWork(() => this.ExecutePackageCore(package), this.ExecutePackageComplete);
+            this.DeployingPackage = true;
+            try
+            {
+                BackgroundWorkerManager.RunBackgroundWork(() => this.ExecutePackageCore(package), this.ExecutePackageComplete);
+            }
+            catch (Exception)
+            {
+                // If we failed to start, then we must reset the deploying package state
+                this.DeployingPackage = false;
+                throw;
+            }
         }
 
         private void ExecutePackageComplete(RunWorkerCompletedEventArgs e)
         {
+            DeployingPackage = false;
             if (e.Error == null)
             {
                 MessageBox.Show("Package Sucessfully Deployed");

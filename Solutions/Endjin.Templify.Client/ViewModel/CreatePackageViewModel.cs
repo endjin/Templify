@@ -2,6 +2,7 @@ namespace Endjin.Templify.Client.ViewModel
 {
     #region Using Directives
 
+    using System;
     using System.ComponentModel;
     using System.ComponentModel.Composition;
     using System.Windows;
@@ -38,6 +39,8 @@ namespace Endjin.Templify.Client.ViewModel
 
         private int currentProgress;
 
+        private bool creatingPackage;
+
         #endregion
 
         [ImportingConstructor]
@@ -64,9 +67,12 @@ namespace Endjin.Templify.Client.ViewModel
 
             set
             {
-                this.author = value;
-                this.NotifyOfPropertyChange(() => this.Author);
-                this.NotifyOfPropertyChange(() => this.CanCreatePackage);
+                if (this.author != value)
+                {
+                    this.author = value;
+                    this.NotifyOfPropertyChange(() => this.Author);
+                    this.NotifyOfPropertyChange(() => this.CanCreatePackage);
+                }
             }
         }
 
@@ -81,6 +87,23 @@ namespace Endjin.Templify.Client.ViewModel
             }
         }
 
+        public bool CreatingPackage
+        {
+            get
+            {
+                return this.creatingPackage;
+            }
+
+            private set
+            {
+                if (this.creatingPackage != value)
+                {
+                    this.creatingPackage = value;
+                    this.NotifyOfPropertyChange(() => this.CreatingPackage);
+                }
+            }
+        }
+
         public string Name
         {
             get
@@ -90,9 +113,12 @@ namespace Endjin.Templify.Client.ViewModel
 
             set
             {
-                this.name = value;
-                this.NotifyOfPropertyChange(() => this.Name);
-                this.NotifyOfPropertyChange(() => this.CanCreatePackage);
+                if (this.name != value)
+                {
+                    this.name = value;
+                    this.NotifyOfPropertyChange(() => this.Name);
+                    this.NotifyOfPropertyChange(() => this.CanCreatePackage);
+                }
             }
         }
 
@@ -111,9 +137,12 @@ namespace Endjin.Templify.Client.ViewModel
 
             set
             {
-                this.token = value;
-                this.NotifyOfPropertyChange(() => this.Token);
-                this.NotifyOfPropertyChange(() => this.CanCreatePackage);
+                if (this.token != value)
+                {
+                    this.token = value;
+                    this.NotifyOfPropertyChange(() => this.Token);
+                    this.NotifyOfPropertyChange(() => this.CanCreatePackage);
+                }
             }
         }
 
@@ -126,9 +155,12 @@ namespace Endjin.Templify.Client.ViewModel
 
             set
             {
-                this.version = value;
-                this.NotifyOfPropertyChange(() => this.Version);
-                this.NotifyOfPropertyChange(() => this.CanCreatePackage);
+                if (this.version != value)
+                {
+                    this.version = value;
+                    this.NotifyOfPropertyChange(() => this.Version);
+                    this.NotifyOfPropertyChange(() => this.CanCreatePackage);
+                }
             }
         }
 
@@ -141,8 +173,11 @@ namespace Endjin.Templify.Client.ViewModel
 
             set
             {
-                this.maxProgress = value;
-                this.NotifyOfPropertyChange(() => this.MaxProgress);
+                if (this.maxProgress != value)
+                {
+                    this.maxProgress = value;
+                    this.NotifyOfPropertyChange(() => this.MaxProgress);
+                }
             }
         }
 
@@ -162,7 +197,18 @@ namespace Endjin.Templify.Client.ViewModel
 
         public void CreatePackage()
         {
-            BackgroundWorkerManager.RunBackgroundWork(this.ExecuteCreatePackage, this.ExecuteCreatePackageComplete);
+            this.CreatingPackage = true;
+
+            try
+            {
+                BackgroundWorkerManager.RunBackgroundWork(this.ExecuteCreatePackage, this.ExecuteCreatePackageComplete);
+            }
+            catch (Exception)
+            {
+                // If we threw on startup, then we are no longer creating the package
+                this.CreatingPackage = false;
+                throw;
+            }
         }
 
         private void ExecuteCreatePackage()
@@ -178,6 +224,8 @@ namespace Endjin.Templify.Client.ViewModel
 
         private void ExecuteCreatePackageComplete(RunWorkerCompletedEventArgs e)
         {
+            this.CreatingPackage = false;
+
             if (e.Error == null)
             {
                MessageBox.Show("Package Created and Deployed to the Package Repository");
