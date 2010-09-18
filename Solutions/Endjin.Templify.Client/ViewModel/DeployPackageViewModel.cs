@@ -186,9 +186,15 @@ namespace Endjin.Templify.Client.ViewModel
             this.ExecutePackage(package);
         }
 
+        public void Exit()
+        {
+            Application.Current.Shutdown();
+        }
+
         private void ExecutePackage(Package package)
         {
             this.DeployingPackage = true;
+
             try
             {
                 BackgroundWorkerManager.RunBackgroundWork(() => this.ExecutePackageCore(package), this.ExecutePackageComplete);
@@ -203,7 +209,8 @@ namespace Endjin.Templify.Client.ViewModel
 
         private void ExecutePackageComplete(RunWorkerCompletedEventArgs e)
         {
-            DeployingPackage = false;
+            this.DeployingPackage = false;
+
             if (e.Error == null)
             {
                 MessageBox.Show("Package Sucessfully Deployed");
@@ -218,11 +225,6 @@ namespace Endjin.Templify.Client.ViewModel
         {
             this.packageTask.Execute(package);
             this.packageProcessor.Process(this.Path, this.Name);
-        }
-        
-        public void Exit()
-        {
-            Application.Current.Shutdown();
         }
 
         private void Initialise()

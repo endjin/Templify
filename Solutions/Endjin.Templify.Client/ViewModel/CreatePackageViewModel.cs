@@ -212,6 +212,11 @@ namespace Endjin.Templify.Client.ViewModel
             }
         }
 
+        public void Exit()
+        {
+            Application.Current.Shutdown();
+        }
+
         private void ExecuteCreatePackage()
         {
             this.stopwatch.Start();
@@ -243,11 +248,6 @@ namespace Endjin.Templify.Client.ViewModel
         {
             this.CurrentProgress = e.CurrentValue;
             this.MaxProgress = e.MaxValue;
-        }
-
-        public void Exit()
-        {
-            Application.Current.Shutdown();
         }
     }
 }
