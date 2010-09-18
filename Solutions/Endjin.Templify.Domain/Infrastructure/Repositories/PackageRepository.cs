@@ -31,7 +31,7 @@
         {
             var files = this.fileSystemArtecactProcessor.RetrieveFiles(this.repositoryPath, "*.pkg");
 
-            return Queryable.AsQueryable<Package>(Enumerable.Where<Package>(files.Select(PackageFactory.Get), p => !string.IsNullOrEmpty(p.Manifest.Name)));
+            return files.Select(PackageFactory.Get).Where(p => !string.IsNullOrEmpty(p.Manifest.Name)).AsQueryable();
         }
 
         public Package FindOne(Guid id)
