@@ -10,8 +10,6 @@
 
     public interface IPackageTask
     {
-        event EventHandler<PackageProgressEventArgs> Progress;
-
         void Execute(Package package);
     }
 }

@@ -6,6 +6,7 @@
     using System.ComponentModel.Composition;
     using System.IO;
 
+    using Endjin.Templify.Domain.Contracts.Packager.Notifiers;
     using Endjin.Templify.Domain.Contracts.Tasks;
     using Endjin.Templify.Domain.Domain.Packages;
 
@@ -14,9 +15,15 @@
     [Export(typeof(IPackageTask))]
     public class FileCopyPackageTask : IPackageTask
     {
+        private readonly IProgressNotifier progressNotifier;
+
         private Manifest manifest;
 
-        public event EventHandler<PackageProgressEventArgs> Progress;
+        [ImportingConstructor]
+        public FileCopyPackageTask(IProgressNotifier progressNotifier)
+        {
+            this.progressNotifier = progressNotifier;
+        }
 
         public void Execute(Package package)
         {
@@ -58,15 +65,7 @@
                 
                 stream.Close();
                 
-                this.OnProgressChanged(new PackageProgressEventArgs(ProgressStage.FileCopy, this.manifest.Files.Count, progress));
-            }
-        }
-
-        protected virtual void OnProgressChanged(PackageProgressEventArgs e)
-        {
-            if (this.Progress != null)
-            {
-                this.Progress(this, e);
+                this.progressNotifier.UpdateProgress(ProgressStage.FileCopy, this.manifest.Files.Count, progress);
             }
         }
 

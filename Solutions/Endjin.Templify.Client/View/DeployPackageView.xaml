@@ -55,8 +55,12 @@
             Minimum="0" 
             Maximum="{Binding Path=MaxProgress}" 
             Value="{Binding Path=CurrentProgress}" 
-            Visibility="{Binding Path=DeployingPackage, Converter={StaticResource BooleanToVisibilityConverter}}"
-            />
+            Visibility="{Binding Path=DeployingPackage, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        <TextBlock 
+            x:Name="StatusText" 
+            Foreground="White" 
+            Text="{Binding Path=ProgressStatus}" 
+            Visibility="{Binding Path=CreatingPackage, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         <Button x:Name="DeployPackage">Deploy Package</Button>
         <Button x:Name="Exit">Exit</Button>
     </StackPanel>

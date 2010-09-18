@@ -10,8 +10,6 @@
 
     public interface IPackageProcessor
     {
-        event EventHandler<PackageProgressEventArgs> Progress;
-
         void Process(string path, string name);
     }
 }

@@ -11,10 +11,12 @@ namespace Endjin.Templify.Client.ViewModel
 
     using Endjin.Templify.Client.Contracts;
     using Endjin.Templify.Client.Domain;
+    using Endjin.Templify.Domain.Contracts.Packager.Notifiers;
     using Endjin.Templify.Domain.Contracts.Packager.Processors;
     using Endjin.Templify.Domain.Contracts.Packages;
     using Endjin.Templify.Domain.Contracts.Tasks;
     using Endjin.Templify.Domain.Domain.Packages;
+    using Endjin.Templify.Domain.Framework;
     using Endjin.Templify.Domain.Framework.Threading;
 
     #endregion
@@ -27,29 +29,27 @@ namespace Endjin.Templify.Client.ViewModel
         private readonly IPackageTask packageTask;
         private readonly IPackageProcessor packageProcessor;
         private readonly IPackageRepository packageRepository;
+        private readonly IProgressNotifier progressNotifier;
 
         private PackageCollection packages;
         private string name;
 
-        private int maxProgress = 0;
-
-        private int currentProgress = 0;
-
+        private string progressStatus;
+        private int maxProgress;
+        private int currentProgress;
         private Package selectedPackage;
-
         private bool deployingPackage;
-
 
         #endregion
 
         [ImportingConstructor]
-        public DeployPackageViewModel(IPackageTask packageTask, IPackageProcessor packageProcessor, IPackageRepository packageRepository)
+        public DeployPackageViewModel(IPackageTask packageTask, IPackageProcessor packageProcessor, IPackageRepository packageRepository, IProgressNotifier progressNotifier)
         {
             this.packageTask = packageTask;
             this.packageProcessor = packageProcessor;
             this.packageRepository = packageRepository;
-            this.packageProcessor.Progress += this.OnPackageTaskProgress;
-            this.packageTask.Progress += this.OnPackageTaskProgress;
+            this.progressNotifier = progressNotifier;
+            this.progressNotifier.Progress += this.OnProgressUpdate;
         }
 
         #region Properties
@@ -107,6 +107,20 @@ namespace Endjin.Templify.Client.ViewModel
                     this.currentProgress = value;
                     this.NotifyOfPropertyChange(() => this.CurrentProgress);                    
                 }
+            }
+        }
+
+        public string ProgressStatus
+        {
+            get
+            {
+                return this.progressStatus;
+            }
+
+            set
+            {
+                this.progressStatus = value;
+                this.NotifyOfPropertyChange(() => this.ProgressStatus);
             }
         }
 
@@ -215,10 +229,6 @@ namespace Endjin.Templify.Client.ViewModel
             {
                 MessageBox.Show("Package Sucessfully Deployed");
             }
-            else
-            {
-                // Do some error handling
-            }
         }
 
         private void ExecutePackageCore(Package package)
@@ -232,15 +242,16 @@ namespace Endjin.Templify.Client.ViewModel
             BackgroundWorkerManager.RunBackgroundWork(this.RetrievePackages);
         }
 
-        private void OnPackageTaskProgress(object sender, PackageProgressEventArgs e)
-        {
-            this.CurrentProgress = e.CurrentValue;
-            this.MaxProgress = e.MaxValue;
-        }
-
         private void RetrievePackages()
         {
             this.Packages = new PackageCollection(this.packageRepository.FindAll());
+        }
+
+        private void OnProgressUpdate(object sender, PackageProgressEventArgs e)
+        {
+            this.CurrentProgress = e.CurrentValue;
+            this.MaxProgress = e.MaxValue;
+            this.ProgressStatus = e.ProgressStage.GetDescription();
         }
     }
 }
