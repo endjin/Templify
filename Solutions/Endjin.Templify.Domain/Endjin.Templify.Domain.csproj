@@ -44,6 +44,7 @@
     <Compile Include="Contracts\Framework\Specifications\ILinqSpecification.cs" />
     <Compile Include="Contracts\Packager\Builders\IArchiveBuilder.cs" />
     <Compile Include="Contracts\Packager\Builders\IClonePackageBuilder.cs" />
+    <Compile Include="Contracts\Packager\Notifiers\IProgressNotifier.cs" />
     <Compile Include="Contracts\Packager\Processors\ICleanUpProcessor.cs" />
     <Compile Include="Contracts\Packager\Processors\ICloneFileProcessor.cs" />
     <Compile Include="Contracts\Packager\Builders\IManifestBuilder.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="Domain\Packager\Builders\ClonePackageBuilder.cs" />
     <Compile Include="Domain\Packager\Builders\ManifestBuilder.cs" />
     <Compile Include="Domain\Packager\Builders\PackageBuilder.cs" />
+    <Compile Include="Domain\Packager\Notifiers\ProgressNotifier.cs" />
     <Compile Include="Domain\Packager\Processors\CleanUpProcessor.cs" />
     <Compile Include="Domain\Packager\Processors\CloneFileProcessor.cs" />
     <Compile Include="Domain\Packager\Processors\FilteredFileSystemArtefactProcessor.cs" />
@@ -79,7 +81,9 @@
     <Compile Include="Domain\Packages\Package.cs" />
     <Compile Include="Domain\Packages\PackageMetaData.cs" />
     <Compile Include="Domain\Packages\PackageProgressEventArgs.cs" />
+    <Compile Include="Domain\Packages\ProgressStage.cs" />
     <Compile Include="Framework\Container\MefContainer.cs" />
+    <Compile Include="Framework\EnumExtensions.cs" />
     <Compile Include="Framework\Serialization\Serializer.cs" />
     <Compile Include="Framework\Specifications\AdHocSpecification.cs" />
     <Compile Include="Framework\Specifications\QuerySpecification.cs" />

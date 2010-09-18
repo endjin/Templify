@@ -58,7 +58,7 @@
                 
                 stream.Close();
                 
-                this.OnProgressChanged(new PackageProgressEventArgs(this.manifest.Files.Count, progress));
+                this.OnProgressChanged(new PackageProgressEventArgs(ProgressStage.FileCopy, this.manifest.Files.Count, progress));
             }
         }
 

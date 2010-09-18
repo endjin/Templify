@@ -12,9 +12,11 @@ namespace Endjin.Templify.Client.ViewModel
 
     using Endjin.Templify.Client.Contracts;
     using Endjin.Templify.Domain.Contracts.Packager.Builders;
+    using Endjin.Templify.Domain.Contracts.Packager.Notifiers;
     using Endjin.Templify.Domain.Contracts.Packager.Processors;
     using Endjin.Templify.Domain.Contracts.Packager.Tokeniser;
     using Endjin.Templify.Domain.Domain.Packages;
+    using Endjin.Templify.Domain.Framework;
     using Endjin.Templify.Domain.Framework.Threading;
     using Endjin.Templify.Domain.Infrastructure;
 
@@ -30,14 +32,14 @@ namespace Endjin.Templify.Client.ViewModel
         private readonly IClonePackageBuilder clonePackageBuilder;
         private readonly IPackageBuilder packageBuilder;
         private readonly IPackageTokeniser packageTokeniser;
-
-        private Stopwatch stopwatch = new Stopwatch();
+        private readonly IProgressNotifier progressNotifier;
 
         private string name;
         private string author;
         private string version;
         private string token;
 
+        private string progressStatus;
         private int maxProgress;
         private int currentProgress;
         private bool creatingPackage;
@@ -50,14 +52,19 @@ namespace Endjin.Templify.Client.ViewModel
             ICleanUpProcessor cleanUpProcessor, 
             IClonePackageBuilder clonePackageBuilder,
             IPackageBuilder packageBuilder,
-            IPackageTokeniser packageTokeniser)
+            IPackageTokeniser packageTokeniser,
+            IProgressNotifier progressNotifier)
         {
             this.archiveBuilder = archiveBuilder;
             this.cleanUpProcessor = cleanUpProcessor;
             this.clonePackageBuilder = clonePackageBuilder;
             this.packageBuilder = packageBuilder;
             this.packageTokeniser = packageTokeniser;
+            this.progressNotifier = progressNotifier;
+            this.progressNotifier.Progress += this.OnProgressUpdate;
         }
+
+        #region Properties
 
         public string Author
         {
@@ -196,6 +203,22 @@ namespace Endjin.Templify.Client.ViewModel
             }
         }
 
+        public string ProgressStatus
+        {
+            get
+            {
+                return this.progressStatus;
+            }
+
+            set
+            {
+                this.progressStatus = value;
+                this.NotifyOfPropertyChange(() => this.ProgressStatus);
+            }
+        }
+
+        #endregion
+
         public void CreatePackage()
         {
             this.CreatingPackage = true;
@@ -219,7 +242,6 @@ namespace Endjin.Templify.Client.ViewModel
 
         private void ExecuteCreatePackage()
         {
-            this.stopwatch.Start();
             var package = this.packageBuilder.Build(this.Path, new PackageMetaData { Author = this.Author, Name = this.Name, Version = this.Version });
 
             var clonedPackage = this.clonePackageBuilder.Build(package);
@@ -231,23 +253,19 @@ namespace Endjin.Templify.Client.ViewModel
 
         private void ExecuteCreatePackageComplete(RunWorkerCompletedEventArgs e)
         {
-            this.stopwatch.Stop();
             this.CreatingPackage = false;
 
             if (e.Error == null)
             {
-               MessageBox.Show("Package Created and Deployed to the Package Repository. " + this.stopwatch.Elapsed);
-            }
-            else
-            {
-                // Do some error handling
+               MessageBox.Show("Package Created and Deployed to the Package Repository.");
             }
         }
 
-        private void OnPackageTaskProgress(object sender, PackageProgressEventArgs e)
+        private void OnProgressUpdate(object sender, PackageProgressEventArgs e)
         {
             this.CurrentProgress = e.CurrentValue;
             this.MaxProgress = e.MaxValue;
+            this.ProgressStatus = e.ProgressStage.GetDescription();
         }
     }
 }

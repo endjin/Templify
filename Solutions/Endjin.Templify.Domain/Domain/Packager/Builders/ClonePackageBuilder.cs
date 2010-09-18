@@ -7,6 +7,7 @@
     using System.Threading.Tasks;
 
     using Endjin.Templify.Domain.Contracts.Packager.Builders;
+    using Endjin.Templify.Domain.Contracts.Packager.Notifiers;
     using Endjin.Templify.Domain.Contracts.Packager.Processors;
     using Endjin.Templify.Domain.Domain.Factories;
     using Endjin.Templify.Domain.Domain.Packages;
@@ -18,11 +19,13 @@
     public class ClonePackageBuilder : IClonePackageBuilder
     {
         private readonly ICloneFileProcessor cloneFileProcessor;
+        private readonly IProgressNotifier progressNotifier;
 
         [ImportingConstructor]
-        public ClonePackageBuilder(ICloneFileProcessor cloneFileProcessor)
+        public ClonePackageBuilder(ICloneFileProcessor cloneFileProcessor, IProgressNotifier progressNotifier)
         {
             this.cloneFileProcessor = cloneFileProcessor;
+            this.progressNotifier = progressNotifier;
         }
 
         public Package Build(Package package)
@@ -31,6 +34,9 @@
             package.TemplatePath = Path.Combine(Path.Combine(FilePaths.TemporaryPackageRepository, package.Manifest.Id.ToString()), "Template");
 
             var manifestFilePath = this.PersistManifestFileAndReturnLocation(package);
+
+            int progress = 0;
+            int fileCount = package.Manifest.Files.Count;
 
             Parallel.ForEach(
                 package.Manifest.Files,
@@ -41,6 +47,9 @@
                         this.cloneFileProcessor.Process(Path.Combine(package.Manifest.Path, file.File), clonedPath);
                         
                         file.File = clonedPath;
+
+                        this.progressNotifier.UpdateProgress(ProgressStage.ClonePackage, fileCount, progress);
+                        progress++;
                     });
             
             // Add the manifest file so that it will be tokenised.

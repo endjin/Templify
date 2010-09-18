@@ -69,6 +69,7 @@
             Maximum="{Binding Path=MaxProgress}" 
             Value="{Binding Path=CurrentProgress}" 
             Visibility="{Binding Path=CreatingPackage, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        <TextBlock x:Name="StatusText" Foreground="White" Text="{Binding Path=ProgressStatus}" Visibility="{Binding Path=CreatingPackage, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         <Button x:Name="CreatePackage">Templify!</Button>
         <Button x:Name="Exit">Exit</Button>
     </StackPanel>

@@ -4,8 +4,9 @@ namespace Endjin.Templify.Domain.Domain.Packages
 
     public class PackageProgressEventArgs : EventArgs
     {
-        public PackageProgressEventArgs(int maxValue, int currentValue)
+        public PackageProgressEventArgs(ProgressStage progressStage, int maxValue, int currentValue)
         {
+            this.ProgressStage = progressStage;
             this.MaxValue = maxValue;
             this.CurrentValue = currentValue;
         }
@@ -13,5 +14,7 @@ namespace Endjin.Templify.Domain.Domain.Packages
         public int MaxValue { get; set; }
 
         public int CurrentValue { get; set; }
+
+        public ProgressStage ProgressStage { get; set; }
     }
 }
