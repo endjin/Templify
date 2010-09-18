@@ -3,8 +3,10 @@
     #region Using Directives
 
     using System;
+    using System.Collections.Concurrent;
     using System.ComponentModel.Composition;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using Endjin.Templify.Domain.Contracts.Packager.Builders;
     using Endjin.Templify.Domain.Contracts.Packager.Processors;
@@ -41,12 +43,19 @@
 
             int progress = 0;
 
-            foreach (var file in files)
-            {
-                manifest.Files.Add(new ManifestFile { File = StripParentPath(path, file) });
-                this.OnProgressChanged(new PackageProgressEventArgs(files.Count(), progress));
+            var fileCount = files.Count();
+            var manifestFiles = new BlockingCollection<ManifestFile>();
+
+            Parallel.ForEach(
+                files,
+                file =>
+                    {
+                        manifestFiles.Add(new ManifestFile { File = StripParentPath(path, file) });
+                        this.OnProgressChanged(new PackageProgressEventArgs(fileCount, progress));
                 progress++;
-            }
+            });
+
+            manifest.Files.AddRange(manifestFiles);
 
             return manifest;
         }

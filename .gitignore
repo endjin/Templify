@@ -3,6 +3,8 @@ bin
 debug
 Debug
 Debug_NoPostSharp
+release
+Release
 _Resharper.*
 _ReSharper.*
 *.old
@@ -22,7 +24,3 @@ _ReSharper.*
 *.log
 *.ser
 *.dbmdl
-!Tools/Solr/lucidworks/tomcat/bin
-Tools/Solr/lucidworks/solr/data/
-Tools/Solr/lucidworks/solr/core0/data/
-Tools/Solr/lucidworks/solr/core1/data/

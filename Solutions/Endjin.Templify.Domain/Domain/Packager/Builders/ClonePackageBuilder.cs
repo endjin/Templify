@@ -4,6 +4,7 @@
 
     using System.ComponentModel.Composition;
     using System.IO;
+    using System.Threading.Tasks;
 
     using Endjin.Templify.Domain.Contracts.Packager.Builders;
     using Endjin.Templify.Domain.Contracts.Packager.Processors;
@@ -31,14 +32,16 @@
 
             var manifestFilePath = this.PersistManifestFileAndReturnLocation(package);
 
-            foreach (var file in package.Manifest.Files)
-            {
-                var clonedPath = Path.Combine(package.ClonedPath, file.File);
-
-                this.cloneFileProcessor.Process(Path.Combine(package.Manifest.Path, file.File), clonedPath);
-
-                file.File = clonedPath;
-            }
+            Parallel.ForEach(
+                package.Manifest.Files,
+                file =>
+                    {
+                        var clonedPath = Path.Combine(package.ClonedPath, file.File);
+                        
+                        this.cloneFileProcessor.Process(Path.Combine(package.Manifest.Path, file.File), clonedPath);
+                        
+                        file.File = clonedPath;
+                    });
             
             // Add the manifest file so that it will be tokenised.
             package.Manifest.Files.Add(new ManifestFile { File = manifestFilePath });

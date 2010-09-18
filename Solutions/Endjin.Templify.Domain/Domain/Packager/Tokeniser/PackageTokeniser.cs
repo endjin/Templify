@@ -4,6 +4,7 @@
 
     using System.ComponentModel.Composition;
     using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
 
     using Endjin.Templify.Domain.Contracts.Packager.Processors;
     using Endjin.Templify.Domain.Contracts.Packager.Tokeniser;
@@ -39,23 +40,27 @@
 
         private void TokeniseFileContent(Package package, string token)
         {
-            foreach (var manifestFile in package.Manifest.Files)
-            {
-                var contents = this.fileContentProcessor.ReadContents(manifestFile.File);
-                contents = Replace(token, contents);
-                this.fileContentProcessor.WriteContents(manifestFile.File, contents);
-            }
+            Parallel.ForEach(
+                package.Manifest.Files,
+                manifestFile =>
+                    {
+                        var contents = this.fileContentProcessor.ReadContents(manifestFile.File);
+                        contents = Replace(token, contents);
+                        this.fileContentProcessor.WriteContents(manifestFile.File, contents);
+                    });
         }
 
         private void TokeniseDirectoriesAndFiles(Package package, string token)
         {
-            foreach (var manifestFile in package.Manifest.Files)
-            {
-                var tokenisedName = Replace(token, manifestFile.File);
-                tokenisedName = this.RebaseToTemplatePath(package, tokenisedName);
-                this.renameFileProcessor.Process(manifestFile.File, tokenisedName);
-                manifestFile.File = tokenisedName;
-            }
+            Parallel.ForEach(
+                package.Manifest.Files,
+                manifestFile =>
+                    {
+                        var tokenisedName = Replace(token, manifestFile.File);
+                        tokenisedName = this.RebaseToTemplatePath(package, tokenisedName);
+                        this.renameFileProcessor.Process(manifestFile.File, tokenisedName);
+                        manifestFile.File = tokenisedName;
+                    });
         }
 
         private string RebaseToTemplatePath(Package package, string tokenisedName)

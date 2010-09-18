@@ -5,6 +5,7 @@ namespace Endjin.Templify.Client.ViewModel
     using System;
     using System.ComponentModel;
     using System.ComponentModel.Composition;
+    using System.Diagnostics;
     using System.Windows;
 
     using Caliburn.Micro;
@@ -30,15 +31,15 @@ namespace Endjin.Templify.Client.ViewModel
         private readonly IPackageBuilder packageBuilder;
         private readonly IPackageTokeniser packageTokeniser;
 
+        private Stopwatch stopwatch = new Stopwatch();
+
         private string name;
         private string author;
         private string version;
         private string token;
 
         private int maxProgress;
-
         private int currentProgress;
-
         private bool creatingPackage;
 
         #endregion
@@ -213,6 +214,7 @@ namespace Endjin.Templify.Client.ViewModel
 
         private void ExecuteCreatePackage()
         {
+            this.stopwatch.Start();
             var package = this.packageBuilder.Build(this.Path, new PackageMetaData { Author = this.Author, Name = this.Name, Version = this.Version });
 
             var clonedPackage = this.clonePackageBuilder.Build(package);
@@ -224,11 +226,12 @@ namespace Endjin.Templify.Client.ViewModel
 
         private void ExecuteCreatePackageComplete(RunWorkerCompletedEventArgs e)
         {
+            this.stopwatch.Stop();
             this.CreatingPackage = false;
 
             if (e.Error == null)
             {
-               MessageBox.Show("Package Created and Deployed to the Package Repository");
+               MessageBox.Show("Package Created and Deployed to the Package Repository. " + this.stopwatch.Elapsed);
             }
             else
             {
