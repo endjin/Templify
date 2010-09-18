@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:fwk="clr-namespace:Endjin.Templify.Client.Framework" 
             Title="Templify - powered by endjin"
             Background="{DynamicResource WindowBackgroundBrush}"
-            Width="300"
+            Icon="/Resources/app-icon.ico"    
+        Width="300"
             Height="210"
             mc:Ignorable="d">
     <Window.Resources>

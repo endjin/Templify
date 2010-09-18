@@ -11,18 +11,28 @@ Templify! v1.0 - Powered by endjin
 
 About
 =====
-
 Templify allows you to template a solution and then re-deploy and customise that solution.
+
+Ingredients
+===========
+Templify makes use of the following tools and frameworks:
+
+ o Caliburn.Micro
+ o CommandLine
+ o Machine.Specifications
+ o Machine.Specifications.AutoMocking
+ o RhinoMocks
+ o ICSharpCode.SharpZipLib
+ o WPF Themes
 
 Download
 ========
-
 http://opensource.endjin.com/templify
 
 Support / Help
 ==============
 Follow @templify on twitter.
-Report bugs / issues on XXXX
+Report bugs / issues on youtrack.codebetter.com
 
 Set-Up
 ======

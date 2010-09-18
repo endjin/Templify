@@ -4,6 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:fwk="clr-namespace:Endjin.Templify.Client.Framework" Title="Templify - powered by endjin"
         Background="{DynamicResource WindowBackgroundBrush}"     
+       Icon="/Resources/app-icon.ico" 
         Width="300"
              Height="160"
              mc:Ignorable="d">
