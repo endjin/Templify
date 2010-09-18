@@ -13,26 +13,36 @@ About
 =====
 Templify allows you to template a solution and then re-deploy and customise that solution.
 
+
 Ingredients
 ===========
 Templify makes use of the following tools and frameworks:
 
- o Caliburn.Micro
- o CommandLine
- o Machine.Specifications
- o Machine.Specifications.AutoMocking
- o RhinoMocks
- o ICSharpCode.SharpZipLib
- o WPF Themes
+ o Caliburn.Micro - http://caliburnmicro.codeplex.com/
+ o CommandLine - http://commandline.codeplex.com/
+ o Machine.Specifications - http://github.com/machine/machine.specifications
+ o Machine.Specifications.AutoMocking - http://github.com/jamesbroome/Machine.Specifications.AutoMocking
+ o RhinoMocks - http://www.ayende.com/projects/rhino-mocks/downloads.aspx
+ o ICSharpCode.SharpZipLib - http://www.icsharpcode.net/opensource/sharpziplib/
+ o WPF Themes - http://wpfthemes.codeplex.com/
+ o SevenZipSharp - http://sevenzipsharp.codeplex.com
+ o 7Zip - http://www.7-zip.org(licensed under the GNU LGPL license) 
 
-Download
-========
-http://opensource.endjin.com/templify
+
+Install
+=======
+http://opensource.endjin.com/templify/install
+
+
+Contribute
+==========
+http://github.com/endjin/Templify
+
 
 Support / Help
 ==============
-Follow @templify on twitter.
-Report bugs / issues on youtrack.codebetter.com
+Follow http://twitter.com/templify on twitter.
+Report bugs & issues on http://youtrack.codebetter.com
 
-Set-Up
-======
+Version History
+===============
