@@ -363,7 +363,7 @@
             "SourcePath" = "8:..\\..\\Artefacts\\package-samples\\sample-mvc-app\\package\\sample-mvc-app-v1.0.0.0.pkg"
             "TargetName" = "8:sample-mvc-app-v1.0.0.0.pkg"
             "Tag" = "8:"
-            "Folder" = "8:_CC117FE3B00742C0A3476C2CB393E724"
+            "Folder" = "8:_DC2BAA85754F4CBCA6EA427753205F22"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -489,7 +489,7 @@
                                 {
                                     "{9EF0B969-E518-4E46-987F-47570745A589}:_CC117FE3B00742C0A3476C2CB393E724"
                                     {
-                                    "Name" = "8:tmplfy-repo"
+                                    "Name" = "8:tmp-repo"
                                     "AlwaysCreate" = "11:FALSE"
                                     "Condition" = "8:"
                                     "Transitive" = "11:FALSE"
@@ -500,7 +500,7 @@
                                     }
                                     "{9EF0B969-E518-4E46-987F-47570745A589}:_DC2BAA85754F4CBCA6EA427753205F22"
                                     {
-                                    "Name" = "8:tmp-tmplfy-repo"
+                                    "Name" = "8:repo"
                                     "AlwaysCreate" = "11:FALSE"
                                     "Condition" = "8:"
                                     "Transitive" = "11:FALSE"
@@ -532,7 +532,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Templify"
         "ProductCode" = "8:{065FAF56-B72F-46F1-A5D9-1B3EE0C46764}"
-        "PackageCode" = "8:{6F023D7D-D971-438C-8151-1B61AB2A90D2}"
+        "PackageCode" = "8:{2D89CCFF-E0FF-4E9B-83D9-DCCA7ED6B02B}"
         "UpgradeCode" = "8:{9A3E2F12-2445-4912-BA16-A532F72FD1EA}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
