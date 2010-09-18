@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Endjin.Templify.Installer", "Endjin.Templify.Installer\Endjin.Templify.Installer.vdproj", "{56BE3D9C-686D-426A-A49C-BC83FCAB670E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Endjin.Templify.Domain", "Endjin.Templify.Domain\Endjin.Templify.Domain.csproj", "{9E8B79ED-9C17-485B-B1F9-8D33D8BB4BD2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment", "Deployment", "{6C3DEE68-6633-4899-B980-64339AB62651}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{4799185A-AFB0-428D-9B2C-29BCDFDF0B3C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{59A31D18-9067-4B4D-930C-54113BAD4A83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Endjin.Templify.Client", "Endjin.Templify.Client\Endjin.Templify.Client.csproj", "{AB83608F-1457-4EC7-B9CD-82813A222347}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Specifications", "Specifications", "{AF81571B-C5FB-4073-A8EC-8C912EA07100}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Endjin.Templify.Specifications", "Endjin.Templify.Specifications\Endjin.Templify.Specifications.csproj", "{1491A90A-6AC9-4EF4-A959-E0F0439A1D6E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{324E1002-58A6-4979-8331-2C3B3AB4C46C}"
+	ProjectSection(SolutionItems) = preProject
+		debug-settings.txt = debug-settings.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{56BE3D9C-686D-426A-A49C-BC83FCAB670E}.Debug|Any CPU.ActiveCfg = Debug
+		{56BE3D9C-686D-426A-A49C-BC83FCAB670E}.Debug|Any CPU.Build.0 = Debug
+		{56BE3D9C-686D-426A-A49C-BC83FCAB670E}.Release|Any CPU.ActiveCfg = Release
+		{9E8B79ED-9C17-485B-B1F9-8D33D8BB4BD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E8B79ED-9C17-485B-B1F9-8D33D8BB4BD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E8B79ED-9C17-485B-B1F9-8D33D8BB4BD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB83608F-1457-4EC7-B9CD-82813A222347}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{AB83608F-1457-4EC7-B9CD-82813A222347}.Debug|Any CPU.Build.0 = Debug|x86
+		{AB83608F-1457-4EC7-B9CD-82813A222347}.Release|Any CPU.ActiveCfg = Release|x86
+		{1491A90A-6AC9-4EF4-A959-E0F0439A1D6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1491A90A-6AC9-4EF4-A959-E0F0439A1D6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1491A90A-6AC9-4EF4-A959-E0F0439A1D6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{56BE3D9C-686D-426A-A49C-BC83FCAB670E} = {6C3DEE68-6633-4899-B980-64339AB62651}
+		{9E8B79ED-9C17-485B-B1F9-8D33D8BB4BD2} = {59A31D18-9067-4B4D-930C-54113BAD4A83}
+		{AB83608F-1457-4EC7-B9CD-82813A222347} = {4799185A-AFB0-428D-9B2C-29BCDFDF0B3C}
+		{1491A90A-6AC9-4EF4-A959-E0F0439A1D6E} = {AF81571B-C5FB-4073-A8EC-8C912EA07100}
+	EndGlobalSection
+EndGlobal

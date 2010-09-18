@@ -1,0 +1,34 @@
+  // Create the feed itself
+    SyndicationFeed feed = new SyndicationFeed();
+    feed.Title = new System.ServiceModel.Syndication.TextSyndicationContent("Title");
+    feed.Links.Add(new System.ServiceModel.Syndication.SyndicationLink(new Uri("http://someUri.com/")));
+    feed.LastUpdatedTime = DateTimeOffset.Now;
+    feed.Language = "en-us";
+    feed.Id = "http://someuri.com/feed.rss";
+    feed.Generator = "My .NET code!";
+    feed.Description = new System.ServiceModel.Syndication.TextSyndicationContent("Description goes here");
+    feed.Copyright = new System.ServiceModel.Syndication.TextSyndicationContent("Copyright © 2008, somebody");
+    feed.ImageUrl = new Uri("http://someuri.com/images/someimage.jpg"); // Images are typically 300x300 pixels
+ 
+    // Create a collection for all of the feed items
+    List<SyndicationItem> items = new List<SyndicationItem>();
+ 
+    // Create a new item
+    SyndicationItem item = new SyndicationItem();
+    item.Categories.Add(new SyndicationCategory("Category1"));
+    item.Title = new TextSyndicationContent("Podcast title goes here");
+    item.Summary = new TextSyndicationContent("Podcast description goes here (article content)");
+    item.PublishDate = DateTimeOffset.Now;
+ 
+    long length = 123456; // the size of the attachment, in bytes
+    string type = "application/x-ms-wmv"; // or other valid content-type
+    item.Links.Add(
+        SyndicationLink.CreateMediaEnclosureLink(new Uri("http://someuri.com/podcasts/somepodcast.wmv"), type, length));
+ 
+    // Add this item to the collection (this create new item, could be in a loop, perhaps - reading from a database?)
+    items.Add(item);
+ 
+    // Assign the collection to the feed
+    feed.Items = items;
+ 
+    //feed.SaveAsRss20(writer); // Actually save this as an RSS 2.0 feed file

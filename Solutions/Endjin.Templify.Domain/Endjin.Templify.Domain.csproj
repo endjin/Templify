@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9E8B79ED-9C17-485B-B1F9-8D33D8BB4BD2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Endjin.Templify.Domain</RootNamespace>
+    <AssemblyName>Endjin.Templify.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.85.5.452, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Contracts\Framework\Specifications\ILinqSpecification.cs" />
+    <Compile Include="Contracts\Packager\Builders\IArchiveBuilder.cs" />
+    <Compile Include="Contracts\Packager\Builders\IClonePackageBuilder.cs" />
+    <Compile Include="Contracts\Packager\Processors\ICleanUpProcessor.cs" />
+    <Compile Include="Contracts\Packager\Processors\ICloneFileProcessor.cs" />
+    <Compile Include="Contracts\Packager\Builders\IManifestBuilder.cs" />
+    <Compile Include="Contracts\Packager\Builders\IPackageBuilder.cs" />
+    <Compile Include="Contracts\Packager\Processors\IArtefactProcessor.cs" />
+    <Compile Include="Contracts\Packager\Processors\IFileContentProcessor.cs" />
+    <Compile Include="Contracts\Packager\Processors\IPackageProcessor.cs" />
+    <Compile Include="Contracts\Packager\Processors\IRenameFileProcessor.cs" />
+    <Compile Include="Contracts\Packager\Specifications\IFileExclusionsSpecification.cs" />
+    <Compile Include="Contracts\Packager\Tokeniser\ITempateTokeniser.cs" />
+    <Compile Include="Contracts\Packages\IPackageMetaData.cs" />
+    <Compile Include="Contracts\Packages\IPackageRepository.cs" />
+    <Compile Include="Contracts\Packager\Tokeniser\IPackageTokeniser.cs" />
+    <Compile Include="Contracts\Tasks\IPackageTask.cs" />
+    <Compile Include="Domain\Factories\ManifestFactory.cs" />
+    <Compile Include="Domain\Factories\PackageFactory.cs" />
+    <Compile Include="Domain\Packager\Builders\ArchiveBuilder.cs" />
+    <Compile Include="Domain\Packager\Builders\ClonePackageBuilder.cs" />
+    <Compile Include="Domain\Packager\Builders\ManifestBuilder.cs" />
+    <Compile Include="Domain\Packager\Builders\PackageBuilder.cs" />
+    <Compile Include="Domain\Packager\Processors\CleanUpProcessor.cs" />
+    <Compile Include="Domain\Packager\Processors\CloneFileProcessor.cs" />
+    <Compile Include="Domain\Packager\Processors\FilteredFileSystemArtefactProcessor.cs" />
+    <Compile Include="Domain\Packager\Processors\FileContentProcessor.cs" />
+    <Compile Include="Domain\Packager\Processors\FileSystemArtefactProcessor.cs" />
+    <Compile Include="Domain\Packager\Processors\PackageProcessor.cs" />
+    <Compile Include="Domain\Packager\Processors\RenameFileProcessor.cs" />
+    <Compile Include="Domain\Packager\Specifications\FileExclusionSpecification.cs" />
+    <Compile Include="Domain\Packager\Tokeniser\PackageTokeniser.cs" />
+    <Compile Include="Domain\Packager\Tokeniser\TemplateTokeniser.cs" />
+    <Compile Include="Domain\Packages\Manifest.cs" />
+    <Compile Include="Domain\Packages\ManifestFile.cs" />
+    <Compile Include="Domain\Packages\Package.cs" />
+    <Compile Include="Domain\Packages\PackageMetaData.cs" />
+    <Compile Include="Domain\Packages\PackageProgressEventArgs.cs" />
+    <Compile Include="Framework\Container\MefContainer.cs" />
+    <Compile Include="Framework\Serialization\Serializer.cs" />
+    <Compile Include="Framework\Specifications\AdHocSpecification.cs" />
+    <Compile Include="Framework\Specifications\QuerySpecification.cs" />
+    <Compile Include="Framework\Specifications\QuerySpecificationExtensions.cs" />
+    <Compile Include="Framework\Threading\BackgroundWorkerManager.cs" />
+    <Compile Include="Infrastructure\FilePaths.cs" />
+    <Compile Include="Infrastructure\Repositories\PackageRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tasks\FileCopyPackageTask.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
