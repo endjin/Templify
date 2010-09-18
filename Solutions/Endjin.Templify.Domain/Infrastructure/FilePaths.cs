@@ -15,7 +15,7 @@ namespace Endjin.Templify.Domain.Infrastructure
             {
                 return Path.Combine(
                     Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-                    @"SharpArch\Pkg-Repo\");
+                    @"Endjin\Templify\repo\");
             }
         }
 
@@ -25,7 +25,7 @@ namespace Endjin.Templify.Domain.Infrastructure
             {
                 return Path.Combine(
                     Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-                    @"SharpArch\Tmp-Pkg-Repo\");
+                    @"Endjin\Templify\tmp-repo\");
             }
         }
     }
