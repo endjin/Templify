@@ -16,22 +16,21 @@
     [Export(typeof(IPackageRepository))]
     public class PackageRepository : IPackageRepository
     {
-        private readonly string repositoryPath;
-        private readonly IArtefactProcessor fileSystemArtecactProcessor;
+        private readonly IArtefactProcessor artefactProcessor;
+        private readonly IPackageFactory packageFactory;
 
         [ImportingConstructor]
-        public PackageRepository(IArtefactProcessor fileSystemArtecactProcessor)
+        public PackageRepository(IArtefactProcessor artefactProcessor, IPackageFactory packageFactory)
         {
-            this.fileSystemArtecactProcessor = fileSystemArtecactProcessor;
-
-            this.repositoryPath = FilePaths.PackageRepository;
+            this.artefactProcessor = artefactProcessor;
+            this.packageFactory = packageFactory;
         }
 
         public IQueryable<Package> FindAll()
         {
-            var files = this.fileSystemArtecactProcessor.RetrieveFiles(this.repositoryPath, "*.pkg");
+            var files = this.artefactProcessor.RetrieveFiles(FilePaths.PackageRepository, FileTypes.PackageWildcard);
 
-            return files.Select(PackageFactory.Get).Where(p => !string.IsNullOrEmpty(p.Manifest.Name)).AsQueryable();
+            return files.Select(this.packageFactory.Get).Where(p => !string.IsNullOrEmpty(p.Manifest.Name)).AsQueryable();
         }
 
         public Package FindOne(Guid id)

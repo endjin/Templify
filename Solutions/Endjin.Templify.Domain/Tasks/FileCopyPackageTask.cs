@@ -7,6 +7,8 @@
     using System.IO;
 
     using Endjin.Templify.Domain.Contracts.Packager.Notifiers;
+    using Endjin.Templify.Domain.Contracts.Packager.Processors;
+    using Endjin.Templify.Domain.Contracts.Packager.Tokeniser;
     using Endjin.Templify.Domain.Contracts.Tasks;
     using Endjin.Templify.Domain.Domain.Packages;
 
@@ -15,16 +17,30 @@
     [Export(typeof(IPackageTask))]
     public class FileCopyPackageTask : IPackageTask
     {
+        #region Fields
+
+        private readonly IArchiveProcessor archiveProcessor;
+        private readonly IEnvironmentalTokenResolver environmentalTokenResolver;
         private readonly IProgressNotifier progressNotifier;
+        private readonly IReservedTokenResolver reservedTokenResolver;
 
         private Manifest manifest;
 
+        #endregion
+        
         [ImportingConstructor]
-        public FileCopyPackageTask(IProgressNotifier progressNotifier)
+        public FileCopyPackageTask(
+            IArchiveProcessor archiveProcessor,
+            IEnvironmentalTokenResolver environmentalTokenResolver, 
+            IProgressNotifier progressNotifier, 
+            IReservedTokenResolver reservedTokenResolver)
         {
+            this.archiveProcessor = archiveProcessor;
+            this.environmentalTokenResolver = environmentalTokenResolver;
             this.progressNotifier = progressNotifier;
+            this.reservedTokenResolver = reservedTokenResolver;
         }
-
+    
         public void Execute(Package package)
         {
             this.manifest = package.Manifest;
@@ -36,75 +52,24 @@
 
                 // Set destination to the Package default, unless the file has an override defined
                 string dest = String.IsNullOrEmpty(manifestFile.InstallPath) ? this.manifest.InstallRoot : manifestFile.InstallPath;
-
-                var stream = this.GetFile(this.manifest.Path, manifestFile.File);
                 
                 // resolve any tokens in the base path information
-                string baseDestPath = this.ResolveTokens(dest);
+                string baseDestPath = this.reservedTokenResolver.Resolve(dest, this.manifest.InstallRoot);
+                baseDestPath = this.environmentalTokenResolver.Resolve(baseDestPath);
 
                 // ensure that files get installed into the correct location if they have specific InstallPath
                 // irrespective of any folder structure within the manifest file.
-                string destFilePath = String.Empty;
+                string destFilePath = Path.Combine(baseDestPath, String.IsNullOrEmpty(manifestFile.InstallPath) ? manifestFile.File : Path.GetFileName(manifestFile.File));
 
-                destFilePath = Path.Combine(baseDestPath, String.IsNullOrEmpty(manifestFile.InstallPath) ? manifestFile.File : Path.GetFileName(manifestFile.File));
-
-                // Ensure that the destination directory exists
                 if (!Directory.Exists(Path.GetDirectoryName(destFilePath)))
                 {
                     Directory.CreateDirectory(Path.GetDirectoryName(destFilePath));
                 }
 
-                Console.WriteLine("Installing '{0}' to '{1}'", manifestFile.File, Path.GetDirectoryName(destFilePath));
-
-                var destFileStream = new FileStream(destFilePath, FileMode.Create, FileAccess.Write);
-                
-                stream.CopyTo(destFileStream);
-
-                destFileStream.Flush();
-                destFileStream.Close();
-                
-                stream.Close();
+                this.archiveProcessor.Extract(this.manifest.Path, manifestFile.File, destFilePath);
                 
                 this.progressNotifier.UpdateProgress(ProgressStage.FileCopy, this.manifest.Files.Count, progress);
             }
-        }
-
-        private Stream GetFile(string manifestPath, string file)
-        {
-            var arch = new ICSharpCode.SharpZipLib.Zip.ZipFile(manifestPath);
-            var fileEntry = arch.GetEntry(file.Replace('\\', '/'));
-
-            if (fileEntry == null)
-            {
-                throw new Exception(string.Format("File '{0}' not found in manifest '{1}'", file, manifestPath));
-            }
-
-            return arch.GetInputStream(fileEntry.ZipFileIndex);
-        }
-
-        private string ResolveTokens(string str)
-        {
-            string resolvedString = str;
-
-            // Resolve any reserved tokens used by WPM
-            resolvedString = resolvedString.Replace("$(InstallRoot)", this.manifest.InstallRoot);
-
-            // Assume any remaining tokens are Environment variables
-            while (resolvedString.IndexOf("$(") != -1)
-            {
-                int start = resolvedString.IndexOf("$(");
-                int end = resolvedString.IndexOf(")", start);
-
-                string envVar = resolvedString.Substring(start + 2, end - (start + 2));
-                string envVarValue = Environment.GetEnvironmentVariable(envVar);
-
-                if (!String.IsNullOrEmpty(envVarValue))
-                {
-                    resolvedString = resolvedString.Replace(string.Format("$({0})", envVar), envVarValue); 
-                }                
-            }
-
-            return resolvedString;
         }
     }
 }

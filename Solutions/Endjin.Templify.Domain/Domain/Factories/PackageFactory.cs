@@ -2,35 +2,40 @@
 {
     #region Using Directives
 
+    using System.ComponentModel.Composition;
+    using System.IO;
     using System.Xml.Serialization;
 
+    using Endjin.Templify.Domain.Contracts.Packager.Processors;
+    using Endjin.Templify.Domain.Contracts.Packages;
     using Endjin.Templify.Domain.Domain.Packages;
 
     #endregion
 
-    public static class PackageFactory
+    [Export(typeof(IPackageFactory))]
+    public class PackageFactory : IPackageFactory
     {
-        public static Package Get(string path)
+        private readonly IArchiveProcessor archiveProcessor;
+
+        [ImportingConstructor]
+        public PackageFactory(IArchiveProcessor archiveProcessor)
         {
-            var package = new Package();
+            this.archiveProcessor = archiveProcessor;
+        }
 
-            try
+        public Package Get(string path)
+        {
+            Manifest manifest;
+
+            using (var manifestXmlStream = this.archiveProcessor.Extract(path, "manifest.xml"))
             {
-                var packageFile = new ICSharpCode.SharpZipLib.Zip.ZipFile(path);
-                var manifestFile = packageFile.GetEntry("manifest.xml");
-
-                var manifestXmlStream = packageFile.GetInputStream(manifestFile.ZipFileIndex);
-
                 var serializer = new XmlSerializer(typeof(Manifest));
-                var manifest = (Manifest)serializer.Deserialize(manifestXmlStream);
+                manifest = (Manifest)serializer.Deserialize(manifestXmlStream);
+            }
 
-                manifest.Path = path;
-                
-                package = new Package { Manifest = manifest };
-            }
-            catch
-            {
-            }
+            manifest.Path = path;
+
+            var package = new Package { Manifest = manifest };
 
             return package;
         }
