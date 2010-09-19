@@ -41,6 +41,7 @@ namespace Endjin.Templify.Specifications
                 rename_file_processor = DependencyOf<IRenameFileProcessor>();
                 package_to_clone = new Package
                 {
+                    ClonedPath = @"C:\Temp\Endjin\Templify\tmp-repo\a67013ef-0ec8-405b-9868-fb5bfdcf2dad\Cloned",
                     Manifest = new Manifest
                     {
                         Author = "Howard van Rooijen",
@@ -60,7 +61,9 @@ namespace Endjin.Templify.Specifications
                                     new ManifestFile { File = @"MyApp\Solutions\MyApp.WebCore\placeholder.txt", }, 
                                     new ManifestFile { File = @"MyApp\Solutions\MyApp.WebViews\placeholder.txt", },
                                 }
-                }
+                    },
+                    TemplatePath = @"C:\Temp\Endjin\Templify\tmp-repo\a67013ef-0ec8-405b-9868-fb5bfdcf2dad\Template"
+
             };
         };
     }

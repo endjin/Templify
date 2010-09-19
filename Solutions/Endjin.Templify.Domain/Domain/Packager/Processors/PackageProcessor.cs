@@ -9,6 +9,7 @@
     using Endjin.Templify.Domain.Contracts.Packager.Processors;
     using Endjin.Templify.Domain.Contracts.Packager.Tokeniser;
     using Endjin.Templify.Domain.Domain.Packages;
+    using Endjin.Templify.Domain.Infrastructure;
 
     #endregion
 
@@ -58,7 +59,7 @@
 
             foreach (var directory in directories)
             {
-                if (directory.Contains("__NAME__"))
+                if (directory.Contains(Tokens.TokenName))
                 {
                     this.cleanUpProcessor.Process(directory);
                 }

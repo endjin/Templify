@@ -22,15 +22,12 @@
         public FileExclusionSpecification()
         {
             this.directoryExclusions = new List<string> { "bin", "obj", "debug", "release", ".git" };
-            this.fileExclusions = new List<string> { ".cache", ".mst", ".msi", ".msm", ".gitignore", ".idx", ".pack", ".user", ".resharper", ".suo" };
+            this.fileExclusions = new List<string> { ".cache", ".mst", ".msm", ".gitignore", ".idx", ".pack", ".user", ".resharper", ".suo" };
         }
 
         public override System.Linq.Expressions.Expression<System.Func<string, bool>> MatchingCriteria
         {
-            get 
-            { 
-                return f => !this.ShouldExclude(f);
-            }
+            get { return f => !this.ShouldExclude(f); }
         }
 
         private bool ShouldExclude(string path)

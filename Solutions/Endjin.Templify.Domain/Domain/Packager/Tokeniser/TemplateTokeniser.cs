@@ -7,6 +7,7 @@ namespace Endjin.Templify.Domain.Domain.Packager.Tokeniser
 
     using Endjin.Templify.Domain.Contracts.Packager.Processors;
     using Endjin.Templify.Domain.Contracts.Packager.Tokeniser;
+    using Endjin.Templify.Domain.Infrastructure;
 
     #endregion
 
@@ -31,7 +32,7 @@ namespace Endjin.Templify.Domain.Domain.Packager.Tokeniser
 
         private static string Replace(string token, string value)
         {
-            return Regex.Replace(value, "__NAME__", match => token);
+            return Regex.Replace(value, Tokens.TokenName, match => token);
         }
 
         private void TokeniseFileContent(string file, string token)

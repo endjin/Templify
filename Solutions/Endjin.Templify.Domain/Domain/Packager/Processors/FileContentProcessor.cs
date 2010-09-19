@@ -19,7 +19,14 @@ namespace Endjin.Templify.Domain.Domain.Packager.Processors
 
         public void WriteContents(string path, string content)
         {
+            this.MakeWritable(path);
+
             File.WriteAllText(path, content);
+        }
+
+        private void MakeWritable(string path)
+        {
+            File.SetAttributes(path, File.GetAttributes(path) & ~(FileAttributes.Archive | FileAttributes.ReadOnly));
         }
     }
 }
