@@ -3,6 +3,7 @@
     #region Using Directives
 
     using System.ComponentModel.Composition;
+    using System.Diagnostics;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
 
@@ -52,6 +53,9 @@
                     {
                         var contents = this.fileContentProcessor.ReadContents(manifestFile.File);
                         contents = Replace(token, contents);
+
+                        // TODO: Check that file isn't a binary...
+
                         this.fileContentProcessor.WriteContents(manifestFile.File, contents);
                         this.progressNotifier.UpdateProgress(ProgressStage.TokenisePackageContents, fileCount, progress);
                         progress++;

@@ -13,12 +13,11 @@
 
 #endregion
 
-namespace SharpArch.PackageManagement.Specifications
+namespace Endjin.Templify.Specifications
 {
     #region Using Directives
 
     using System;
-    using System.Collections.Concurrent;
     using System.Collections.Generic;
 
     using Endjin.Templify.Domain.Contracts.Packager.Processors;
