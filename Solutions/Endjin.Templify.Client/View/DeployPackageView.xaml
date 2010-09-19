@@ -24,12 +24,12 @@
             </Grid.ColumnDefinitions>
             <Label Grid.Row="0" 
                    Grid.Column="0" 
-                   Width="Auto">Package</Label>
+                   Width="Auto">Template</Label>
             <fwk:HintTextDecorator
-                HintText="Please select a package" 
+                HintText="Please select a template" 
                 Padding="3"
                 Grid.Row="0"
-                Grid.Column="1">
+                Grid.Column="1" DataContext="{Binding}">
                 <ComboBox x:Name="PackageList"
                       ItemsSource="{Binding Path=Packages}" 
                       DisplayMemberPath="Manifest.Title" 
@@ -41,11 +41,11 @@
                    Grid.Column="0" 
                    Width="Auto">Name</Label>
             <fwk:HintTextDecorator 
-                HintText="Please the new name for your solution" 
+                HintText="Please enter the new name for your solution" 
                 Padding="3"
                 Grid.Row="1" 
                 Grid.Column="1" >
-                <TextBox x:Name="Name" Width="Auto" Text="WhoCanHelpMe" />
+                <TextBox x:Name="Name" Width="Auto" />
             </fwk:HintTextDecorator>
         </Grid>
         <ProgressBar 
@@ -61,7 +61,7 @@
             Foreground="White" 
             Text="{Binding Path=ProgressStatus}" 
             Visibility="{Binding Path=CreatingPackage, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-        <Button x:Name="DeployPackage">Deploy Package</Button>
+        <Button x:Name="DeployPackage">Deploy Template</Button>
         <Button x:Name="Exit">Exit</Button>
     </StackPanel>
 </Window>

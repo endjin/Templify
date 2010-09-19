@@ -45,7 +45,7 @@
             
             <Label Grid.Row="2" Grid.Column="0" Width="Auto">Author</Label>
             <fwk:HintTextDecorator 
-                HintText="Please enter a name of the template author" 
+                HintText="Please enter the name of the template author" 
                 Padding="3"
                 Grid.Row="2" 
                 Grid.Column="1">
@@ -54,7 +54,7 @@
             
             <Label Grid.Row="3" Grid.Column="0" Width="Auto">Version</Label>
             <fwk:HintTextDecorator 
-                HintText="Please enter template version" 
+                HintText="Please enter the template version" 
                 Padding="3"
                 Grid.Row="3" 
                 Grid.Column="1">
