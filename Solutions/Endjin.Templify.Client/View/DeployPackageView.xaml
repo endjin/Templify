@@ -6,7 +6,7 @@
         Background="{DynamicResource WindowBackgroundBrush}"     
        Icon="/Resources/app-icon.ico" 
         Width="300"
-             Height="160"
+             Height="190"
              mc:Ignorable="d">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
@@ -62,6 +62,8 @@
             Text="{Binding Path=ProgressStatus}" 
             Visibility="{Binding Path=CreatingPackage, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         <Button x:Name="DeployPackage">Deploy Template</Button>
-        <Button x:Name="Exit">Exit</Button>
+        <Separator MinHeight="20"></Separator>
+        <Button x:Name="Manage" VerticalAlignment="Bottom">Manage Templates</Button>
+        <Button x:Name="Exit" VerticalAlignment="Bottom">Exit</Button>
     </StackPanel>
 </Window>

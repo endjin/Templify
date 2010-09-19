@@ -17,19 +17,19 @@
     public class PackageRepository : IPackageRepository
     {
         private readonly string repositoryPath;
-        private readonly IArtefactProcessor fileSystemArtecactProcessor;
+        private readonly IArtefactProcessor fileSystemArtefactProcessor;
 
         [ImportingConstructor]
-        public PackageRepository(IArtefactProcessor fileSystemArtecactProcessor)
+        public PackageRepository(IArtefactProcessor fileSystemArtefactProcessor)
         {
-            this.fileSystemArtecactProcessor = fileSystemArtecactProcessor;
+            this.fileSystemArtefactProcessor = fileSystemArtefactProcessor;
 
             this.repositoryPath = FilePaths.PackageRepository;
         }
 
         public IQueryable<Package> FindAll()
         {
-            var files = this.fileSystemArtecactProcessor.RetrieveFiles(this.repositoryPath, "*.pkg");
+            var files = this.fileSystemArtefactProcessor.RetrieveFiles(this.repositoryPath, "*.pkg");
 
             return files.Select(PackageFactory.Get).Where(p => !string.IsNullOrEmpty(p.Manifest.Name)).AsQueryable();
         }
@@ -37,6 +37,11 @@
         public Package FindOne(Guid id)
         {
             return this.FindAll().Where(p => p.Manifest.Id == id).FirstOrDefault();
+        }
+
+        public void Remove(Package package)
+        {
+            fileSystemArtefactProcessor.RemoveFile(package.Manifest.Path);
         }
     }
 }

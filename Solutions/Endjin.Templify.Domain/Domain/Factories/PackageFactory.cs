@@ -1,4 +1,7 @@
-﻿namespace Endjin.Templify.Domain.Domain.Factories
+﻿using System.IO;
+using ICSharpCode.SharpZipLib.Zip;
+
+namespace Endjin.Templify.Domain.Domain.Factories
 {
     #region Using Directives
 
@@ -13,13 +16,15 @@
         public static Package Get(string path)
         {
             var package = new Package();
+            ZipFile packageFile = null;
+            ZipEntry manifestFile;
+            Stream manifestXmlStream;
 
             try
             {
-                var packageFile = new ICSharpCode.SharpZipLib.Zip.ZipFile(path);
-                var manifestFile = packageFile.GetEntry("manifest.xml");
-
-                var manifestXmlStream = packageFile.GetInputStream(manifestFile.ZipFileIndex);
+                packageFile = new ICSharpCode.SharpZipLib.Zip.ZipFile(path);
+                manifestFile = packageFile.GetEntry("manifest.xml");
+                manifestXmlStream = packageFile.GetInputStream(manifestFile.ZipFileIndex);
 
                 var serializer = new XmlSerializer(typeof(Manifest));
                 var manifest = (Manifest)serializer.Deserialize(manifestXmlStream);
@@ -30,6 +35,13 @@
             }
             catch
             {
+            }
+            finally
+            {
+                if (packageFile != null)
+                {
+                    packageFile.Close();
+                }
             }
 
             return package;
