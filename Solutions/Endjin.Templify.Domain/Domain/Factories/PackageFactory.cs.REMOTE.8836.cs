@@ -1,7 +1,4 @@
-﻿using System.IO;
-using ICSharpCode.SharpZipLib.Zip;
-
-namespace Endjin.Templify.Domain.Domain.Factories
+﻿namespace Endjin.Templify.Domain.Domain.Factories
 {
     #region Using Directives
 

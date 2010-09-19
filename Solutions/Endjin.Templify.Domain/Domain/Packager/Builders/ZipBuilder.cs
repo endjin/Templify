@@ -14,13 +14,13 @@
 
     #endregion
 
-    [Export(typeof(IArchiveBuilder))]
-    public class ArchiveBuilder : IArchiveBuilder
+    //[Export(typeof(IArchiveBuilder))]
+    public class ZipBuilder : IArchiveBuilder
     {
         private readonly IProgressNotifier progressNotifier;
 
         [ImportingConstructor]
-        public ArchiveBuilder(IProgressNotifier progressNotifier)
+        public ZipBuilder(IProgressNotifier progressNotifier)
         {
             this.progressNotifier = progressNotifier;
         }
@@ -28,7 +28,7 @@
         public void Build(Package package, string path)
         {
             var archiveName = package.Manifest.Name.ToLowerInvariant().Replace(" ", "-") + "-v" + package.Manifest.Version;
-            var archive = ZipFile.Create(Path.Combine(FilePaths.PackageRepository, archiveName) + ".pkg");
+            var archive = ZipFile.Create(Path.Combine(FilePaths.PackageRepository, archiveName) + FileTypes.Package);
             
             archive.BeginUpdate();
 
@@ -42,9 +42,9 @@
                 progress++;
             }
 
-            this.progressNotifier.UpdateProgress(ProgressStage.SaveArchive, 2, 1);
+            this.progressNotifier.UpdateProgress(ProgressStage.SaveArchive, ProgressStep.StepTwo, ProgressStep.StepOne);
             archive.CommitUpdate();
-            this.progressNotifier.UpdateProgress(ProgressStage.SaveArchive, 2, 2);
+            this.progressNotifier.UpdateProgress(ProgressStage.SaveArchive, ProgressStep.StepTwo, ProgressStep.StepTwo);
             archive.Close();
         }
     }

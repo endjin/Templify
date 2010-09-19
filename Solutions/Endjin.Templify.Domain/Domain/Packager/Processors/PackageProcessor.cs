@@ -15,10 +15,14 @@
     [Export(typeof(IPackageProcessor))]
     public class PackageProcessor : IPackageProcessor
     {
+        #region Fields
+
         private readonly IArtefactProcessor artefactProcessor;
         private readonly ICleanUpProcessor cleanUpProcessor;
         private readonly IProgressNotifier progressNotifier;
         private readonly ITemplateTokeniser templateTokeniser;
+
+        #endregion
 
         [ImportingConstructor]
         public PackageProcessor(

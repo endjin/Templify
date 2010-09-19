@@ -16,22 +16,21 @@
     [Export(typeof(IPackageRepository))]
     public class PackageRepository : IPackageRepository
     {
-        private readonly string repositoryPath;
-        private readonly IArtefactProcessor fileSystemArtefactProcessor;
+        private readonly IArtefactProcessor artefactProcessor;
+        private readonly IPackageFactory packageFactory;
 
         [ImportingConstructor]
-        public PackageRepository(IArtefactProcessor fileSystemArtefactProcessor)
+        public PackageRepository(IArtefactProcessor artefactProcessor, IPackageFactory packageFactory)
         {
-            this.fileSystemArtefactProcessor = fileSystemArtefactProcessor;
-
-            this.repositoryPath = FilePaths.PackageRepository;
+            this.artefactProcessor = artefactProcessor;
+            this.packageFactory = packageFactory;
         }
 
         public IQueryable<Package> FindAll()
         {
-            var files = this.fileSystemArtefactProcessor.RetrieveFiles(this.repositoryPath, "*.pkg");
+            var files = this.artefactProcessor.RetrieveFiles(FilePaths.PackageRepository, FileTypes.PackageWildcard);
 
-            return files.Select(PackageFactory.Get).Where(p => !string.IsNullOrEmpty(p.Manifest.Name)).AsQueryable();
+            return files.Select(this.packageFactory.Get).Where(p => !string.IsNullOrEmpty(p.Manifest.Name)).AsQueryable();
         }
 
         public Package FindOne(Guid id)
@@ -41,7 +40,7 @@
 
         public void Remove(Package package)
         {
-            fileSystemArtefactProcessor.RemoveFile(package.Manifest.Path);
+            this.artefactProcessor.RemoveFile(package.Manifest.Path);
         }
     }
 }

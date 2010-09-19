@@ -35,6 +35,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\ReferencedAssemblies\Zip\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
+    <Reference Include="SevenZipSharp">
+      <HintPath>..\..\ReferencedAssemblies\7Zip\SevenZipSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
@@ -45,6 +48,7 @@
     <Compile Include="Contracts\Packager\Builders\IArchiveBuilder.cs" />
     <Compile Include="Contracts\Packager\Builders\IClonePackageBuilder.cs" />
     <Compile Include="Contracts\Packager\Notifiers\IProgressNotifier.cs" />
+    <Compile Include="Contracts\Packager\Processors\IArchiveProcessor.cs" />
     <Compile Include="Contracts\Packager\Processors\ICleanUpProcessor.cs" />
     <Compile Include="Contracts\Packager\Processors\ICloneFileProcessor.cs" />
     <Compile Include="Contracts\Packager\Builders\IManifestBuilder.cs" />
@@ -54,18 +58,23 @@
     <Compile Include="Contracts\Packager\Processors\IPackageProcessor.cs" />
     <Compile Include="Contracts\Packager\Processors\IRenameFileProcessor.cs" />
     <Compile Include="Contracts\Packager\Specifications\IFileExclusionsSpecification.cs" />
-    <Compile Include="Contracts\Packager\Tokeniser\ITempateTokeniser.cs" />
+    <Compile Include="Contracts\Packager\Tokeniser\IEnvironmentalTokenResolver.cs" />
+    <Compile Include="Contracts\Packager\Tokeniser\ITemplateTokeniser.cs" />
+    <Compile Include="Contracts\Packager\Tokeniser\IReservedTokenResolver.cs" />
+    <Compile Include="Contracts\Packages\IPackageFactory.cs" />
     <Compile Include="Contracts\Packages\IPackageMetaData.cs" />
     <Compile Include="Contracts\Packages\IPackageRepository.cs" />
     <Compile Include="Contracts\Packager\Tokeniser\IPackageTokeniser.cs" />
     <Compile Include="Contracts\Tasks\IPackageTask.cs" />
     <Compile Include="Domain\Factories\ManifestFactory.cs" />
     <Compile Include="Domain\Factories\PackageFactory.cs" />
-    <Compile Include="Domain\Packager\Builders\ArchiveBuilder.cs" />
+    <Compile Include="Domain\Packager\Builders\SevenZipBuilder.cs" />
+    <Compile Include="Domain\Packager\Builders\ZipBuilder.cs" />
     <Compile Include="Domain\Packager\Builders\ClonePackageBuilder.cs" />
     <Compile Include="Domain\Packager\Builders\ManifestBuilder.cs" />
     <Compile Include="Domain\Packager\Builders\PackageBuilder.cs" />
     <Compile Include="Domain\Packager\Notifiers\ProgressNotifier.cs" />
+    <Compile Include="Domain\Packager\Processors\SevenZipProcessor.cs" />
     <Compile Include="Domain\Packager\Processors\CleanUpProcessor.cs" />
     <Compile Include="Domain\Packager\Processors\CloneFileProcessor.cs" />
     <Compile Include="Domain\Packager\Processors\FilteredFileSystemArtefactProcessor.cs" />
@@ -74,14 +83,17 @@
     <Compile Include="Domain\Packager\Processors\PackageProcessor.cs" />
     <Compile Include="Domain\Packager\Processors\RenameFileProcessor.cs" />
     <Compile Include="Domain\Packager\Specifications\FileExclusionSpecification.cs" />
+    <Compile Include="Domain\Packager\Tokeniser\EnvironmentalTokenResolver.cs" />
     <Compile Include="Domain\Packager\Tokeniser\PackageTokeniser.cs" />
     <Compile Include="Domain\Packager\Tokeniser\TemplateTokeniser.cs" />
+    <Compile Include="Domain\Packager\Tokeniser\ReservedTokenResolver.cs" />
     <Compile Include="Domain\Packages\Manifest.cs" />
     <Compile Include="Domain\Packages\ManifestFile.cs" />
     <Compile Include="Domain\Packages\Package.cs" />
     <Compile Include="Domain\Packages\PackageMetaData.cs" />
     <Compile Include="Domain\Packages\PackageProgressEventArgs.cs" />
     <Compile Include="Domain\Packages\ProgressStage.cs" />
+    <Compile Include="Domain\Packages\ProgressStep.cs" />
     <Compile Include="Framework\Container\MefContainer.cs" />
     <Compile Include="Framework\EnumExtensions.cs" />
     <Compile Include="Framework\Serialization\Serializer.cs" />
@@ -89,6 +101,7 @@
     <Compile Include="Framework\Specifications\QuerySpecification.cs" />
     <Compile Include="Framework\Specifications\QuerySpecificationExtensions.cs" />
     <Compile Include="Framework\Threading\BackgroundWorkerManager.cs" />
+    <Compile Include="Infrastructure\FileTypes.cs" />
     <Compile Include="Infrastructure\FilePaths.cs" />
     <Compile Include="Infrastructure\Repositories\PackageRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

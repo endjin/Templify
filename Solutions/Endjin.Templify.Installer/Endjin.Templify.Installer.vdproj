@@ -27,6 +27,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_4CA6A36AF89074BC0178BAB7925C1155"
+        "OwnerKey" = "8:_724E10457333461FBEE7ACF65161C098"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_724E10457333461FBEE7ACF65161C098"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -52,7 +58,7 @@
         "Entry"
         {
         "MsmKey" = "8:_964A4AC8678C6C97AEDC8009486B83F7"
-        "OwnerKey" = "8:_C6EF5B32610A27A88C13028F710DE894"
+        "OwnerKey" = "8:_4CA6A36AF89074BC0178BAB7925C1155"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -63,18 +69,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_B4EC11A73A75467C94739491F2ACE2FB"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_B934FE2FD3AD40AFBAC04FA7A90AF199"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_C6EF5B32610A27A88C13028F710DE894"
-        "OwnerKey" = "8:_724E10457333461FBEE7ACF65161C098"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_724E10457333461FBEE7ACF65161C098"
         "MsmSig" = "8:_UNDEFINED"
@@ -82,7 +88,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C6EF5B32610A27A88C13028F710DE894"
+        "OwnerKey" = "8:_4CA6A36AF89074BC0178BAB7925C1155"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -265,6 +271,37 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4CA6A36AF89074BC0178BAB7925C1155"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Endjin.Templify.Domain, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_4CA6A36AF89074BC0178BAB7925C1155"
+                    {
+                    "Name" = "8:Endjin.Templify.Domain.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Endjin.Templify.Domain.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_CD13A421E6C74CD1A1284622386CB2CA"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_75FE6E406C17BF7078292FB1EBB09CCE"
             {
             "AssemblyRegister" = "3:1"
@@ -358,6 +395,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B4EC11A73A75467C94739491F2ACE2FB"
+            {
+            "SourcePath" = "8:..\\..\\ReferencedAssemblies\\7Zip\\7z.dll"
+            "TargetName" = "8:7z.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_CD13A421E6C74CD1A1284622386CB2CA"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B934FE2FD3AD40AFBAC04FA7A90AF199"
             {
             "SourcePath" = "8:..\\..\\Artefacts\\package-samples\\sample-mvc-app\\package\\sample-mvc-app-v1.0.0.0.pkg"
@@ -376,37 +433,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C6EF5B32610A27A88C13028F710DE894"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Endjin.Templify.Domain, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_C6EF5B32610A27A88C13028F710DE894"
-                    {
-                    "Name" = "8:Endjin.Templify.Domain.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Endjin.Templify.Domain.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_CD13A421E6C74CD1A1284622386CB2CA"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
         }
@@ -532,7 +558,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Templify"
         "ProductCode" = "8:{065FAF56-B72F-46F1-A5D9-1B3EE0C46764}"
-        "PackageCode" = "8:{2D89CCFF-E0FF-4E9B-83D9-DCCA7ED6B02B}"
+        "PackageCode" = "8:{4D044FBA-ADD6-421B-BD68-BE8E815B9910}"
         "UpgradeCode" = "8:{9A3E2F12-2445-4912-BA16-A532F72FD1EA}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

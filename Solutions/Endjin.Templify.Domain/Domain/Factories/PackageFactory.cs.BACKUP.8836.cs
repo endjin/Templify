@@ -18,6 +18,20 @@ namespace Endjin.Templify.Domain.Domain.Factories
     [Export(typeof(IPackageFactory))]
     public class PackageFactory : IPackageFactory
     {
+<<<<<<< HEAD
+        public static Package Get(string path)
+        {
+            var package = new Package();
+            ZipFile packageFile = null;
+            ZipEntry manifestFile;
+            Stream manifestXmlStream;
+
+            try
+            {
+                packageFile = new ICSharpCode.SharpZipLib.Zip.ZipFile(path);
+                manifestFile = packageFile.GetEntry("manifest.xml");
+                manifestXmlStream = packageFile.GetInputStream(manifestFile.ZipFileIndex);
+=======
         private readonly IArchiveProcessor archiveProcessor;
 
         [ImportingConstructor]
@@ -25,6 +39,7 @@ namespace Endjin.Templify.Domain.Domain.Factories
         {
             this.archiveProcessor = archiveProcessor;
         }
+>>>>>>> 586950baa18542c5f3c608982188c4b81789cd85
 
         public Package Get(string path)
         {
@@ -34,6 +49,13 @@ namespace Endjin.Templify.Domain.Domain.Factories
             {
                 var serializer = new XmlSerializer(typeof(Manifest));
                 manifest = (Manifest)serializer.Deserialize(manifestXmlStream);
+            }
+            finally
+            {
+                if (packageFile != null)
+                {
+                    packageFile.Close();
+                }
             }
 
             manifest.Path = path;
