@@ -19,10 +19,14 @@
     [Export(typeof(IPackageTokeniser))]
     public class PackageTokeniser : IPackageTokeniser
     {
+        #region Fields
+
         private readonly IBinaryFileFilter binaryFileFilter;
         private readonly IFileContentProcessor fileContentProcessor;
         private readonly IProgressNotifier progressNotifier;
         private readonly IRenameFileProcessor renameFileProcessor;
+
+        #endregion
 
         [ImportingConstructor]
         public PackageTokeniser(

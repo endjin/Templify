@@ -14,8 +14,8 @@ namespace Endjin.Templify.Domain.Domain.Packager.Tokeniser
     [Export(typeof(ITemplateTokeniser))]
     public class TemplateTokeniser : ITemplateTokeniser
     {
-        private readonly IRenameFileProcessor renameFileProcessor;
         private readonly IFileContentProcessor fileContentProcessor;
+        private readonly IRenameFileProcessor renameFileProcessor;
 
         [ImportingConstructor]
         public TemplateTokeniser(IRenameFileProcessor renameFileProcessor, IFileContentProcessor fileContentProcessor)
@@ -24,28 +24,22 @@ namespace Endjin.Templify.Domain.Domain.Packager.Tokeniser
             this.fileContentProcessor = fileContentProcessor;
         }
 
-        public void Tokenise(string file, string token)
+        public void TokeniseDirectoryAndFilePaths(string file, string token)
         {
-            this.TokeniseFileContent(file, token);
-            this.TokeniseDirectoriesAndFiles(file, token);
+            var tokenisedName = Replace(token, file);
+            this.renameFileProcessor.Process(file, tokenisedName);
         }
 
-        private static string Replace(string token, string value)
-        {
-            return Regex.Replace(value, Tokens.TokenName, match => token);
-        }
-
-        private void TokeniseFileContent(string file, string token)
+        public void TokeniseFileContent(string file, string token)
         {
             var contents = this.fileContentProcessor.ReadContents(file);
             contents = Replace(token, contents);
             this.fileContentProcessor.WriteContents(file, contents);
         }
 
-        private void TokeniseDirectoriesAndFiles(string file, string token)
+        private static string Replace(string token, string value)
         {
-            var tokenisedName = Replace(token, file);
-            this.renameFileProcessor.Process(file, tokenisedName);
+            return Regex.Replace(value, Tokens.TokenName, match => token);
         }
     }
 }

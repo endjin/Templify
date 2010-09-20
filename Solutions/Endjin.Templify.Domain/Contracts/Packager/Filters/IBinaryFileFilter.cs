@@ -10,6 +10,8 @@ namespace Endjin.Templify.Domain.Contracts.Packager.Filters
 
     public interface IBinaryFileFilter
     {
-        List<ManifestFile> Filter(List<ManifestFile> files);
+        IEnumerable<ManifestFile> Filter(IEnumerable<ManifestFile> files);
+        
+        IEnumerable<string> Filter(IEnumerable<string> files);
     }
 }

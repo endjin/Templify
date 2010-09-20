@@ -28,7 +28,7 @@ namespace Endjin.Templify.Domain.Domain.Packages
         [Description("Clean Up Temporary Files")]
         CleanUp,
 
-        [Description("Copy Files")]
-        FileCopy,
+        [Description("Extract Files From Package")]
+        ExtractFilesFromPackage,
     }
 }

@@ -20,12 +20,30 @@ namespace Endjin.Templify.Domain.Domain.Packager.Filters
 
         public BinaryFileFilter()
         {
-            this.fileExclusions = new List<string> { ".exe", ".dll", ".jpg", ".png", ".gif", ".snk" };
+            this.fileExclusions = new List<string>
+                {
+                    ".dll", 
+                    ".doc",
+                    ".docx",
+                    ".exe", 
+                    ".gif",
+                    ".jpg",
+                    ".pdf",
+                    ".png",
+                    ".snk",
+                    ".xls",
+                    ".xlsx",
+                };
         }
 
-        public List<ManifestFile> Filter(List<ManifestFile> files)
+        public IEnumerable<ManifestFile> Filter(IEnumerable<ManifestFile> files)
         {
             return files.Where(file => !this.fileExclusions.Contains(new FileInfo(file.File).Extension.ToLowerInvariant())).ToList();
+        }
+
+        public IEnumerable<string> Filter(IEnumerable<string> files)
+        {
+            return files.Where(file => !this.fileExclusions.Contains(new FileInfo(file).Extension.ToLowerInvariant())).ToList();
         }
     }
 }
