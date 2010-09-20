@@ -38,13 +38,13 @@
             foreach (var manifestFile in package.Manifest.Files)
             {
                 archive.Add(Path.Combine(path, manifestFile.File), manifestFile.File.Replace(package.TemplatePath, string.Empty));
-                this.progressNotifier.UpdateProgress(ProgressStage.BuildArchive, fileCount, progress);
+                this.progressNotifier.UpdateProgress(ProgressStage.CreatingArchive, fileCount, progress);
                 progress++;
             }
 
-            this.progressNotifier.UpdateProgress(ProgressStage.SaveArchive, ProgressStep.StepTwo, ProgressStep.StepOne);
+            this.progressNotifier.UpdateProgress(ProgressStage.CreatingArchive, ProgressStep.StepTwo, ProgressStep.StepOne);
             archive.CommitUpdate();
-            this.progressNotifier.UpdateProgress(ProgressStage.SaveArchive, ProgressStep.StepTwo, ProgressStep.StepTwo);
+            this.progressNotifier.UpdateProgress(ProgressStage.CreatingArchive, ProgressStep.StepTwo, ProgressStep.StepTwo);
             archive.Close();
         }
     }

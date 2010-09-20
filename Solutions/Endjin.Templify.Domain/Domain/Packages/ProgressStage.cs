@@ -10,25 +10,22 @@ namespace Endjin.Templify.Domain.Domain.Packages
         [Description("Build Package")]
         BuildPackage,
 
+        [Description("Clean Up Temporary Files")]
+        CleanUp,
+
         [Description("Clone Package")]
         ClonePackage,
+
+        [Description("Creating Package Archive")]
+        CreatingArchive,
+
+        [Description("Extract Files From Package")]
+        ExtractFilesFromPackage,
 
         [Description("Tokenise Package Contents")]
         TokenisePackageContents,
 
         [Description("Tokenise Package Structure")]
         TokenisePackageStructure,
-
-        [Description("Build Package Archive")]
-        BuildArchive,
-
-        [Description("Save Package Archive")]
-        SaveArchive,
-
-        [Description("Clean Up Temporary Files")]
-        CleanUp,
-
-        [Description("Extract Files From Package")]
-        ExtractFilesFromPackage,
     }
 }
