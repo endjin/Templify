@@ -7,7 +7,7 @@
             Background="{DynamicResource WindowBackgroundBrush}"
             Icon="/Resources/app-icon.ico"    
         Width="300"
-            Height="210"
+            Height="200"
             mc:Ignorable="d">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />

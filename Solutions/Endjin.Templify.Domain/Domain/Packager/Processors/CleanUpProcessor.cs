@@ -24,14 +24,14 @@ namespace Endjin.Templify.Domain.Domain.Packager.Processors
 
         public void Process(string path)
         {
-            this.progressNotifier.UpdateProgress(ProgressStage.SaveArchive, 2, 1);
+            this.progressNotifier.UpdateProgress(ProgressStage.CreatingArchive, 2, 1);
             
             if (Directory.Exists(path))
             {
                 Directory.Delete(path, true);
             }
             
-            this.progressNotifier.UpdateProgress(ProgressStage.SaveArchive, 2, 2);
+            this.progressNotifier.UpdateProgress(ProgressStage.CreatingArchive, 2, 2);
         }
     }
 }

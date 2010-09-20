@@ -47,6 +47,7 @@
     <Compile Include="Contracts\Framework\Specifications\ILinqSpecification.cs" />
     <Compile Include="Contracts\Packager\Builders\IArchiveBuilder.cs" />
     <Compile Include="Contracts\Packager\Builders\IClonePackageBuilder.cs" />
+    <Compile Include="Contracts\Packager\Filters\IBinaryFileFilter.cs" />
     <Compile Include="Contracts\Packager\Notifiers\IProgressNotifier.cs" />
     <Compile Include="Contracts\Packager\Processors\IArchiveProcessor.cs" />
     <Compile Include="Contracts\Packager\Processors\ICleanUpProcessor.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Domain\Packager\Builders\ClonePackageBuilder.cs" />
     <Compile Include="Domain\Packager\Builders\ManifestBuilder.cs" />
     <Compile Include="Domain\Packager\Builders\PackageBuilder.cs" />
+    <Compile Include="Domain\Packager\Filters\BinaryFileFilter.cs" />
     <Compile Include="Domain\Packager\Notifiers\ProgressNotifier.cs" />
     <Compile Include="Domain\Packager\Processors\SevenZipProcessor.cs" />
     <Compile Include="Domain\Packager\Processors\CleanUpProcessor.cs" />
@@ -101,6 +103,7 @@
     <Compile Include="Framework\Specifications\QuerySpecification.cs" />
     <Compile Include="Framework\Specifications\QuerySpecificationExtensions.cs" />
     <Compile Include="Framework\Threading\BackgroundWorkerManager.cs" />
+    <Compile Include="Infrastructure\Tokens.cs" />
     <Compile Include="Infrastructure\FileTypes.cs" />
     <Compile Include="Infrastructure\FilePaths.cs" />
     <Compile Include="Infrastructure\Repositories\PackageRepository.cs" />

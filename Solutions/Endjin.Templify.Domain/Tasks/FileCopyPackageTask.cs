@@ -5,6 +5,7 @@
     using System;
     using System.ComponentModel.Composition;
     using System.IO;
+    using System.Threading.Tasks;
 
     using Endjin.Templify.Domain.Contracts.Packager.Notifiers;
     using Endjin.Templify.Domain.Contracts.Packager.Processors;
@@ -40,36 +41,44 @@
             this.progressNotifier = progressNotifier;
             this.reservedTokenResolver = reservedTokenResolver;
         }
-    
+
         public void Execute(Package package)
         {
             this.manifest = package.Manifest;
             int progress = 0;
 
-            foreach (var manifestFile in this.manifest.Files)
-            {
-                progress++;
+            Parallel.ForEach(
+                package.Manifest.Files,
+                manifestFile =>
+                    {
+                        progress++;
 
-                // Set destination to the Package default, unless the file has an override defined
-                string dest = String.IsNullOrEmpty(manifestFile.InstallPath) ? this.manifest.InstallRoot : manifestFile.InstallPath;
+                        // Set destination to the Package default, unless the file has an override defined
+                        string destFilePath = this.GetDestFilePath(manifestFile);
+
+                        if (!Directory.Exists(Path.GetDirectoryName(destFilePath)))
+                        {
+                            Directory.CreateDirectory(Path.GetDirectoryName(destFilePath));
+                        }
+
+                        this.archiveProcessor.Extract(this.manifest.Path, manifestFile.File, destFilePath);
+
+                        this.progressNotifier.UpdateProgress(
+                            ProgressStage.ExtractFilesFromPackage, this.manifest.Files.Count, progress);
+                    });
+        }
+
+        private string GetDestFilePath(ManifestFile manifestFile)
+        {
+            string dest = String.IsNullOrEmpty(manifestFile.InstallPath) ? this.manifest.InstallRoot : manifestFile.InstallPath;
                 
-                // resolve any tokens in the base path information
-                string baseDestPath = this.reservedTokenResolver.Resolve(dest, this.manifest.InstallRoot);
-                baseDestPath = this.environmentalTokenResolver.Resolve(baseDestPath);
+            // resolve any tokens in the base path information
+            string baseDestPath = this.reservedTokenResolver.Resolve(dest, this.manifest.InstallRoot);
+            baseDestPath = this.environmentalTokenResolver.Resolve(baseDestPath);
 
-                // ensure that files get installed into the correct location if they have specific InstallPath
-                // irrespective of any folder structure within the manifest file.
-                string destFilePath = Path.Combine(baseDestPath, String.IsNullOrEmpty(manifestFile.InstallPath) ? manifestFile.File : Path.GetFileName(manifestFile.File));
-
-                if (!Directory.Exists(Path.GetDirectoryName(destFilePath)))
-                {
-                    Directory.CreateDirectory(Path.GetDirectoryName(destFilePath));
-                }
-
-                this.archiveProcessor.Extract(this.manifest.Path, manifestFile.File, destFilePath);
-                
-                this.progressNotifier.UpdateProgress(ProgressStage.FileCopy, this.manifest.Files.Count, progress);
-            }
+            // ensure that files get installed into the correct location if they have specific InstallPath
+            // irrespective of any folder structure within the manifest file.
+            return Path.Combine(baseDestPath, String.IsNullOrEmpty(manifestFile.InstallPath) ? manifestFile.File : Path.GetFileName(manifestFile.File));
         }
     }
 }

@@ -54,12 +54,12 @@
 
         private void CompressingFinished(object sender, EventArgs e)
         {
-            this.progressNotifier.UpdateProgress(ProgressStage.SaveArchive, 0, 0);
+            this.progressNotifier.UpdateProgress(ProgressStage.CreatingArchive, 0, 0);
         }
 
         private void Compressing(object sender, ProgressEventArgs e)
         {
-            this.progressNotifier.UpdateProgress(ProgressStage.SaveArchive, 100, e.PercentDone);
+            this.progressNotifier.UpdateProgress(ProgressStage.CreatingArchive, 100, e.PercentDone);
         }
     }
 }

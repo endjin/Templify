@@ -13,12 +13,11 @@
 
 #endregion
 
-namespace SharpArch.PackageManagement.Specifications
+namespace Endjin.Templify.Specifications
 {
     #region Using Directives
 
     using System;
-    using System.Collections.Concurrent;
     using System.Collections.Generic;
 
     using Endjin.Templify.Domain.Contracts.Packager.Processors;
@@ -42,6 +41,7 @@ namespace SharpArch.PackageManagement.Specifications
                 rename_file_processor = DependencyOf<IRenameFileProcessor>();
                 package_to_clone = new Package
                 {
+                    ClonedPath = @"C:\Temp\Endjin\Templify\tmp-repo\a67013ef-0ec8-405b-9868-fb5bfdcf2dad\Cloned",
                     Manifest = new Manifest
                     {
                         Author = "Howard van Rooijen",
@@ -61,7 +61,9 @@ namespace SharpArch.PackageManagement.Specifications
                                     new ManifestFile { File = @"MyApp\Solutions\MyApp.WebCore\placeholder.txt", }, 
                                     new ManifestFile { File = @"MyApp\Solutions\MyApp.WebViews\placeholder.txt", },
                                 }
-                }
+                    },
+                    TemplatePath = @"C:\Temp\Endjin\Templify\tmp-repo\a67013ef-0ec8-405b-9868-fb5bfdcf2dad\Template"
+
             };
         };
     }

@@ -6,7 +6,11 @@
         Background="{DynamicResource WindowBackgroundBrush}"     
        Icon="/Resources/app-icon.ico" 
         Width="300"
+<<<<<<< HEAD
              Height="190"
+=======
+             Height="155"
+>>>>>>> 9ddcbfb0b074d82612bd53fd03dae9fcf1b9d0af
              mc:Ignorable="d">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
@@ -29,7 +33,7 @@
                 HintText="Please select a template" 
                 Padding="3"
                 Grid.Row="0"
-                Grid.Column="1">
+                Grid.Column="1" DataContext="{Binding}">
                 <ComboBox x:Name="PackageList"
                       ItemsSource="{Binding Path=Packages}" 
                       DisplayMemberPath="Manifest.Title" 
@@ -60,8 +64,16 @@
             x:Name="StatusText" 
             Foreground="White" 
             Text="{Binding Path=ProgressStatus}" 
-            Visibility="{Binding Path=DeployingPackage, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+<<<<<<< HEAD
+            Visibility="{Binding Path=CreatingPackage, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         <Button x:Name="DeployPackage">Deploy Template</Button>
+        <Separator MinHeight="20"></Separator>
+        <Button x:Name="Manage" VerticalAlignment="Bottom">Manage Templates</Button>
+        <Button x:Name="Exit" VerticalAlignment="Bottom">Exit</Button>
+=======
+            Visibility="{Binding Path=DeployingPackage, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        <Button x:Name="DeployPackage">Deploy Package</Button>
         <Button x:Name="Exit">Exit</Button>
+>>>>>>> 9ddcbfb0b074d82612bd53fd03dae9fcf1b9d0af
     </StackPanel>
 </Window>

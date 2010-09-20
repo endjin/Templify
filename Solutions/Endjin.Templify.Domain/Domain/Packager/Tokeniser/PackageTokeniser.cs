@@ -3,27 +3,40 @@
     #region Using Directives
 
     using System.ComponentModel.Composition;
+    using System.Diagnostics;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
 
+    using Endjin.Templify.Domain.Contracts.Packager.Filters;
     using Endjin.Templify.Domain.Contracts.Packager.Notifiers;
     using Endjin.Templify.Domain.Contracts.Packager.Processors;
     using Endjin.Templify.Domain.Contracts.Packager.Tokeniser;
     using Endjin.Templify.Domain.Domain.Packages;
+    using Endjin.Templify.Domain.Infrastructure;
 
     #endregion
 
     [Export(typeof(IPackageTokeniser))]
     public class PackageTokeniser : IPackageTokeniser
     {
+        #region Fields
+
+        private readonly IBinaryFileFilter binaryFileFilter;
         private readonly IFileContentProcessor fileContentProcessor;
         private readonly IProgressNotifier progressNotifier;
         private readonly IRenameFileProcessor renameFileProcessor;
 
+        #endregion
+
         [ImportingConstructor]
-        public PackageTokeniser(IFileContentProcessor fileContentProcessor, IProgressNotifier progressNotifier, IRenameFileProcessor renameFileProcessor)
+        public PackageTokeniser(
+            IFileContentProcessor fileContentProcessor, 
+            IProgressNotifier progressNotifier, 
+            IRenameFileProcessor renameFileProcessor, 
+            IBinaryFileFilter binaryFileFilter)
         {
             this.fileContentProcessor = fileContentProcessor;
+            this.binaryFileFilter = binaryFileFilter;
             this.progressNotifier = progressNotifier;
             this.renameFileProcessor = renameFileProcessor;
         }
@@ -38,7 +51,7 @@
 
         private static string Replace(string token, string value)
         {
-            return Regex.Replace(value, token, match => "__NAME__", RegexOptions.IgnoreCase);
+            return Regex.Replace(value, token, match => Tokens.TokenName, RegexOptions.IgnoreCase);
         }
 
         private void TokeniseFileContent(Package package, string token)
@@ -46,14 +59,18 @@
             int progress = 0;
             int fileCount = package.Manifest.Files.Count;
 
+            var processableFiles = this.binaryFileFilter.Filter(package.Manifest.Files);
+
             Parallel.ForEach(
-                package.Manifest.Files,
+                processableFiles,
                 manifestFile =>
                     {
                         var contents = this.fileContentProcessor.ReadContents(manifestFile.File);
                         contents = Replace(token, contents);
+
                         this.fileContentProcessor.WriteContents(manifestFile.File, contents);
                         this.progressNotifier.UpdateProgress(ProgressStage.TokenisePackageContents, fileCount, progress);
+
                         progress++;
                     });
         }

@@ -34,15 +34,14 @@ namespace Endjin.Templify.Client.ViewModel
         private readonly IPackageTokeniser packageTokeniser;
         private readonly IProgressNotifier progressNotifier;
 
-        private string name;
         private string author;
-        private string version;
-        private string token;
-
-        private string progressStatus;
-        private int maxProgress;
-        private int currentProgress;
         private bool creatingPackage;
+        private int currentProgress;
+        private string name;
+        private int maxProgress;
+        private string progressStatus;
+        private string token;
+        private string version;
 
         #endregion
 
@@ -112,6 +111,20 @@ namespace Endjin.Templify.Client.ViewModel
             }
         }
 
+        public int CurrentProgress
+        {
+            get
+            {
+                return this.currentProgress;
+            }
+
+            set
+            {
+                this.currentProgress = value;
+                this.NotifyOfPropertyChange(() => this.CurrentProgress);
+            }
+        }
+
         public string Name
         {
             get
@@ -134,24 +147,6 @@ namespace Endjin.Templify.Client.ViewModel
         {
             get;
             set;
-        }
-
-        public string Token
-        {
-            get
-            {
-                return this.token;
-            }
-
-            set
-            {
-                if (this.token != value)
-                {
-                    this.token = value;
-                    this.NotifyOfPropertyChange(() => this.Token);
-                    this.NotifyOfPropertyChange(() => this.CanCreatePackage);
-                }
-            }
         }
 
         public string Version
@@ -189,17 +184,21 @@ namespace Endjin.Templify.Client.ViewModel
             }
         }
 
-        public int CurrentProgress
+        public string Token
         {
             get
             {
-                return this.currentProgress;
+                return this.token;
             }
 
             set
             {
-                this.currentProgress = value;
-                this.NotifyOfPropertyChange(() => this.CurrentProgress);
+                if (this.token != value)
+                {
+                    this.token = value;
+                    this.NotifyOfPropertyChange(() => this.Token);
+                    this.NotifyOfPropertyChange(() => this.CanCreatePackage);
+                }
             }
         }
 
