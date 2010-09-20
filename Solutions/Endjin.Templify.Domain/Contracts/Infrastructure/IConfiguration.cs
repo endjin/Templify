@@ -5,5 +5,9 @@ namespace Endjin.Templify.Domain.Contracts.Infrastructure
         string GetFileExclusions();
 
         string GetDirectoryExclusions();
+
+        void SaveDirectoryExclusions(string directoryExclusions);
+
+        void SaveFileExclusions(string fileExclusions);
     }
 }

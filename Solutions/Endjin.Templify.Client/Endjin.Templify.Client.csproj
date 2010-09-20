@@ -68,6 +68,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Contracts\IManageExclusionsView.cs" />
     <Compile Include="Contracts\IManagePackagesView.cs" />
     <Compile Include="Contracts\ICreatePackageView.cs" />
     <Compile Include="Contracts\IDeployPackageView.cs" />
@@ -79,9 +80,13 @@
     <Compile Include="Domain\Mode.cs" />
     <Compile Include="Domain\PackageCollection.cs" />
     <Compile Include="Framework\HintTextDecorator.cs" />
+    <Compile Include="ViewModel\ManageExclusionsViewModel.cs" />
     <Compile Include="ViewModel\CreatePackageViewModel.cs" />
     <Compile Include="ViewModel\DeployPackageViewModel.cs" />
     <Compile Include="ViewModel\ManagePackagesViewModel.cs" />
+    <Compile Include="View\ManageExclusionsView.xaml.cs">
+      <DependentUpon>ManageExclusionsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ManagePackagesView.xaml.cs">
       <DependentUpon>ManagePackagesView.xaml</DependentUpon>
     </Compile>
@@ -127,6 +132,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ManageExclusionsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

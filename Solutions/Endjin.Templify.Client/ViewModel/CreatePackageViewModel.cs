@@ -33,6 +33,8 @@ namespace Endjin.Templify.Client.ViewModel
         private readonly IPackageBuilder packageBuilder;
         private readonly IPackageTokeniser packageTokeniser;
         private readonly IProgressNotifier progressNotifier;
+        private readonly IWindowManager windowManager;
+        private readonly IManageExclusionsView manageExclusionsView;
 
         private string author;
         private bool creatingPackage;
@@ -52,7 +54,9 @@ namespace Endjin.Templify.Client.ViewModel
             IClonePackageBuilder clonePackageBuilder,
             IPackageBuilder packageBuilder,
             IPackageTokeniser packageTokeniser,
-            IProgressNotifier progressNotifier)
+            IProgressNotifier progressNotifier,
+            IWindowManager windowManager,
+            IManageExclusionsView manageExclusionsView)
         {
             this.archiveBuilder = archiveBuilder;
             this.cleanUpProcessor = cleanUpProcessor;
@@ -60,6 +64,8 @@ namespace Endjin.Templify.Client.ViewModel
             this.packageBuilder = packageBuilder;
             this.packageTokeniser = packageTokeniser;
             this.progressNotifier = progressNotifier;
+            this.windowManager = windowManager;
+            this.manageExclusionsView = manageExclusionsView;
             this.progressNotifier.Progress += this.OnProgressUpdate;
         }
 
@@ -237,6 +243,11 @@ namespace Endjin.Templify.Client.ViewModel
         public void Exit()
         {
             Application.Current.Shutdown();
+        }
+
+        public void ManageExclusions()
+        {
+            this.windowManager.ShowDialog(this.manageExclusionsView, null);
         }
 
         private void ExecuteCreatePackage()

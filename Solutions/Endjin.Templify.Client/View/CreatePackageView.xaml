@@ -7,7 +7,7 @@
             Background="{DynamicResource WindowBackgroundBrush}"
             Icon="/Resources/app-icon.ico"    
         Width="300"
-            Height="200"
+            Height="220"
             mc:Ignorable="d">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
@@ -75,6 +75,7 @@
             Text="{Binding Path=ProgressStatus}" 
             Visibility="{Binding Path=CreatingPackage, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         <Button x:Name="CreatePackage">Templify!</Button>
+        <Button x:Name="ManageExclusions">Manage Exclusions</Button>
         <Button x:Name="Exit">Exit</Button>
     </StackPanel>
 </Window>
