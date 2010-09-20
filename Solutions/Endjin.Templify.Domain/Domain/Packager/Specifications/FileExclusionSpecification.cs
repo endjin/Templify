@@ -1,4 +1,6 @@
-﻿namespace Endjin.Templify.Domain.Domain.Packager.Specifications
+﻿using Endjin.Templify.Domain.Contracts.Infrastructure;
+
+namespace Endjin.Templify.Domain.Domain.Packager.Specifications
 {
     #region Using Directives
 
@@ -16,13 +18,17 @@
     [Export(typeof(IFileExclusionsSpecification))]
     public class FileExclusionSpecification : QuerySpecification<string>, IFileExclusionsSpecification
     {
+        private readonly IConfiguration configuration;
         private readonly List<string> directoryExclusions = new List<string>();
         private readonly List<string> fileExclusions = new List<string>();
 
-        public FileExclusionSpecification()
+        [ImportingConstructor]
+        public FileExclusionSpecification(IConfiguration configuration)
         {
-            this.directoryExclusions = new List<string> { "bin", "obj", "debug", "release", ".git" };
-            this.fileExclusions = new List<string> { ".cache", ".mst", ".msm", ".gitignore", ".idx", ".pack", ".user", ".resharper", ".suo" };
+            this.configuration = configuration;
+
+            this.directoryExclusions = this.configuration.GetDirectoryExclusions().Split(",".ToCharArray()).ToList();
+            this.fileExclusions = this.configuration.GetFileExclusions().Split(",".ToCharArray()).ToList();
         }
 
         public override System.Linq.Expressions.Expression<System.Func<string, bool>> MatchingCriteria

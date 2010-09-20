@@ -40,11 +40,13 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\Framework\Specifications\ILinqSpecification.cs" />
+    <Compile Include="Contracts\Infrastructure\IConfiguration.cs" />
     <Compile Include="Contracts\Packager\Builders\IArchiveBuilder.cs" />
     <Compile Include="Contracts\Packager\Builders\IClonePackageBuilder.cs" />
     <Compile Include="Contracts\Packager\Filters\IBinaryFileFilter.cs" />
@@ -103,6 +105,7 @@
     <Compile Include="Framework\Specifications\QuerySpecification.cs" />
     <Compile Include="Framework\Specifications\QuerySpecificationExtensions.cs" />
     <Compile Include="Framework\Threading\BackgroundWorkerManager.cs" />
+    <Compile Include="Infrastructure\Configuration.cs" />
     <Compile Include="Infrastructure\Tokens.cs" />
     <Compile Include="Infrastructure\FileTypes.cs" />
     <Compile Include="Infrastructure\FilePaths.cs" />

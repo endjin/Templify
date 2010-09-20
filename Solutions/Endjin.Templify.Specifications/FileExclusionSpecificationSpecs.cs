@@ -7,11 +7,12 @@
 //-------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-
+using Endjin.Templify.Domain.Contracts.Infrastructure;
 using Endjin.Templify.Domain.Domain.Packager.Tokeniser;
 using Endjin.Templify.Specifications;
 
 using Machine.Specifications;
+using Rhino.Mocks;
 
 #pragma warning disable 169
 // ReSharper disable InconsistentNaming
@@ -36,12 +37,17 @@ namespace Endjin.Templify.Specifications
 
     #endregion
 
-    public abstract class specification_for_file_exclusion_specification
+    public abstract class specification_for_file_exclusion_specification : Specification<FileExclusionSpecification>
     {
         protected static List<string> file_list;
+        protected static IConfiguration config;
 
         private Establish context = () =>
             {
+                config = DependencyOf<IConfiguration>();
+                config.Stub(x => x.GetFileExclusions()).Return(".cache,.mst,.msm,.gitignore,.idx,.pack,.user,.resharper,.suo");
+                config.Stub(x => x.GetDirectoryExclusions()).Return("bin,obj,debug,release,.git");
+
                 file_list = new List<string>
                     {
                         @"C:\__NAME__\.git\hooks\applypatch-msg.sample",
@@ -69,10 +75,16 @@ namespace Endjin.Templify.Specifications
 
         Establish context = () =>
             {
-                subject = new FileExclusionSpecification();
+                subject = new FileExclusionSpecification(config);
             };
 
         Because of = () => result = subject.SatisfyingElementsFrom(file_list.AsQueryable());
+
+        It should_get_the_list_of_file_exclusions_from_config = () =>
+            config.AssertWasCalled(x => x.GetFileExclusions());
+
+        It should_get_the_list_of_directory_exclusions_from_config = () =>
+            config.AssertWasCalled(x => x.GetDirectoryExclusions());
 
         It should_return_no_files = () => result.Count().ShouldEqual(0);
     }
