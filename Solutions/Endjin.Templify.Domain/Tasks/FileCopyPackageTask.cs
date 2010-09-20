@@ -5,6 +5,7 @@
     using System;
     using System.ComponentModel.Composition;
     using System.IO;
+    using System.Threading.Tasks;
 
     using Endjin.Templify.Domain.Contracts.Packager.Notifiers;
     using Endjin.Templify.Domain.Contracts.Packager.Processors;
@@ -40,32 +41,31 @@
             this.progressNotifier = progressNotifier;
             this.reservedTokenResolver = reservedTokenResolver;
         }
-    
+
         public void Execute(Package package)
         {
             this.manifest = package.Manifest;
             int progress = 0;
 
-            //Parallel.ForEach(
-            //    package.Manifest.Files,
-            //    file 
+            Parallel.ForEach(
+                package.Manifest.Files,
+                manifestFile =>
+                    {
+                        progress++;
 
-            foreach (var manifestFile in this.manifest.Files)
-            {
-                progress++;
+                        // Set destination to the Package default, unless the file has an override defined
+                        string destFilePath = this.GetDestFilePath(manifestFile);
 
-                // Set destination to the Package default, unless the file has an override defined
-                string destFilePath = this.GetDestFilePath(manifestFile);
+                        if (!Directory.Exists(Path.GetDirectoryName(destFilePath)))
+                        {
+                            Directory.CreateDirectory(Path.GetDirectoryName(destFilePath));
+                        }
 
-                if (!Directory.Exists(Path.GetDirectoryName(destFilePath)))
-                {
-                    Directory.CreateDirectory(Path.GetDirectoryName(destFilePath));
-                }
+                        this.archiveProcessor.Extract(this.manifest.Path, manifestFile.File, destFilePath);
 
-                this.archiveProcessor.Extract(this.manifest.Path, manifestFile.File, destFilePath);
-                
-                this.progressNotifier.UpdateProgress(ProgressStage.ExtractFilesFromPackage, this.manifest.Files.Count, progress);
-            }
+                        this.progressNotifier.UpdateProgress(
+                            ProgressStage.ExtractFilesFromPackage, this.manifest.Files.Count, progress);
+                    });
         }
 
         private string GetDestFilePath(ManifestFile manifestFile)
