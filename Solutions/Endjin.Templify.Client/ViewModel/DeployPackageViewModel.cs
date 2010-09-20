@@ -31,14 +31,13 @@ namespace Endjin.Templify.Client.ViewModel
         private readonly IPackageRepository packageRepository;
         private readonly IProgressNotifier progressNotifier;
 
-        private PackageCollection packages;
-        private string name;
-
-        private string progressStatus;
-        private int maxProgress;
         private int currentProgress;
-        private Package selectedPackage;
         private bool deployingPackage;
+        private int maxProgress;
+        private string name;
+        private PackageCollection packages;
+        private string progressStatus;
+        private Package selectedPackage;
 
         #endregion
 
@@ -57,6 +56,23 @@ namespace Endjin.Templify.Client.ViewModel
         public bool CanDeployPackage
         {
             get { return !string.IsNullOrWhiteSpace(this.Name) && this.SelectedPackage != null; }
+        }
+
+        public int CurrentProgress
+        {
+            get
+            {
+                return this.currentProgress;
+            }
+
+            set
+            {
+                if (this.currentProgress != value)
+                {
+                    this.currentProgress = value;
+                    this.NotifyOfPropertyChange(() => this.CurrentProgress);                    
+                }
+            }
         }
 
         public bool DeployingPackage
@@ -93,37 +109,6 @@ namespace Endjin.Templify.Client.ViewModel
             }
         }
 
-        public int CurrentProgress
-        {
-            get
-            {
-                return this.currentProgress;
-            }
-
-            set
-            {
-                if (this.currentProgress != value)
-                {
-                    this.currentProgress = value;
-                    this.NotifyOfPropertyChange(() => this.CurrentProgress);                    
-                }
-            }
-        }
-
-        public string ProgressStatus
-        {
-            get
-            {
-                return this.progressStatus;
-            }
-
-            set
-            {
-                this.progressStatus = value;
-                this.NotifyOfPropertyChange(() => this.ProgressStatus);
-            }
-        }
-
         public string Name
         {
             get
@@ -137,24 +122,6 @@ namespace Endjin.Templify.Client.ViewModel
                 {
                     this.name = value;
                     this.NotifyOfPropertyChange(() => this.Name);
-                    this.NotifyOfPropertyChange(() => this.CanDeployPackage);
-                }
-            }
-        }
-
-        public Package SelectedPackage
-        {
-            get
-            {
-                return this.selectedPackage;
-            } 
- 
-            set
-            {
-                if (this.selectedPackage != value)
-                {
-                    this.selectedPackage = value;
-                    this.NotifyOfPropertyChange(() => this.SelectedPackage);
                     this.NotifyOfPropertyChange(() => this.CanDeployPackage);
                 }
             }
@@ -187,6 +154,38 @@ namespace Endjin.Templify.Client.ViewModel
         {
             get;
             set;
+        }
+
+        public string ProgressStatus
+        {
+            get
+            {
+                return this.progressStatus;
+            }
+
+            set
+            {
+                this.progressStatus = value;
+                this.NotifyOfPropertyChange(() => this.ProgressStatus);
+            }
+        }
+
+        public Package SelectedPackage
+        {
+            get
+            {
+                return this.selectedPackage;
+            } 
+ 
+            set
+            {
+                if (this.selectedPackage != value)
+                {
+                    this.selectedPackage = value;
+                    this.NotifyOfPropertyChange(() => this.SelectedPackage);
+                    this.NotifyOfPropertyChange(() => this.CanDeployPackage);
+                }
+            }
         }
 
         #endregion
@@ -242,16 +241,16 @@ namespace Endjin.Templify.Client.ViewModel
             BackgroundWorkerManager.RunBackgroundWork(this.RetrievePackages);
         }
 
-        private void RetrievePackages()
-        {
-            this.Packages = new PackageCollection(this.packageRepository.FindAll());
-        }
-
         private void OnProgressUpdate(object sender, PackageProgressEventArgs e)
         {
             this.CurrentProgress = e.CurrentValue;
             this.MaxProgress = e.MaxValue;
             this.ProgressStatus = e.ProgressStage.GetDescription();
+        }
+
+        private void RetrievePackages()
+        {
+            this.Packages = new PackageCollection(this.packageRepository.FindAll());
         }
     }
 }

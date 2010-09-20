@@ -6,7 +6,7 @@
         Background="{DynamicResource WindowBackgroundBrush}"     
        Icon="/Resources/app-icon.ico" 
         Width="300"
-             Height="160"
+             Height="155"
              mc:Ignorable="d">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
@@ -60,7 +60,7 @@
             x:Name="StatusText" 
             Foreground="White" 
             Text="{Binding Path=ProgressStatus}" 
-            Visibility="{Binding Path=CreatingPackage, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            Visibility="{Binding Path=DeployingPackage, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         <Button x:Name="DeployPackage">Deploy Package</Button>
         <Button x:Name="Exit">Exit</Button>
     </StackPanel>
