@@ -5,10 +5,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:fwk="clr-namespace:Endjin.Templify.Client.Framework" Title="Templify - powered by endjin"
         Background="{DynamicResource WindowBackgroundBrush}"     
        Icon="/Resources/app-icon.ico" 
-        Width="300"
-             Height="190"
-             mc:Ignorable="d" 
-        SizeToContent="WidthAndHeight">
+        Width="350"
+             Height="140"
+             mc:Ignorable="d">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </Window.Resources>

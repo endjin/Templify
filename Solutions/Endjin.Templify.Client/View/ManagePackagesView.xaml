@@ -7,7 +7,8 @@
        Icon="/Resources/app-icon.ico" 
         Width="300"
              Height="200"
-             mc:Ignorable="d" SizeToContent="WidthAndHeight">
+             mc:Ignorable="d" 
+        SizeToContent="WidthAndHeight">
     <StackPanel>
         <Grid>
             <Grid.RowDefinitions>
