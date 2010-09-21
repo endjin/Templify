@@ -30,6 +30,8 @@ namespace Endjin.Templify.Client.ViewModel
         private readonly IPackageProcessor packageProcessor;
         private readonly IPackageRepository packageRepository;
         private readonly IProgressNotifier progressNotifier;
+        private readonly IWindowManager windowManager;
+        private readonly IManagePackagesView managePackagesView;
 
         private int currentProgress;
         private bool deployingPackage;
@@ -42,12 +44,14 @@ namespace Endjin.Templify.Client.ViewModel
         #endregion
 
         [ImportingConstructor]
-        public DeployPackageViewModel(IPackageTask packageTask, IPackageProcessor packageProcessor, IPackageRepository packageRepository, IProgressNotifier progressNotifier)
+        public DeployPackageViewModel(IPackageTask packageTask, IPackageProcessor packageProcessor, IPackageRepository packageRepository, IProgressNotifier progressNotifier, IWindowManager windowManager, IManagePackagesView managePackagesView)
         {
             this.packageTask = packageTask;
             this.packageProcessor = packageProcessor;
             this.packageRepository = packageRepository;
             this.progressNotifier = progressNotifier;
+            this.windowManager = windowManager;
+            this.managePackagesView = managePackagesView;
             this.progressNotifier.Progress += this.OnProgressUpdate;
         }
 
@@ -202,6 +206,12 @@ namespace Endjin.Templify.Client.ViewModel
         public void Exit()
         {
             Application.Current.Shutdown();
+        }
+
+        public void Manage()
+        {
+            this.windowManager.ShowDialog(this.managePackagesView, null);
+            this.Initialise();
         }
 
         private void ExecutePackage(Package package)

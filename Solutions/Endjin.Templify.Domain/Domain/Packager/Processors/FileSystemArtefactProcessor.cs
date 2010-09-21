@@ -25,6 +25,14 @@
             return Flatten(path, Directory.GetDirectories).SelectMany(dir => Directory.EnumerateFiles(dir, filter));
         }
 
+        public void RemoveFile(string path)
+        {
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
+        }
+
         public virtual IEnumerable<string> RetrieveDirectories(string path)
         {
             return Flatten(path, Directory.EnumerateDirectories);

@@ -37,5 +37,10 @@
         {
             return this.FindAll().Where(p => p.Manifest.Id == id).FirstOrDefault();
         }
+
+        public void Remove(Package package)
+        {
+            this.artefactProcessor.RemoveFile(package.Manifest.Path);
+        }
     }
 }

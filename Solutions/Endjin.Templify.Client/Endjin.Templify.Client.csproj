@@ -41,15 +41,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Caliburn.Micro, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>C:\_Projects\endjin\OSS\Templify\ReferencedAssemblies\Caliburn.Micro\Caliburn.Micro.dll</HintPath>
+      <HintPath>..\..\ReferencedAssemblies\Caliburn.Micro\Caliburn.Micro.dll</HintPath>
     </Reference>
     <Reference Include="CommandLine, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>C:\_Projects\endjin\OSS\Templify\ReferencedAssemblies\CommandLine\CommandLine.dll</HintPath>
+      <HintPath>..\..\ReferencedAssemblies\CommandLine\CommandLine.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\ReferencedAssemblies\Caliburn.Micro\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
@@ -66,6 +68,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Contracts\IManageExclusionsView.cs" />
+    <Compile Include="Contracts\IManagePackagesView.cs" />
     <Compile Include="Contracts\ICreatePackageView.cs" />
     <Compile Include="Contracts\IDeployPackageView.cs" />
     <Compile Include="Contracts\IPackageViewModel.cs" />
@@ -76,8 +80,16 @@
     <Compile Include="Domain\Mode.cs" />
     <Compile Include="Domain\PackageCollection.cs" />
     <Compile Include="Framework\HintTextDecorator.cs" />
+    <Compile Include="ViewModel\ManageExclusionsViewModel.cs" />
     <Compile Include="ViewModel\CreatePackageViewModel.cs" />
     <Compile Include="ViewModel\DeployPackageViewModel.cs" />
+    <Compile Include="ViewModel\ManagePackagesViewModel.cs" />
+    <Compile Include="View\ManageExclusionsView.xaml.cs">
+      <DependentUpon>ManageExclusionsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManagePackagesView.xaml.cs">
+      <DependentUpon>ManagePackagesView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CreatePackageView.xaml.cs">
       <DependentUpon>CreatePackageView.xaml</DependentUpon>
     </Compile>
@@ -120,6 +132,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ManageExclusionsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ManagePackagesView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -14,5 +14,7 @@ namespace Endjin.Templify.Domain.Contracts.Packages
         IQueryable<Package> FindAll();
         
         Package FindOne(Guid id);
+        
+        void Remove(Package package);
     }
 }

@@ -1,3 +1,5 @@
+using System;
+
 namespace Endjin.Templify.Domain.Domain.Packager.Processors
 {
     #region Using Directives
@@ -21,7 +23,34 @@ namespace Endjin.Templify.Domain.Domain.Packager.Processors
         {
             this.MakeWritable(path);
 
+            var hidden = IsHidden(path);
+
+            if (hidden)
+            {
+                Unhide(path);
+            }
+
             File.WriteAllText(path, content);
+
+            if (hidden)
+            {
+                Hide(path);
+            }
+        }
+
+        private void Hide(string path)
+        {
+            File.SetAttributes(path, File.GetAttributes(path) | FileAttributes.Hidden);
+        }
+
+        private void Unhide(string path)
+        {
+            File.SetAttributes(path, File.GetAttributes(path) & ~(FileAttributes.Hidden));
+        }
+
+        private bool IsHidden(string path)
+        {
+            return File.GetAttributes(path).HasFlag(FileAttributes.Hidden);
         }
 
         private void MakeWritable(string path)

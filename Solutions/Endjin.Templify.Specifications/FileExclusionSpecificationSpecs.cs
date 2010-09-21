@@ -7,11 +7,12 @@
 //-------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-
+using Endjin.Templify.Domain.Contracts.Infrastructure;
 using Endjin.Templify.Domain.Domain.Packager.Tokeniser;
 using Endjin.Templify.Specifications;
 
 using Machine.Specifications;
+using Rhino.Mocks;
 
 #pragma warning disable 169
 // ReSharper disable InconsistentNaming
@@ -36,12 +37,16 @@ namespace Endjin.Templify.Specifications
 
     #endregion
 
-    public abstract class specification_for_file_exclusion_specification
+    public abstract class specification_for_file_exclusion_specification : Specification<FileExclusionSpecification>
     {
         protected static List<string> file_list;
+        protected static IConfiguration config;
 
         private Establish context = () =>
             {
+                subject.FileExclusions = new List<string> {".cache",".mst",".msm",".gitignore",".idx",".pack",".user",".resharper",".suo"};
+                subject.DirectoryExclusions = new List<string> { "bin", "obj", "debug", "release", ".git" };
+
                 file_list = new List<string>
                     {
                         @"C:\__NAME__\.git\hooks\applypatch-msg.sample",
@@ -64,13 +69,7 @@ namespace Endjin.Templify.Specifications
     [Subject(typeof(FileExclusionSpecification))]
     public class when_the_file_exclusion_specification_is_given_a_list_of_items_to_exclude : specification_for_file_exclusion_specification
     {
-        static FileExclusionSpecification subject;
         static IEnumerable<string> result;
-
-        Establish context = () =>
-            {
-                subject = new FileExclusionSpecification();
-            };
 
         Because of = () => result = subject.SatisfyingElementsFrom(file_list.AsQueryable());
 
