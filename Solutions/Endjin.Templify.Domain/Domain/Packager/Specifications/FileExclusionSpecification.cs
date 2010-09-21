@@ -1,6 +1,4 @@
-﻿using Endjin.Templify.Domain.Contracts.Infrastructure;
-
-namespace Endjin.Templify.Domain.Domain.Packager.Specifications
+﻿namespace Endjin.Templify.Domain.Domain.Packager.Specifications
 {
     #region Using Directives
 
@@ -9,44 +7,40 @@ namespace Endjin.Templify.Domain.Domain.Packager.Specifications
     using System.ComponentModel.Composition;
     using System.IO;
     using System.Linq;
-
+    using System.Linq.Expressions;
+    using Endjin.Templify.Domain.Contracts.Infrastructure;
     using Endjin.Templify.Domain.Contracts.Packager.Specifications;
     using Endjin.Templify.Domain.Framework.Specifications;
 
     #endregion;
 
-    [Export(typeof(IFileExclusionsSpecification))]
+    [Export(typeof (IFileExclusionsSpecification))]
     public class FileExclusionSpecification : QuerySpecification<string>, IFileExclusionsSpecification
     {
-        private readonly IConfiguration configuration;
-        private readonly List<string> directoryExclusions = new List<string>();
-        private readonly List<string> fileExclusions = new List<string>();
-
-        [ImportingConstructor]
-        public FileExclusionSpecification(IConfiguration configuration)
+        public override Expression<Func<string, bool>> MatchingCriteria
         {
-            this.configuration = configuration;
-
-            this.directoryExclusions = this.configuration.GetDirectoryExclusions().Split(",".ToCharArray()).ToList();
-            this.fileExclusions = this.configuration.GetFileExclusions().Split(",".ToCharArray()).ToList();
+            get { return f => !ShouldExclude(f); }
         }
 
-        public override System.Linq.Expressions.Expression<System.Func<string, bool>> MatchingCriteria
-        {
-            get { return f => !this.ShouldExclude(f); }
-        }
+        #region IFileExclusionsSpecification Members
+
+        public List<string> FileExclusions { get; set; }
+
+        public List<string> DirectoryExclusions { get; set; }
+
+        #endregion
 
         private bool ShouldExclude(string path)
         {
-            var segments = path.Split(new[] { Path.DirectorySeparatorChar }, StringSplitOptions.RemoveEmptyEntries);
+            string[] segments = path.Split(new[] {Path.DirectorySeparatorChar}, StringSplitOptions.RemoveEmptyEntries);
 
-            bool shouldExclude = segments.Any(directory => this.directoryExclusions.Contains(directory));
+            bool shouldExclude = segments.Any(directory => DirectoryExclusions.Contains(directory));
 
             if (!shouldExclude)
             {
-                var file = segments[segments.Length - 1];
+                string file = segments[segments.Length - 1];
 
-                shouldExclude = this.fileExclusions.Contains(new FileInfo(file).Extension.ToLowerInvariant());
+                shouldExclude = FileExclusions.Contains(new FileInfo(file).Extension.ToLowerInvariant());
             }
 
             return shouldExclude;

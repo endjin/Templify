@@ -1,4 +1,7 @@
-﻿namespace Endjin.Templify.Domain.Domain.Packager.Processors
+﻿using System;
+using Endjin.Templify.Domain.Contracts.Infrastructure;
+
+namespace Endjin.Templify.Domain.Domain.Packager.Processors
 {
     #region Using Directives
 
@@ -15,16 +18,31 @@
     public class FilteredFileSystemArtefactProcessor : FileSystemArtefactProcessor
     {
         private readonly IFileExclusionsSpecification fileExclusionsSpecification;
+        private readonly IConfiguration configuration;
 
         [ImportingConstructor]
-        public FilteredFileSystemArtefactProcessor(IFileExclusionsSpecification fileExclusionsSpecification)
+        public FilteredFileSystemArtefactProcessor(IFileExclusionsSpecification fileExclusionsSpecification, IConfiguration configuration)
         {
             this.fileExclusionsSpecification = fileExclusionsSpecification;
+            this.configuration = configuration;
         }
 
         public override IEnumerable<string> RetrieveFiles(string path)
         {
+            SetFilters();
+
             return this.fileExclusionsSpecification.SatisfyingElementsFrom(base.RetrieveFiles(path).AsQueryable());
+        }
+
+        private void SetFilters()
+        {
+            this.fileExclusionsSpecification.FileExclusions = this.ParseList(this.configuration.GetFileExclusions());
+            this.fileExclusionsSpecification.DirectoryExclusions = this.ParseList(this.configuration.GetDirectoryExclusions());
+        }
+
+        private List<string> ParseList(string commaSeparatedString)
+        {
+            return commaSeparatedString.Split(",".ToCharArray()).ToList(); 
         }
     }
 }

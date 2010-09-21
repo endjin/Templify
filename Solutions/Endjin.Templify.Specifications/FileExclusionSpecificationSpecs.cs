@@ -44,9 +44,8 @@ namespace Endjin.Templify.Specifications
 
         private Establish context = () =>
             {
-                config = DependencyOf<IConfiguration>();
-                config.Stub(x => x.GetFileExclusions()).Return(".cache,.mst,.msm,.gitignore,.idx,.pack,.user,.resharper,.suo");
-                config.Stub(x => x.GetDirectoryExclusions()).Return("bin,obj,debug,release,.git");
+                subject.FileExclusions = new List<string> {".cache",".mst",".msm",".gitignore",".idx",".pack",".user",".resharper",".suo"};
+                subject.DirectoryExclusions = new List<string> { "bin", "obj", "debug", "release", ".git" };
 
                 file_list = new List<string>
                     {
@@ -70,21 +69,9 @@ namespace Endjin.Templify.Specifications
     [Subject(typeof(FileExclusionSpecification))]
     public class when_the_file_exclusion_specification_is_given_a_list_of_items_to_exclude : specification_for_file_exclusion_specification
     {
-        static FileExclusionSpecification subject;
         static IEnumerable<string> result;
 
-        Establish context = () =>
-            {
-                subject = new FileExclusionSpecification(config);
-            };
-
         Because of = () => result = subject.SatisfyingElementsFrom(file_list.AsQueryable());
-
-        It should_get_the_list_of_file_exclusions_from_config = () =>
-            config.AssertWasCalled(x => x.GetFileExclusions());
-
-        It should_get_the_list_of_directory_exclusions_from_config = () =>
-            config.AssertWasCalled(x => x.GetDirectoryExclusions());
 
         It should_return_no_files = () => result.Count().ShouldEqual(0);
     }

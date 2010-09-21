@@ -1,4 +1,5 @@
 using System.ComponentModel.Composition;
+using System.Windows;
 using Caliburn.Micro;
 using Endjin.Templify.Client.Contracts;
 using Endjin.Templify.Domain.Contracts.Infrastructure;
@@ -73,6 +74,7 @@ namespace Endjin.Templify.Client.ViewModel
         {
             this.configuration.SaveDirectoryExclusions(this.directoryExclusions);
             this.configuration.SaveFileExclusions(this.fileExclusions);
+            MessageBox.Show("Settings have been saved.");
         }
 
         private void Initialise()
