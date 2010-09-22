@@ -47,25 +47,12 @@
             this.manifest = package.Manifest;
             int progress = 0;
 
-            Parallel.ForEach(
-                package.Manifest.Files,
-                manifestFile =>
-                    {
-                        progress++;
+            foreach (var file in this.manifest.Files)
+            {
+                file.InstallPath = this.GetDestFilePath(file);
+            }
 
-                        // Set destination to the Package default, unless the file has an override defined
-                        string destFilePath = this.GetDestFilePath(manifestFile);
-
-                        if (!Directory.Exists(Path.GetDirectoryName(destFilePath)))
-                        {
-                            Directory.CreateDirectory(Path.GetDirectoryName(destFilePath));
-                        }
-
-                        this.archiveProcessor.Extract(this.manifest.Path, manifestFile.File, destFilePath);
-
-                        this.progressNotifier.UpdateProgress(
-                            ProgressStage.ExtractFilesFromPackage, this.manifest.Files.Count, progress);
-                    });
+            this.archiveProcessor.Extract(this.manifest.Path, package.Manifest.Files);
         }
 
         private string GetDestFilePath(ManifestFile manifestFile)
