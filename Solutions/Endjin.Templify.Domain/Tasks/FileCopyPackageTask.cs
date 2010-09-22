@@ -45,7 +45,6 @@
         public void Execute(Package package)
         {
             this.manifest = package.Manifest;
-            int progress = 0;
 
             foreach (var file in this.manifest.Files)
             {

@@ -39,21 +39,19 @@ namespace Endjin.Templify.Domain.Domain.Packager.Processors
 
                 int progress = 0;
 
-                Parallel.ForEach(
-                    files,
-                    manifestFile =>
-                        {
-                            progress++;
+                foreach (var manifestFile in files)
+                {
+                    progress++;
 
-                            if (!Directory.Exists(Path.GetDirectoryName(manifestFile.InstallPath)))
-                            {
-                                Directory.CreateDirectory(Path.GetDirectoryName(manifestFile.InstallPath));
-                            }
+                    if (!Directory.Exists(Path.GetDirectoryName(manifestFile.InstallPath)))
+                    {
+                        Directory.CreateDirectory(Path.GetDirectoryName(manifestFile.InstallPath));
+                    }
 
-                            this.ExtractFile(extractor, manifestFile);
+                    this.ExtractFile(extractor, manifestFile);
 
-                            this.progressNotifier.UpdateProgress(ProgressStage.ExtractFilesFromPackage, files.Count, progress);
-                        });
+                    this.progressNotifier.UpdateProgress(ProgressStage.ExtractFilesFromPackage, files.Count, progress);
+                }
             }
         }
 
