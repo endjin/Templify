@@ -1,14 +1,21 @@
-using System;
-using System.ComponentModel.Composition;
-using Caliburn.Micro;
-using Endjin.Templify.Client.Contracts;
-using Endjin.Templify.Client.Domain;
-using Endjin.Templify.Domain.Contracts.Packages;
-using Endjin.Templify.Domain.Domain.Packages;
-using Endjin.Templify.Domain.Framework.Threading;
-
 namespace Endjin.Templify.Client.ViewModel
 {
+    #region Using Directives
+
+    using System;
+    using System.ComponentModel.Composition;
+    using System.Windows;
+
+    using Caliburn.Micro;
+
+    using Endjin.Templify.Client.Contracts;
+    using Endjin.Templify.Client.Domain;
+    using Endjin.Templify.Domain.Contracts.Packages;
+    using Endjin.Templify.Domain.Domain.Packages;
+    using Endjin.Templify.Domain.Framework.Threading;
+
+    #endregion
+
     [Export(typeof(IManagePackagesView))]
     public class ManagePackagesViewModel : PropertyChangedBase, IManagePackagesView
     {
@@ -27,7 +34,6 @@ namespace Endjin.Templify.Client.ViewModel
             get;
             set;
         }
-
 
         public PackageCollection Packages
         {
@@ -53,8 +59,16 @@ namespace Endjin.Templify.Client.ViewModel
 
         public void Remove(Package package)
         {
-            this.packageRepository.Remove(package);
-            this.Packages.Remove(package);
+            try
+            {
+                this.packageRepository.Remove(package);
+                this.Packages.Remove(package);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("Package Could not be deleted.");
+            }
+
             this.NotifyOfPropertyChange(() => this.Packages);
         }
 

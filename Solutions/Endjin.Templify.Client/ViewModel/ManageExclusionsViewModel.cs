@@ -1,12 +1,18 @@
-using System.ComponentModel.Composition;
-using System.Windows;
-using Caliburn.Micro;
-using Endjin.Templify.Client.Contracts;
-using Endjin.Templify.Domain.Contracts.Infrastructure;
-using Endjin.Templify.Domain.Framework.Threading;
-
 namespace Endjin.Templify.Client.ViewModel
 {
+    #region Using Directives
+
+    using System.ComponentModel.Composition;
+    using System.Windows;
+
+    using Caliburn.Micro;
+
+    using Endjin.Templify.Client.Contracts;
+    using Endjin.Templify.Domain.Contracts.Infrastructure;
+    using Endjin.Templify.Domain.Framework.Threading;
+
+    #endregion
+
     [Export(typeof(IManageExclusionsView))]
     public class ManageExclusionsViewModel : PropertyChangedBase, IManageExclusionsView
     {
@@ -74,6 +80,7 @@ namespace Endjin.Templify.Client.ViewModel
         {
             this.configuration.SaveDirectoryExclusions(this.directoryExclusions);
             this.configuration.SaveFileExclusions(this.fileExclusions);
+
             MessageBox.Show("Settings have been saved.");
         }
 
@@ -84,8 +91,8 @@ namespace Endjin.Templify.Client.ViewModel
 
         private void RetrieveConfiguration()
         {
-            FileExclusions = configuration.GetFileExclusions();
-            DirectoryExclusions = configuration.GetDirectoryExclusions();
+            this.FileExclusions = this.configuration.GetFileExclusions();
+            this.DirectoryExclusions = this.configuration.GetDirectoryExclusions();
         }
     }
 }

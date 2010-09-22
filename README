@@ -27,6 +27,7 @@ Templify makes use of the following tools and frameworks:
  o WPF Themes - http://wpfthemes.codeplex.com/
  o SevenZipSharp - http://sevenzipsharp.codeplex.com
  o 7Zip - http://www.7-zip.org(licensed under the GNU LGPL license) 
+ o Icon / Logo - The wonderful - Zyotism: http://www.zyotism.com/aesthetics/iconsets/2001/index.html
 
 
 Install
@@ -49,7 +50,7 @@ Credits & Thanks
 ================
 James Dawson for the original inspiration
 Alec Whittington for seeding the idea for use with Sharp Architecture
-James Broome for testing & bug fixes
+James Broome for Manage Package / Exclusions feature
 Jon George for testing & moral support
 Matthew Adams for WPF / MVVM / XAML help
 

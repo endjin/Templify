@@ -20,6 +20,7 @@ namespace Endjin.Templify.Specifications
     using System;
     using System.Collections.Generic;
 
+    using Endjin.Templify.Domain.Contracts.Packager.Filters;
     using Endjin.Templify.Domain.Contracts.Packager.Processors;
     using Endjin.Templify.Domain.Domain.Packager.Tokeniser;
     using Endjin.Templify.Domain.Domain.Packages;
@@ -34,12 +35,18 @@ namespace Endjin.Templify.Specifications
     public abstract class specification_for_package_tokeniser : Specification<PackageTokeniser>
     {
         protected static IRenameFileProcessor rename_file_processor;
-        protected static Package package_to_clone;
+        protected static IFileContentProcessor file_content_processor;
+        protected static IBinaryFileFilter binary_file_filter;
+        protected static Package package_to_tokenise;
+        protected static List<ManifestFile> filtered_files;
 
         Establish context = () =>
             {
                 rename_file_processor = DependencyOf<IRenameFileProcessor>();
-                package_to_clone = new Package
+                binary_file_filter = DependencyOf<IBinaryFileFilter>();
+                file_content_processor = DependencyOf<IFileContentProcessor>();
+
+                package_to_tokenise = new Package
                 {
                     ClonedPath = @"C:\Temp\Endjin\Templify\tmp-repo\a67013ef-0ec8-405b-9868-fb5bfdcf2dad\Cloned",
                     Manifest = new Manifest
@@ -52,20 +59,23 @@ namespace Endjin.Templify.Specifications
                         Version = "1.0.0.1",
                         Files = new List<ManifestFile>
                                 {
-                                    new ManifestFile { File = @"MyApp\Build\placeholder.txt", },
-                                    new ManifestFile { File = @"MyApp\ReferencedAssemblies\placeholder.txt", },
-                                    new ManifestFile { File = @"MyApp\Solutions\MyApp.Framework\placeholder.txt", },
-                                    new ManifestFile { File = @"MyApp\Solutions\MyApp.Infrastructure\placeholder.txt", },
-                                    new ManifestFile { File = @"MyApp\Solutions\MyApp.Specifications\placeholder.txt", },
-                                    new ManifestFile { File = @"MyApp\Solutions\MyApp.Tasks\placeholder.txt", },
-                                    new ManifestFile { File = @"MyApp\Solutions\MyApp.WebCore\placeholder.txt", }, 
-                                    new ManifestFile { File = @"MyApp\Solutions\MyApp.WebViews\placeholder.txt", },
+                                    new ManifestFile { File = @"C:\MyApp\.git\hooks\applypatch-msg.dll", },
+                                    new ManifestFile { File = @"C:\MyApp\.git\hooks\applypatch-msg.pdf", },
+                                    new ManifestFile { File = @"C:\MyApp\.git\hooks\applypatch-msg.txt", },
+                                    new ManifestFile { File = @"C:\MyApp\.git\hooks\applypatch-msg.cs", },
+                                    new ManifestFile { File = @"C:\MyApp\.git\hooks\applypatch-msg.config", },
                                 }
                     },
                     TemplatePath = @"C:\Temp\Endjin\Templify\tmp-repo\a67013ef-0ec8-405b-9868-fb5bfdcf2dad\Template"
-
+                    
+                };
+                filtered_files = new List<ManifestFile>
+                    {
+                        new ManifestFile { File = @"C:\MyApp\.git\hooks\applypatch-msg.txt", },
+                        new ManifestFile { File = @"C:\MyApp\.git\hooks\applypatch-msg.cs", },
+                        new ManifestFile { File = @"C:\MyApp\.git\hooks\applypatch-msg.config", },
+                    };
             };
-        };
     }
 
     [Subject(typeof(PackageTokeniser))]
@@ -73,11 +83,25 @@ namespace Endjin.Templify.Specifications
     {
         static Package result;
 
-        Establish context = () => rename_file_processor.Stub(c => c.Process("oldName", "newName")).IgnoreArguments();
+        Establish context = () =>
+            {
+                binary_file_filter.Stub(c => c.Filter(package_to_tokenise.Manifest.Files)).Return(filtered_files);
+                file_content_processor.Stub(c => c.ReadContents("anyfile.cs")).IgnoreArguments().Return(@"\_NAME_\something\");
+                rename_file_processor.Stub(c => c.Process("oldName", "newName")).IgnoreArguments();
+            };
 
-        Because of = () => result = subject.Tokenise(package_to_clone, "MyApp");
+        Because of = () => result = subject.Tokenise(package_to_tokenise, "MyApp");
+
+        It should_contain_five_manifest_files = () =>
+            result.Manifest.Files.Count.ShouldEqual(5);
 
         It should_ask_the_rename_file_processor_to_rename_the_file = () =>
             rename_file_processor.AssertWasCalled(c => c.Process("oldName", "newName"), r => r.IgnoreArguments());
+
+        It should_ask_the_file_content_processor_to_process_the_file_contents = () =>
+            file_content_processor.AssertWasCalled(c => c.ReadContents(""), r => r.IgnoreArguments());
+
+        It should_ask_the_binary_file_filter_to_remove_binary_files_whose_contents_wont_tokenize = () =>
+            binary_file_filter.AssertWasCalled(c => c.Filter(package_to_tokenise.Manifest.Files), r => r.IgnoreArguments());
     }
 }
