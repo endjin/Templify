@@ -6,14 +6,6 @@
 // </auto-generated>
 //-------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using Endjin.Templify.Domain.Contracts.Infrastructure;
-using Endjin.Templify.Domain.Domain.Packager.Tokeniser;
-using Endjin.Templify.Specifications;
-
-using Machine.Specifications;
-using Rhino.Mocks;
-
 #pragma warning disable 169
 // ReSharper disable InconsistentNaming
 // ReSharper disable UnusedMember.Global
@@ -25,12 +17,11 @@ namespace Endjin.Templify.Specifications
 {
     #region Using Directives
 
-    using System;
     using System.Collections.Generic;
-    using System.IO;
     using System.Linq;
 
     using Endjin.Templify.Domain.Domain.Packager.Specifications;
+    using Endjin.Templify.Domain.Contracts.Infrastructure;
 
     using Machine.Specifications;
     using Machine.Specifications.AutoMocking.Rhino;

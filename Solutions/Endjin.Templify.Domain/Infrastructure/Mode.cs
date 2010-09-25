@@ -1,4 +1,4 @@
-namespace Endjin.Templify.Client.Domain
+namespace Endjin.Templify.Domain.Infrastructure
 {
     public enum Mode
     {

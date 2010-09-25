@@ -1,11 +1,10 @@
-﻿namespace Endjin.Templify.Domain.Tasks
+﻿namespace Endjin.Templify.Domain.Domain.Packager.Processors
 {
     #region Using Directives
 
     using System;
     using System.ComponentModel.Composition;
     using System.IO;
-    using System.Threading.Tasks;
 
     using Endjin.Templify.Domain.Contracts.Packager.Notifiers;
     using Endjin.Templify.Domain.Contracts.Packager.Processors;
@@ -15,8 +14,8 @@
 
     #endregion
 
-    [Export(typeof(IPackageTask))]
-    public class FileCopyPackageTask : IPackageTask
+    [Export(typeof(IPackageDeploymentProcessor))]
+    public class PackageDeploymentProcessor : IPackageDeploymentProcessor
     {
         #region Fields
 
@@ -30,7 +29,7 @@
         #endregion
         
         [ImportingConstructor]
-        public FileCopyPackageTask(
+        public PackageDeploymentProcessor(
             IArchiveProcessor archiveProcessor,
             IEnvironmentalTokenResolver environmentalTokenResolver, 
             IProgressNotifier progressNotifier, 

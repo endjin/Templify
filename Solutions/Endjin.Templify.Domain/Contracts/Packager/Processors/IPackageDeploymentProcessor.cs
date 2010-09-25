@@ -8,7 +8,7 @@
 
     #endregion
 
-    public interface IPackageTask
+    public interface IPackageDeploymentProcessor
     {
         void Execute(Package package);
     }

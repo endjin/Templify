@@ -43,9 +43,6 @@
     <Reference Include="Caliburn.Micro, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\ReferencedAssemblies\Caliburn.Micro\Caliburn.Micro.dll</HintPath>
     </Reference>
-    <Reference Include="CommandLine, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\ReferencedAssemblies\CommandLine\CommandLine.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
@@ -74,10 +71,8 @@
     <Compile Include="Contracts\IDeployPackageView.cs" />
     <Compile Include="Contracts\IPackageViewModel.cs" />
     <Compile Include="Core\CustomBootstrapper.cs" />
-    <Compile Include="Core\Options.cs" />
     <Compile Include="Contracts\IShell.cs" />
     <Compile Include="Core\MefBootstrapper.cs" />
-    <Compile Include="Domain\Mode.cs" />
     <Compile Include="Domain\PackageCollection.cs" />
     <Compile Include="Framework\HintTextDecorator.cs" />
     <Compile Include="ViewModel\ManageExclusionsViewModel.cs" />

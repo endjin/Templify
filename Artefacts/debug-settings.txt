@@ -1,3 +1,5 @@
 -c C:\_Projects\endjin\OSS\Templify\Artefacts\package-samples\sample-mvc-app\files
 -c C:\Temp\Package-Samples
 -d c:\Temp\Sample-Deploy
+
+-c C:\Temp\Package-Samples -n "Sharp Architecture" -a "Howard van Rooijen" -v "1.6.0.0" -t token=SA169 environment=debug

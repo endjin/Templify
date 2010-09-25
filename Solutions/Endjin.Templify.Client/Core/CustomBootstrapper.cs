@@ -2,12 +2,14 @@ namespace Endjin.Templify.Client.Core
 {
     #region Using Directives
 
-    using Caliburn.Micro;
+    using System.ComponentModel.Composition;
 
-    using CommandLine;
+    using Caliburn.Micro;
 
     using Endjin.Templify.Client.Contracts;
     using Endjin.Templify.Client.Domain;
+    using Endjin.Templify.Domain.Contracts.Infrastructure;
+    using Endjin.Templify.Domain.Infrastructure;
 
     #endregion
 
@@ -20,6 +22,9 @@ namespace Endjin.Templify.Client.Core
         private string path;
 
         #endregion
+
+        [Import]
+        public ICommandLineProcessor CommandLineProcessor { get; set; }
 
         protected override void DisplayRootView()
         {
@@ -47,22 +52,10 @@ namespace Endjin.Templify.Client.Core
 
         protected override void OnStartup(object sender, System.Windows.StartupEventArgs e)
         {
-            var options = new Options();
-            ICommandLineParser parser = new CommandLineParser();
+            var options = this.CommandLineProcessor.Process(e.Args);
 
-            if (parser.ParseArguments(e.Args, options))
-            {
-                if (options.CreatePackagePath != null)
-                {
-                    this.mode = Mode.Create;
-                    this.path = options.CreatePackagePath;
-                }
-                else if (options.DeployPackagePath != null)
-                {
-                    this.mode = Mode.Deploy;
-                    this.path = options.DeployPackagePath;
-                }
-            }
+            this.mode = options.Mode;
+            this.path = options.PackagePath;
 
             base.OnStartup(sender, e);
         }

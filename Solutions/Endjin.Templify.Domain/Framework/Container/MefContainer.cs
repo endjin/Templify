@@ -8,14 +8,9 @@
 
     #endregion
 
-    public class MefContainer
+    public static class MefContainer
     {
-        protected MefContainer()
-        {
-            this.Compose();
-        }
-
-        private void Compose()
+        public static void Compose(object parentContainer)
         {
             var catalog = new AggregateCatalog();
             var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
@@ -23,7 +18,7 @@
             catalog.Catalogs.Add(new DirectoryCatalog(baseDirectory));
             var container = new CompositionContainer(catalog);
 
-            container.ComposeParts(this);
+            container.ComposeParts(parentContainer);
         }
     }
 }

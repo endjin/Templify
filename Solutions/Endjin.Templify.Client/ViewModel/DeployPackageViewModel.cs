@@ -26,7 +26,7 @@ namespace Endjin.Templify.Client.ViewModel
     {
         #region Fields
 
-        private readonly IPackageTask packageTask;
+        private readonly IPackageDeploymentProcessor packageDeploymentProcessor;
         private readonly IPackageProcessor packageProcessor;
         private readonly IPackageRepository packageRepository;
         private readonly IProgressNotifier progressNotifier;
@@ -44,9 +44,15 @@ namespace Endjin.Templify.Client.ViewModel
         #endregion
 
         [ImportingConstructor]
-        public DeployPackageViewModel(IPackageTask packageTask, IPackageProcessor packageProcessor, IPackageRepository packageRepository, IProgressNotifier progressNotifier, IWindowManager windowManager, IManagePackagesView managePackagesView)
+        public DeployPackageViewModel(
+            IPackageDeploymentProcessor packageDeploymentProcessor, 
+            IPackageProcessor packageProcessor, 
+            IPackageRepository packageRepository, 
+            IProgressNotifier progressNotifier,
+            IWindowManager windowManager, 
+            IManagePackagesView managePackagesView)
         {
-            this.packageTask = packageTask;
+            this.packageDeploymentProcessor = packageDeploymentProcessor;
             this.packageProcessor = packageProcessor;
             this.packageRepository = packageRepository;
             this.progressNotifier = progressNotifier;
@@ -200,7 +206,7 @@ namespace Endjin.Templify.Client.ViewModel
 
             package.Manifest.InstallRoot = this.Path;
 
-            this.ExecutePackage(package);
+            this.ExecuteDeployPackage(package);
         }
 
         public void Exit()
@@ -214,7 +220,7 @@ namespace Endjin.Templify.Client.ViewModel
             this.Initialise();
         }
 
-        private void ExecutePackage(Package package)
+        private void ExecuteDeployPackage(Package package)
         {
             this.DeployingPackage = true;
 
@@ -242,7 +248,7 @@ namespace Endjin.Templify.Client.ViewModel
 
         private void ExecutePackageCore(Package package)
         {
-            this.packageTask.Execute(package);
+            this.packageDeploymentProcessor.Execute(package);
             this.packageProcessor.Process(this.Path, this.Name);
         }
 

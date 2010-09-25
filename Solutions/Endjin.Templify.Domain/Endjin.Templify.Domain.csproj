@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CommandLine">
+      <HintPath>..\..\ReferencedAssemblies\CommandLine\CommandLine.dll</HintPath>
+    </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.85.5.452, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\ReferencedAssemblies\Zip\ICSharpCode.SharpZipLib.dll</HintPath>
@@ -68,7 +71,9 @@
     <Compile Include="Contracts\Packages\IPackageMetaData.cs" />
     <Compile Include="Contracts\Packages\IPackageRepository.cs" />
     <Compile Include="Contracts\Packager\Tokeniser\IPackageTokeniser.cs" />
-    <Compile Include="Contracts\Tasks\IPackageTask.cs" />
+    <Compile Include="Contracts\Packager\Processors\IPackageDeploymentProcessor.cs" />
+    <Compile Include="Contracts\Tasks\IPackageCreatorTasks.cs" />
+    <Compile Include="Contracts\Tasks\IPackageDeployerTasks.cs" />
     <Compile Include="Domain\Factories\ManifestFactory.cs" />
     <Compile Include="Domain\Factories\PackageFactory.cs" />
     <Compile Include="Domain\Packager\Builders\SevenZipBuilder.cs" />
@@ -105,13 +110,20 @@
     <Compile Include="Framework\Specifications\QuerySpecification.cs" />
     <Compile Include="Framework\Specifications\QuerySpecificationExtensions.cs" />
     <Compile Include="Framework\Threading\BackgroundWorkerManager.cs" />
+    <Compile Include="Infrastructure\CommandLineProcessor.cs" />
+    <Compile Include="Infrastructure\CommandOptions.cs" />
     <Compile Include="Infrastructure\Configuration.cs" />
+    <Compile Include="Infrastructure\InternalCommandOptions.cs" />
+    <Compile Include="Contracts\Infrastructure\ICommandLineProcessor.cs" />
+    <Compile Include="Infrastructure\Mode.cs" />
     <Compile Include="Infrastructure\Tokens.cs" />
     <Compile Include="Infrastructure\FileTypes.cs" />
     <Compile Include="Infrastructure\FilePaths.cs" />
     <Compile Include="Infrastructure\Repositories\PackageRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tasks\FileCopyPackageTask.cs" />
+    <Compile Include="Tasks\PackageCreatorTasks.cs" />
+    <Compile Include="Tasks\PackageDeployerTasks.cs" />
+    <Compile Include="Domain\Packager\Processors\PackageDeploymentProcessor.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
