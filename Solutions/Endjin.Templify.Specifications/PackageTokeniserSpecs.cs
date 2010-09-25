@@ -90,7 +90,7 @@ namespace Endjin.Templify.Specifications
                 rename_file_processor.Stub(c => c.Process("oldName", "newName")).IgnoreArguments();
             };
 
-        Because of = () => result = subject.Tokenise(package_to_tokenise, "MyApp");
+        Because of = () => result = subject.Tokenise(package_to_tokenise, new Dictionary<string, string>{ { "TokenName", "TokenValue" } });
 
         It should_contain_five_manifest_files = () =>
             result.Manifest.Files.Count.ShouldEqual(5);

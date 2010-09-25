@@ -255,7 +255,7 @@ namespace Endjin.Templify.Client.ViewModel
             var package = this.packageBuilder.Build(this.CommandOptions.Path, new PackageMetaData { Author = this.Author, Name = this.Name, Version = this.Version });
 
             var clonedPackage = this.clonePackageBuilder.Build(package);
-            var tokenisedPackage = this.packageTokeniser.Tokenise(clonedPackage, this.Token);
+            var tokenisedPackage = this.packageTokeniser.Tokenise(clonedPackage, this.CommandOptions.Tokens);
 
             this.archiveBuilder.Build(tokenisedPackage, this.CommandOptions.Path);
             this.cleanUpProcessor.Process(FilePaths.TemporaryPackageRepository);

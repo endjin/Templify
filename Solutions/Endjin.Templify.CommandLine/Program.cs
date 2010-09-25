@@ -1,5 +1,7 @@
 ﻿namespace Endjin.Templify.CommandLine
 {
+    using System;
+
     #region Using Directives
 
     
@@ -12,6 +14,8 @@
         {
             var client = new Client();
             client.Execute(args);
+
+            Console.ReadKey();
         }
     }
 }
