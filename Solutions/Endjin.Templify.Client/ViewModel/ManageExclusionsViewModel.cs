@@ -2,6 +2,7 @@ namespace Endjin.Templify.Client.ViewModel
 {
     #region Using Directives
 
+    using System;
     using System.ComponentModel.Composition;
     using System.Windows;
 
@@ -10,6 +11,7 @@ namespace Endjin.Templify.Client.ViewModel
     using Endjin.Templify.Client.Contracts;
     using Endjin.Templify.Domain.Contracts.Infrastructure;
     using Endjin.Templify.Domain.Framework.Threading;
+    using Endjin.Templify.Domain.Infrastructure;
 
     #endregion
 
@@ -26,7 +28,7 @@ namespace Endjin.Templify.Client.ViewModel
             this.configuration = configuration;
         }
 
-        public string Path
+        public CommandOptions CommandOptions
         {
             get;
             set;

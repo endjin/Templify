@@ -2,19 +2,21 @@ namespace Endjin.Templify.Client.ViewModel
 {
     #region Using Directives
 
+    using System;
     using System.ComponentModel.Composition;
     using System.Windows;
 
     using Caliburn.Micro;
 
     using Endjin.Templify.Client.Contracts;
+    using Endjin.Templify.Domain.Infrastructure;
 
     #endregion
 
     [Export(typeof(IShell))]
     public class ShellViewModel : PropertyChangedBase, IShell
     {
-        public string Path
+        public CommandOptions CommandOptions
         {
             get;
             set;

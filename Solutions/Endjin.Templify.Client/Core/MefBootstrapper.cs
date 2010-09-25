@@ -18,15 +18,22 @@ namespace Endjin.Templify.Client.Core
     public class MefBootstrapper<T> : Bootstrapper<T>
     {
         private CompositionContainer container;
+
+        private object parent;
        
         protected override void BuildUp(object instance)
         {
             this.container.SatisfyImportsOnce(instance);
         }
 
+        protected virtual void Configure(object parentContainer)
+        {
+            this.parent = parentContainer;
+        }
+
         protected override void Configure()
         {
-            this.container = new CompositionContainer(
+          this.container = new CompositionContainer(
                                 new AggregateCatalog(
                                     AssemblySource.Instance
                                                   .Select(x => new AssemblyCatalog(x)).OfType<ComposablePartCatalog>()));
@@ -38,6 +45,7 @@ namespace Endjin.Templify.Client.Core
             batch.AddExportedValue(this.container);
 
             this.container.Compose(batch);
+            this.container.ComposeParts(this.parent);
         }
 
         protected override IEnumerable<object> GetAllInstances(Type serviceType)

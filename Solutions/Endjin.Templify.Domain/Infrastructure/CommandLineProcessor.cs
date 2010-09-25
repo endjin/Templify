@@ -15,13 +15,13 @@ namespace Endjin.Templify.Domain.Infrastructure
     {
         public CommandOptions Process(string[] args)
         {
-            var options = new InternalCommandOptions();
+            var options = new CommandOptions();
 
             ICommandLineParser parser = new CommandLineParser();
 
             parser.ParseArguments(args, options);
 
-            return options.ToCommandOptions();
+            return options;
         }
     }
 }

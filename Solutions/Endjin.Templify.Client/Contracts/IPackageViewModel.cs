@@ -1,7 +1,9 @@
 namespace Endjin.Templify.Client.Contracts
 {
+    using Endjin.Templify.Domain.Infrastructure;
+
     public interface IPackageViewModel
     {
-        string Path { get; set; }
+        CommandOptions CommandOptions { get; set; }
     }
 }

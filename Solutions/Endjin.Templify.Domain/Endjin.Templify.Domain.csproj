@@ -113,7 +113,6 @@
     <Compile Include="Infrastructure\CommandLineProcessor.cs" />
     <Compile Include="Infrastructure\CommandOptions.cs" />
     <Compile Include="Infrastructure\Configuration.cs" />
-    <Compile Include="Infrastructure\InternalCommandOptions.cs" />
     <Compile Include="Contracts\Infrastructure\ICommandLineProcessor.cs" />
     <Compile Include="Infrastructure\Mode.cs" />
     <Compile Include="Infrastructure\Tokens.cs" />

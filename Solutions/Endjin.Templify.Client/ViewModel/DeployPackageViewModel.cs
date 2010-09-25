@@ -18,6 +18,7 @@ namespace Endjin.Templify.Client.ViewModel
     using Endjin.Templify.Domain.Domain.Packages;
     using Endjin.Templify.Domain.Framework;
     using Endjin.Templify.Domain.Framework.Threading;
+    using Endjin.Templify.Domain.Infrastructure;
 
     #endregion
 
@@ -160,7 +161,7 @@ namespace Endjin.Templify.Client.ViewModel
             }
         }
 
-        public string Path
+        public CommandOptions CommandOptions
         {
             get;
             set;
@@ -204,7 +205,7 @@ namespace Endjin.Templify.Client.ViewModel
         {
             var package = this.SelectedPackage;
 
-            package.Manifest.InstallRoot = this.Path;
+            package.Manifest.InstallRoot = this.CommandOptions.Path;
 
             this.ExecuteDeployPackage(package);
         }
@@ -249,7 +250,7 @@ namespace Endjin.Templify.Client.ViewModel
         private void ExecutePackageCore(Package package)
         {
             this.packageDeploymentProcessor.Execute(package);
-            this.packageProcessor.Process(this.Path, this.Name);
+            this.packageProcessor.Process(this.CommandOptions.Path, this.Name);
         }
 
         private void Initialise()

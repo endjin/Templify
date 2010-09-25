@@ -76,7 +76,7 @@ namespace Endjin.Templify.Domain.Tasks
                     Version = this.commandOptions.Version
                 };
 
-            var package = this.packageBuilder.Build(this.commandOptions.PackagePath, packageMetaData);
+            var package = this.packageBuilder.Build(this.commandOptions.Path, packageMetaData);
 
             var clonedPackage = this.clonePackageBuilder.Build(package);
             //var tokenisedPackage = this.packageTokeniser.Tokenise(clonedPackage, this.commandOptions.Tokens);

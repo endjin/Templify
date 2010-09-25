@@ -2,6 +2,7 @@ namespace Endjin.Templify.Client.Core
 {
     #region Using Directives
 
+    using System;
     using System.ComponentModel.Composition;
 
     using Caliburn.Micro;
@@ -17,9 +18,9 @@ namespace Endjin.Templify.Client.Core
     {
         #region Fields
 
-        private Mode mode;
+        private string[] args;
 
-        private string path;
+        private Mode mode;
 
         #endregion
 
@@ -28,6 +29,10 @@ namespace Endjin.Templify.Client.Core
 
         protected override void DisplayRootView()
         {
+            var options = this.CommandLineProcessor.Process(this.args);
+
+            this.mode = options.Mode;
+
             IPackageViewModel rootModel;
 
             var manager = IoC.Get<IWindowManager>();
@@ -45,17 +50,20 @@ namespace Endjin.Templify.Client.Core
                     break;
             }
 
-            rootModel.Path = this.path;
+            rootModel.CommandOptions = options;
 
             manager.Show(rootModel, null);
         }
 
+        protected override void Configure()
+        {
+            base.Configure(this);
+            base.Configure();
+        }
+
         protected override void OnStartup(object sender, System.Windows.StartupEventArgs e)
         {
-            var options = this.CommandLineProcessor.Process(e.Args);
-
-            this.mode = options.Mode;
-            this.path = options.PackagePath;
+            this.args = e.Args;
 
             base.OnStartup(sender, e);
         }

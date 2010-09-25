@@ -13,6 +13,7 @@ namespace Endjin.Templify.Client.ViewModel
     using Endjin.Templify.Domain.Contracts.Packages;
     using Endjin.Templify.Domain.Domain.Packages;
     using Endjin.Templify.Domain.Framework.Threading;
+    using Endjin.Templify.Domain.Infrastructure;
 
     #endregion
 
@@ -29,7 +30,7 @@ namespace Endjin.Templify.Client.ViewModel
             this.packageRepository = packageRepository;
         }
 
-        public string Path
+        public CommandOptions CommandOptions
         {
             get;
             set;
