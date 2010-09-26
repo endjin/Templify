@@ -57,9 +57,12 @@
 
             foreach (var directory in directories)
             {
-                if (directory.Contains(Tokens.TokenName))
+                foreach (var token in tokens)
                 {
-                    this.cleanUpProcessor.Process(directory);
+                    if (directory.Contains(token.Key))
+                    {
+                        this.cleanUpProcessor.Process(directory);
+                    }
                 }
 
                 this.progressNotifier.UpdateProgress(ProgressStage.TokenisePackageContents, fileCount, progress);

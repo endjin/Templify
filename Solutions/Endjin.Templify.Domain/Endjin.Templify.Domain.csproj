@@ -115,7 +115,6 @@
     <Compile Include="Infrastructure\Configuration.cs" />
     <Compile Include="Contracts\Infrastructure\ICommandLineProcessor.cs" />
     <Compile Include="Infrastructure\Mode.cs" />
-    <Compile Include="Infrastructure\Tokens.cs" />
     <Compile Include="Infrastructure\FileTypes.cs" />
     <Compile Include="Infrastructure\FilePaths.cs" />
     <Compile Include="Infrastructure\Repositories\PackageRepository.cs" />
