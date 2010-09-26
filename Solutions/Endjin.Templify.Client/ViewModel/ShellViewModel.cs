@@ -2,7 +2,6 @@ namespace Endjin.Templify.Client.ViewModel
 {
     #region Using Directives
 
-    using System;
     using System.ComponentModel.Composition;
     using System.Windows;
 
@@ -16,13 +15,13 @@ namespace Endjin.Templify.Client.ViewModel
     [Export(typeof(IShell))]
     public class ShellViewModel : PropertyChangedBase, IShell
     {
+        private string name;
+
         public CommandOptions CommandOptions
         {
             get;
             set;
         }
-
-        private string name;
 
         public string Name
         {

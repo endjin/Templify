@@ -2,23 +2,10 @@ namespace Endjin.Templify.Client.ViewModel
 {
     #region Using Directives
 
-    using System;
-    using System.ComponentModel;
-    using System.ComponentModel.Composition;
-    using System.Diagnostics;
-    using System.Windows;
-
     using Caliburn.Micro;
 
     using Endjin.Templify.Client.Contracts;
-    using Endjin.Templify.Domain.Contracts.Packager.Builders;
-    using Endjin.Templify.Domain.Contracts.Packager.Notifiers;
-    using Endjin.Templify.Domain.Contracts.Packager.Processors;
-    using Endjin.Templify.Domain.Contracts.Packager.Tokeniser;
     using Endjin.Templify.Domain.Contracts.Tasks;
-    using Endjin.Templify.Domain.Domain.Packages;
-    using Endjin.Templify.Domain.Framework;
-    using Endjin.Templify.Domain.Framework.Threading;
     using Endjin.Templify.Domain.Infrastructure;
 
     #endregion

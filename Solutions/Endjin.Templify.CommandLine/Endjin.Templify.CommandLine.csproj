@@ -9,7 +9,7 @@
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Endjin.Templify.CommandLine</RootNamespace>
-    <AssemblyName>Endjin.Templify.CommandLine</AssemblyName>
+    <AssemblyName>TemplifyCmd</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

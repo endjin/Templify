@@ -11,14 +11,10 @@ namespace Endjin.Templify.Client.ViewModel
 
     using Endjin.Templify.Client.Contracts;
     using Endjin.Templify.Client.Domain;
-    using Endjin.Templify.Domain.Contracts.Packager.Notifiers;
-    using Endjin.Templify.Domain.Contracts.Packager.Processors;
-    using Endjin.Templify.Domain.Contracts.Packages;
     using Endjin.Templify.Domain.Contracts.Tasks;
     using Endjin.Templify.Domain.Domain.Packages;
     using Endjin.Templify.Domain.Framework;
     using Endjin.Templify.Domain.Framework.Threading;
-    using Endjin.Templify.Domain.Infrastructure;
 
     #endregion
 
