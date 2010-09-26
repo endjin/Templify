@@ -16,6 +16,7 @@ namespace Endjin.Templify.Client.ViewModel
     {
         #region Fields
 
+        private readonly INotificationManager notificationManager;
         private readonly IPackageDeployerTasks packageDeployerTasks;
         private readonly IWindowManager windowManager;
         private readonly IManagePackagesView managePackagesView;

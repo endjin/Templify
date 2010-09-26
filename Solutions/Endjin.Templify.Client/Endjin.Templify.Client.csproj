@@ -87,18 +87,23 @@
     <Compile Include="Contracts\IManagePackagesView.cs" />
     <Compile Include="Contracts\ICreatePackageView.cs" />
     <Compile Include="Contracts\IDeployPackageView.cs" />
+    <Compile Include="Contracts\INotificationManager.cs" />
     <Compile Include="Contracts\IPackageViewModel.cs" />
     <Compile Include="Core\CustomBootstrapper.cs" />
     <Compile Include="Contracts\IShell.cs" />
     <Compile Include="Core\MefBootstrapper.cs" />
     <Compile Include="Domain\PackageCollection.cs" />
     <Compile Include="Framework\HintTextDecorator.cs" />
+    <Compile Include="Framework\NotificationManager.cs" />
     <Compile Include="ViewModel\DeployPackageViewModel.g.cs" />
     <Compile Include="ViewModel\CreatePackageViewModel.g.cs" />
     <Compile Include="ViewModel\ManageExclusionsViewModel.cs" />
     <Compile Include="ViewModel\CreatePackageViewModel.cs" />
     <Compile Include="ViewModel\DeployPackageViewModel.cs" />
     <Compile Include="ViewModel\ManagePackagesViewModel.cs" />
+    <Compile Include="View\FancyBalloon.xaml.cs">
+      <DependentUpon>FancyBalloon.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ManageExclusionsView.xaml.cs">
       <DependentUpon>ManageExclusionsView.xaml</DependentUpon>
     </Compile>
@@ -152,6 +157,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\FancyBalloon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\ManageExclusionsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -189,6 +198,7 @@
     <Content Include="7z.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\Close.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">

@@ -15,6 +15,8 @@ namespace Endjin.Templify.Client.ViewModel
     using Endjin.Templify.Domain.Framework;
     using Endjin.Templify.Domain.Framework.Threading;
 
+    using Hardcodet.Wpf.TaskbarNotification;
+
     #endregion
 
     [Export(typeof(ICreatePackageView))]
@@ -22,10 +24,12 @@ namespace Endjin.Templify.Client.ViewModel
     {
         [ImportingConstructor]
         public CreatePackageViewModel(
+            INotificationManager notificationManager,
             IPackageCreatorTasks packageCreatorTasks,
             IWindowManager windowManager,
             IManageExclusionsView manageExclusionsView)
         {
+            this.notificationManager = notificationManager;
             this.packageCreatorTasks = packageCreatorTasks;
             this.windowManager = windowManager;
             this.manageExclusionsView = manageExclusionsView;
@@ -69,7 +73,7 @@ namespace Endjin.Templify.Client.ViewModel
 
             if (e.Error == null)
             {
-               MessageBox.Show("Package Created and Deployed to the Package Repository.");
+                this.notificationManager.ShowNotification("Templify", "Package Created and Deployed to the Package Repository.");
             }
         }
 

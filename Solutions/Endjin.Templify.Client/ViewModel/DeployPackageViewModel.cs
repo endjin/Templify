@@ -23,10 +23,12 @@ namespace Endjin.Templify.Client.ViewModel
     {
         [ImportingConstructor]
         public DeployPackageViewModel(
+            INotificationManager notificationManager,
             IPackageDeployerTasks packageDeployerTasks,
             IWindowManager windowManager, 
             IManagePackagesView managePackagesView)
         {
+            this.notificationManager = notificationManager;
             this.packageDeployerTasks = packageDeployerTasks;
             this.windowManager = windowManager;
             this.managePackagesView = managePackagesView;
@@ -66,7 +68,7 @@ namespace Endjin.Templify.Client.ViewModel
 
             if (e.Error == null)
             {
-                MessageBox.Show("Package Sucessfully Deployed");
+                this.notificationManager.ShowNotification("Templify", "Package Sucessfully Deployed");
             }
         }
 

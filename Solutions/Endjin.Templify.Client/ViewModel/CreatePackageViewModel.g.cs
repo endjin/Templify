@@ -8,12 +8,15 @@ namespace Endjin.Templify.Client.ViewModel
     using Endjin.Templify.Domain.Contracts.Tasks;
     using Endjin.Templify.Domain.Infrastructure;
 
+    using Hardcodet.Wpf.TaskbarNotification;
+
     #endregion
 
     public partial class CreatePackageViewModel
     {
         #region Fields
 
+        private readonly INotificationManager notificationManager;
         private readonly IPackageCreatorTasks packageCreatorTasks;
         private readonly IWindowManager windowManager;
         private readonly IManageExclusionsView manageExclusionsView;
