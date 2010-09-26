@@ -73,7 +73,7 @@ namespace Endjin.Templify.Domain.Tasks
             package.Manifest.InstallRoot = this.commandOptions.Path;
             
             this.packageDeploymentProcessor.Execute(package);
-            this.packageProcessor.Process(this.commandOptions.Path, this.commandOptions.Name);
+            this.packageProcessor.Process(this.commandOptions.Path, this.commandOptions.Tokens);
         }
 
         private void OnProgressUpdate(object sender, PackageProgressEventArgs e)

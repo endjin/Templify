@@ -3,6 +3,7 @@
     #region Using Directives
 
     using System;
+    using System.Collections.Generic;
 
     using Endjin.Templify.Domain.Domain.Packages;
 
@@ -10,6 +11,6 @@
 
     public interface IPackageProcessor
     {
-        void Process(string path, string name);
+        void Process(string path, Dictionary<string, string> tokens);
     }
 }

@@ -250,7 +250,7 @@ namespace Endjin.Templify.Client.ViewModel
         private void ExecutePackageCore(Package package)
         {
             this.packageDeploymentProcessor.Execute(package);
-            this.packageProcessor.Process(this.CommandOptions.Path, this.Name);
+            this.packageProcessor.Process(this.CommandOptions.Path, this.CommandOptions.Tokens);
         }
 
         private void Initialise()
