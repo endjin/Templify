@@ -8,6 +8,7 @@
 
     using Endjin.Templify.Domain.Contracts.Infrastructure;
     using Endjin.Templify.Domain.Contracts.Tasks;
+    using Endjin.Templify.Domain.Framework;
     using Endjin.Templify.Domain.Framework.Container;
     using Endjin.Templify.Domain.Infrastructure;
 
@@ -18,6 +19,15 @@
         public Client()
         {
             MefContainer.Compose(this);
+
+            this.PackageCreatorTasks.Progress += this.OnProgressChanged;
+            this.PackageDeployerTasks.Progress += this.OnProgressChanged;
+        }
+
+        private void OnProgressChanged(object sender, Domain.Domain.Packages.PackageProgressEventArgs e)
+        {
+            ConsoleProgress.Reset();
+            ConsoleProgress.Update(e.CurrentValue, e.MaxValue, e.ProgressStage.GetDescription());
         }
 
         [Import]

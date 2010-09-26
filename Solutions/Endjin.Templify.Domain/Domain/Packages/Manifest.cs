@@ -55,5 +55,9 @@
         {
             get { return this.Name + " - " + this.Version; }
         }
+
+        [XmlArray]
+        [XmlArrayItem("Token")]
+        public List<string> Tokens { get; set; }
     }
 }

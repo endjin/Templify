@@ -57,7 +57,7 @@
 
             foreach (var token in tokens)
             {
-                result = Regex.Replace(value, token.Value, match => Tokens.TokenName, RegexOptions.IgnoreCase);
+                result = Regex.Replace(value, token.Key, match => token.Value, RegexOptions.IgnoreCase);
             }
             
             return result;

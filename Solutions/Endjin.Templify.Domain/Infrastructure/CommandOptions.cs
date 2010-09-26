@@ -17,6 +17,7 @@
         public CommandOptions()
         {
             this.Mode = Mode.NotSet;
+            this.Tokens = new Dictionary<string, string>();
         }
 
         [Option("a", "Author")]
@@ -68,7 +69,21 @@
             set
             {
                 this.rawTokens = value;
-                this.Tokens = this.rawTokens.Where(t => !string.IsNullOrEmpty(t)).Select(t => t.Split('=')).ToDictionary(p => p[0], p => p[1]);
+
+                var tokens = this.rawTokens.Where(t => !string.IsNullOrEmpty(t)).Select(t => t.Split('='));
+
+                foreach (var token in tokens)
+                {
+                    if (token.Length == 1)
+                    {
+                        this.Tokens.Add(token[0], string.Empty);
+                    }
+
+                    if (token.Length == 2)
+                    {
+                        this.Tokens.Add(token[0], token[1]);
+                    }
+                }
             }
         }
 

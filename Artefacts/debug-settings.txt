@@ -1,4 +1,9 @@
+UI
 -m c -p C:\_Projects\endjin\OSS\Templify\Artefacts\package-samples\sample-mvc-app\files
--m c -p C:\Temp\Package-Samples
+-m c -p C:\Temp\Sample-Create
+
+Command Line
+
+-m c -p C:\Temp\Sample-Create - -n "p10" -a "Howard van Rooijen" -v "1.0.0.0" -t progressten
 -m d -p c:\Temp\Sample-Deploy -pn cwfu-v1.0.0.0
 -m c -p C:\Temp\Package-Samples -n "Sharp Architecture" -a "Howard van Rooijen" -v "1.6.0.0" -t token=SA169 environment=debug

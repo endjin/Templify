@@ -2,8 +2,10 @@ namespace Endjin.Templify.Domain.Tasks
 {
     #region Using Directives
 
+    using System;
     using System.ComponentModel;
     using System.ComponentModel.Composition;
+    using System.Linq;
 
     using Endjin.Templify.Domain.Contracts.Packager.Builders;
     using Endjin.Templify.Domain.Contracts.Packager.Notifiers;
@@ -50,6 +52,8 @@ namespace Endjin.Templify.Domain.Tasks
             this.progressNotifier = progressNotifier;
             this.progressNotifier.Progress += this.OnProgressUpdate;
         }
+        
+        public event EventHandler<PackageProgressEventArgs> Progress;
 
         #region Properties
 
@@ -73,6 +77,7 @@ namespace Endjin.Templify.Domain.Tasks
                 {
                     Author = this.commandOptions.Author,
                     Name = this.commandOptions.Name,
+                    Tokens = this.commandOptions.Tokens.Select(kvp => kvp.Value).ToList(),
                     Version = this.commandOptions.Version
                 };
 
@@ -94,9 +99,14 @@ namespace Endjin.Templify.Domain.Tasks
 
         private void OnProgressUpdate(object sender, PackageProgressEventArgs e)
         {
-            this.CurrentProgress = e.CurrentValue;
-            this.MaxProgress = e.MaxValue;
-            this.ProgressStatus = e.ProgressStage.GetDescription();
+            if (this.Progress != null)
+            {
+                this.Progress(sender, e);
+            }
+
+            //this.CurrentProgress = e.CurrentValue;
+            //this.MaxProgress = e.MaxValue;
+            //this.ProgressStatus = e.ProgressStage.GetDescription();
         }
     }
 }

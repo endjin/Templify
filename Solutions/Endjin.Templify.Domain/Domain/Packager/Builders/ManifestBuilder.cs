@@ -40,8 +40,9 @@
                     Author = packageMetaData.Author,
                     Id = Guid.NewGuid(),
                     Name = packageMetaData.Name,
+                    Path = path,
+                    Tokens = packageMetaData.Tokens,
                     Version = packageMetaData.Version,
-                    Path = path
                 };
 
             int progress = 0;

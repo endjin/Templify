@@ -28,6 +28,7 @@ Templify makes use of the following tools and frameworks:
  o SevenZipSharp - http://sevenzipsharp.codeplex.com
  o 7Zip - http://www.7-zip.org(licensed under the GNU LGPL license) 
  o Icon / Logo - The wonderful - Zyotism: http://www.zyotism.com/aesthetics/iconsets/2001/index.html
+ o Console Progress Code by Stanimir Stoyanov: http://stoyanoff.info/code/ConsoleProgress.cs
 
 
 Install
@@ -57,3 +58,4 @@ Matthew Adams for WPF / MVVM / XAML help
 
 Version History
 ===============
+2010.09.XX - v0.5.0.0 - 

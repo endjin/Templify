@@ -2,6 +2,7 @@ namespace Endjin.Templify.Domain.Tasks
 {
     #region Using Directives
 
+    using System;
     using System.ComponentModel;
     using System.ComponentModel.Composition;
 
@@ -42,6 +43,8 @@ namespace Endjin.Templify.Domain.Tasks
             this.progressNotifier = progressNotifier;
             this.progressNotifier.Progress += this.OnProgressUpdate;
         }
+        
+        public event EventHandler<PackageProgressEventArgs> Progress;
 
         #region Properties
 
@@ -78,9 +81,10 @@ namespace Endjin.Templify.Domain.Tasks
 
         private void OnProgressUpdate(object sender, PackageProgressEventArgs e)
         {
-            this.CurrentProgress = e.CurrentValue;
-            this.MaxProgress = e.MaxValue;
-            this.ProgressStatus = e.ProgressStage.GetDescription();
+            if (this.Progress != null)
+            {
+                this.Progress(sender, e);
+            }
         }
     }
 }
