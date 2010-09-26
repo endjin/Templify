@@ -1,8 +1,12 @@
 namespace Endjin.Templify.Domain.Framework
 {
+    #region Using Directives
+
     using System;
     using System.ComponentModel;
     using System.Reflection;
+
+    #endregion
 
     public static class EnumExtensions
     {

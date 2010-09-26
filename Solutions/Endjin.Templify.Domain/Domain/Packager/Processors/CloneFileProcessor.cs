@@ -12,16 +12,16 @@
     [Export(typeof(ICloneFileProcessor))]
     public class CloneFileProcessor : ICloneFileProcessor
     {
-        public void Process(string fromPath, string toPath)
+        public void Process(string sourcePath, string destinationPath)
         {
-            var file = new FileInfo(toPath);
+            var file = new FileInfo(destinationPath);
 
             if (!file.Directory.Exists)
             {
                 file.Directory.Create();
             }
 
-            File.Copy(fromPath, toPath);
+            File.Copy(sourcePath, destinationPath);
         }
     }
 }

@@ -8,13 +8,13 @@
     using System.IO;
     using System.Linq;
     using System.Linq.Expressions;
-    using Endjin.Templify.Domain.Contracts.Infrastructure;
+
     using Endjin.Templify.Domain.Contracts.Packager.Specifications;
     using Endjin.Templify.Domain.Framework.Specifications;
 
     #endregion;
 
-    [Export(typeof (IFileExclusionsSpecification))]
+    [Export(typeof(IFileExclusionsSpecification))]
     public class FileExclusionSpecification : QuerySpecification<string>, IFileExclusionsSpecification
     {
         public override Expression<Func<string, bool>> MatchingCriteria

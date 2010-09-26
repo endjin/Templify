@@ -2,13 +2,11 @@ namespace Endjin.Templify.Client.Core
 {
     #region Using Directives
 
-    using System;
     using System.ComponentModel.Composition;
 
     using Caliburn.Micro;
 
     using Endjin.Templify.Client.Contracts;
-    using Endjin.Templify.Client.Domain;
     using Endjin.Templify.Domain.Contracts.Infrastructure;
     using Endjin.Templify.Domain.Infrastructure;
 

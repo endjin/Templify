@@ -11,8 +11,6 @@ namespace Endjin.Templify.Domain.Contracts.Packager.Builders
 
     public interface IPackageBuilder
     {
-        event EventHandler<PackageProgressEventArgs> Progress;
-
         Package Build(string path, IPackageMetaData packageMetaData);
     }
 }

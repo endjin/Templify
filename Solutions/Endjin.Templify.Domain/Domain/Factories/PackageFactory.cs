@@ -1,12 +1,8 @@
-﻿using System.IO;
-using ICSharpCode.SharpZipLib.Zip;
-
-namespace Endjin.Templify.Domain.Domain.Factories
+﻿namespace Endjin.Templify.Domain.Domain.Factories
 {
     #region Using Directives
 
     using System.ComponentModel.Composition;
-    using System.IO;
     using System.Xml.Serialization;
 
     using Endjin.Templify.Domain.Contracts.Packager.Processors;

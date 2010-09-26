@@ -12,7 +12,6 @@ namespace Endjin.Templify.Domain.Tasks
     using Endjin.Templify.Domain.Contracts.Packages;
     using Endjin.Templify.Domain.Contracts.Tasks;
     using Endjin.Templify.Domain.Domain.Packages;
-    using Endjin.Templify.Domain.Framework;
     using Endjin.Templify.Domain.Framework.Threading;
     using Endjin.Templify.Domain.Infrastructure;
 

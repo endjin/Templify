@@ -9,7 +9,6 @@ namespace Endjin.Templify.Domain.Domain.Packager.Tokeniser
 
     using Endjin.Templify.Domain.Contracts.Packager.Processors;
     using Endjin.Templify.Domain.Contracts.Packager.Tokeniser;
-    using Endjin.Templify.Domain.Infrastructure;
 
     #endregion
 

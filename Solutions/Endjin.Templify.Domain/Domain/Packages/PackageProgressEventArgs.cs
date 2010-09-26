@@ -11,9 +11,9 @@ namespace Endjin.Templify.Domain.Domain.Packages
             this.CurrentValue = currentValue;
         }
 
-        public int MaxValue { get; set; }
-
         public int CurrentValue { get; set; }
+
+        public int MaxValue { get; set; }
 
         public ProgressStage ProgressStage { get; set; }
     }

@@ -1,9 +1,13 @@
 namespace Endjin.Templify.Domain.Contracts.Packager.Processors
 {
+    #region Using Directives
+
     using System.Collections.Generic;
     using System.IO;
 
     using Endjin.Templify.Domain.Domain.Packages;
+
+    #endregion
 
     public interface IArchiveProcessor
     {

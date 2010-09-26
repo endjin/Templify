@@ -4,8 +4,6 @@
 
     using System.Collections.Generic;
     using System.ComponentModel.Composition;
-    using System.Diagnostics;
-    using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
 
@@ -14,7 +12,6 @@
     using Endjin.Templify.Domain.Contracts.Packager.Processors;
     using Endjin.Templify.Domain.Contracts.Packager.Tokeniser;
     using Endjin.Templify.Domain.Domain.Packages;
-    using Endjin.Templify.Domain.Infrastructure;
 
     #endregion
 

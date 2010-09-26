@@ -20,7 +20,6 @@
         public PackageBuilder(IManifestBuilder manifestBuilder)
         {
             this.manifestBuilder = manifestBuilder;
-            this.manifestBuilder.Progress += this.OnProgressChanged;
         }
 
         public event EventHandler<PackageProgressEventArgs> Progress;
@@ -28,14 +27,6 @@
         public Package Build(string path, IPackageMetaData packageMetaData)
         {
             return new Package { Manifest = this.manifestBuilder.Build(path, packageMetaData) };
-        }
-
-        private void OnProgressChanged(object sender, PackageProgressEventArgs e)
-        {
-            if (this.Progress != null)
-            {
-                this.Progress(sender, e);
-            }
         }
     }
 }

@@ -1,12 +1,6 @@
-﻿namespace Endjin.Templify.Domain.Contracts.Tasks
+﻿namespace Endjin.Templify.Domain.Contracts.Packager.Processors
 {
-    #region Using Directives
-
-    using System;
-
     using Endjin.Templify.Domain.Domain.Packages;
-
-    #endregion
 
     public interface IPackageDeploymentProcessor
     {

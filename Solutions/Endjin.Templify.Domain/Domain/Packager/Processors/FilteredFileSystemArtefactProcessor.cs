@@ -1,7 +1,4 @@
-﻿using System;
-using Endjin.Templify.Domain.Contracts.Infrastructure;
-
-namespace Endjin.Templify.Domain.Domain.Packager.Processors
+﻿namespace Endjin.Templify.Domain.Domain.Packager.Processors
 {
     #region Using Directives
 
@@ -9,6 +6,7 @@ namespace Endjin.Templify.Domain.Domain.Packager.Processors
     using System.ComponentModel.Composition;
     using System.Linq;
 
+    using Endjin.Templify.Domain.Contracts.Infrastructure;
     using Endjin.Templify.Domain.Contracts.Packager.Processors;
     using Endjin.Templify.Domain.Contracts.Packager.Specifications;
 
@@ -29,7 +27,7 @@ namespace Endjin.Templify.Domain.Domain.Packager.Processors
 
         public override IEnumerable<string> RetrieveFiles(string path)
         {
-            SetFilters();
+            this.SetFilters();
 
             return this.fileExclusionsSpecification.SatisfyingElementsFrom(base.RetrieveFiles(path).AsQueryable());
         }

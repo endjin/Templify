@@ -8,7 +8,6 @@
 
     using Endjin.Templify.Domain.Contracts.Packager.Processors;
     using Endjin.Templify.Domain.Contracts.Packages;
-    using Endjin.Templify.Domain.Domain.Factories;
     using Endjin.Templify.Domain.Domain.Packages;
 
     #endregion

@@ -1,21 +1,25 @@
-﻿using System;
-using System.ComponentModel.Composition;
-using System.Configuration;
-using Endjin.Templify.Domain.Contracts.Infrastructure;
-
-namespace Endjin.Templify.Domain.Infrastructure
+﻿namespace Endjin.Templify.Domain.Infrastructure
 {
+    #region Using Directives
+
+    using System.ComponentModel.Composition;
+    using System.Configuration;
+
+    using Endjin.Templify.Domain.Contracts.Infrastructure;
+
+    #endregion
+
     [Export(typeof(IConfiguration))]
     public class Configuration : IConfiguration
     {
         public string GetFileExclusions()
         {
-            return GetConfigSetting("FileExclusions");
+            return this.GetConfigSetting("FileExclusions");
         }
         
         public string GetDirectoryExclusions()
         {
-            return GetConfigSetting("DirectoryExclusions");
+            return this.GetConfigSetting("DirectoryExclusions");
         }
 
         public void SaveDirectoryExclusions(string directoryExclusions)

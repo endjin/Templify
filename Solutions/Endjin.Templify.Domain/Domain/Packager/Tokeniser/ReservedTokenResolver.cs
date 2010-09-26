@@ -2,7 +2,6 @@ namespace Endjin.Templify.Domain.Domain.Packager.Tokeniser
 {
     #region Using Directives
 
-    using System;
     using System.ComponentModel.Composition;
 
     using Endjin.Templify.Domain.Contracts.Packager.Tokeniser;

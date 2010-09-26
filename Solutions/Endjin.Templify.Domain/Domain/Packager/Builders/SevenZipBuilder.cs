@@ -3,7 +3,6 @@
     #region Using Directives
 
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.Composition;
     using System.IO;
     using System.Linq;
@@ -13,8 +12,6 @@
     using Endjin.Templify.Domain.Contracts.Packager.Notifiers;
     using Endjin.Templify.Domain.Domain.Packages;
     using Endjin.Templify.Domain.Infrastructure;
-
-    using ICSharpCode.SharpZipLib.Zip;
 
     using SevenZip;
 

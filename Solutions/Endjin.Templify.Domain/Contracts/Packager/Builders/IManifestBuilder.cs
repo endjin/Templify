@@ -11,8 +11,6 @@
 
     public interface IManifestBuilder
     {
-        event EventHandler<PackageProgressEventArgs> Progress;
-
         Manifest Build(string path, IPackageMetaData packageMetaData);
     }
 }

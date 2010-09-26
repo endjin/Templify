@@ -2,6 +2,6 @@ namespace Endjin.Templify.Domain.Contracts.Packager.Processors
 {
     public interface ICloneFileProcessor
     {
-        void Process(string fromPath, string toPath);
+        void Process(string sourcePath, string destinationPath);
     }
 }
