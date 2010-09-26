@@ -81,7 +81,15 @@
 
                     if (token.Length == 2)
                     {
-                        this.Tokens.Add(token[0], token[1]);
+                        if (this.Tokens.ContainsKey(token[0]))
+                        {
+                            this.Tokens[token[0]] = token[1];
+                        }
+                        else
+                        {
+                            this.Tokens.Add(token[0], token[1]);
+                        }
+                        
                     }
                 }
             }

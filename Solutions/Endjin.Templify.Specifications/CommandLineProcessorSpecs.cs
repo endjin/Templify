@@ -38,7 +38,7 @@ namespace Endjin.Templify.Specifications
 
         Establish context = () =>
             {
-                subject = new CommandLineProcessor();
+                
                 create_command_line_args = new [] 
                 { 
                     "-m",
@@ -52,8 +52,8 @@ namespace Endjin.Templify.Specifications
                     "-v",
                     "1.6.0.0",
                     "-t", 
-                    "token=SA169", 
-                    "environment=debug"
+                    "SA169=__NAME__", 
+                    "ServerName01=__SERVERNAME__"
                 };
 
                 deploy_command_line_args = new[] 
@@ -62,9 +62,11 @@ namespace Endjin.Templify.Specifications
                     "d",
                     "-p",
                     @"C:\Temp\Package-Samples",
+                    "-i",
+                    "sharp-architecture-v1.6.0.0",
                     "-t", 
-                    "token=SA169", 
-                    "environment=debug"
+                    "__NAME__=SA169", 
+                    "__SERVERNAME__=ServerName01"
                 };
             };
     } ;
@@ -74,6 +76,11 @@ namespace Endjin.Templify.Specifications
     {
         static CommandOptions result;
 
+        Establish context = () =>
+            {
+                subject = new CommandLineProcessor();
+            };
+
         Because of = () => result = subject.Process(create_command_line_args); 
 
         It should_return_create_mode = () => result.Mode.ShouldEqual(Mode.Create);
@@ -82,8 +89,8 @@ namespace Endjin.Templify.Specifications
         It should_return_the_correct_author = () => result.Author.ShouldEqual(@"Howard van Rooijen");
         It should_return_the_correct_version_number = () => result.Version.ShouldEqual("1.6.0.0");
         It should_return_the_correct_number_of_tokens = () => result.Tokens.Count.ShouldEqual(2);
-        It should_return_the_correct_first_token = () => result.Tokens["token"].ShouldEqual("SA169");
-        It should_return_the_correct_second_token = () => result.Tokens["environment"].ShouldEqual("debug");
+        It should_return_the_correct_first_token = () => result.Tokens["SA169"].ShouldEqual("__NAME__");
+        It should_return_the_correct_second_token = () => result.Tokens["ServerName01"].ShouldEqual("__SERVERNAME__");
     }
 
     [Subject(typeof(CommandLineProcessor))]
@@ -91,12 +98,17 @@ namespace Endjin.Templify.Specifications
     {
         static CommandOptions result;
 
+        Establish context = () =>
+        {
+            subject = new CommandLineProcessor();
+        };
+
         Because of = () => result = subject.Process(deploy_command_line_args);
 
         It should_return_deploy_mode = () => result.Mode.ShouldEqual(Mode.Deploy);
         It should_return_the_correct_package_path = () => result.Path.ShouldEqual(@"C:\Temp\Package-Samples");
         It should_return_the_correct_number_of_tokens = () => result.Tokens.Count.ShouldEqual(2);
-        It should_return_the_correct_first_token = () => result.Tokens["token"].ShouldEqual("SA169");
-        It should_return_the_correct_second_token = () => result.Tokens["environment"].ShouldEqual("debug");
+        It should_return_the_correct_first_token = () => result.Tokens["__NAME__"].ShouldEqual("SA169");
+        It should_return_the_correct_second_token = () => result.Tokens["__SERVERNAME__"].ShouldEqual("ServerName01");
     }
 }
