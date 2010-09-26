@@ -90,6 +90,8 @@
     <Compile Include="Core\MefBootstrapper.cs" />
     <Compile Include="Domain\PackageCollection.cs" />
     <Compile Include="Framework\HintTextDecorator.cs" />
+    <Compile Include="ViewModel\DeployPackageViewModel.g.cs" />
+    <Compile Include="ViewModel\CreatePackageViewModel.g.cs" />
     <Compile Include="ViewModel\ManageExclusionsViewModel.cs" />
     <Compile Include="ViewModel\CreatePackageViewModel.cs" />
     <Compile Include="ViewModel\DeployPackageViewModel.cs" />
