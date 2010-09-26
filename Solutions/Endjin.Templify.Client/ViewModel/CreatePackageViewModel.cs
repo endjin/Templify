@@ -15,6 +15,7 @@ namespace Endjin.Templify.Client.ViewModel
     using Endjin.Templify.Domain.Contracts.Packager.Notifiers;
     using Endjin.Templify.Domain.Contracts.Packager.Processors;
     using Endjin.Templify.Domain.Contracts.Packager.Tokeniser;
+    using Endjin.Templify.Domain.Contracts.Tasks;
     using Endjin.Templify.Domain.Domain.Packages;
     using Endjin.Templify.Domain.Framework;
     using Endjin.Templify.Domain.Framework.Threading;
@@ -27,12 +28,7 @@ namespace Endjin.Templify.Client.ViewModel
     {
         #region Fields
 
-        private readonly IArchiveBuilder archiveBuilder;
-        private readonly ICleanUpProcessor cleanUpProcessor;
-        private readonly IClonePackageBuilder clonePackageBuilder;
-        private readonly IPackageBuilder packageBuilder;
-        private readonly IPackageTokeniser packageTokeniser;
-        private readonly IProgressNotifier progressNotifier;
+        private readonly IPackageCreatorTasks packageCreatorTasks;
         private readonly IWindowManager windowManager;
         private readonly IManageExclusionsView manageExclusionsView;
 
@@ -49,24 +45,14 @@ namespace Endjin.Templify.Client.ViewModel
 
         [ImportingConstructor]
         public CreatePackageViewModel(
-            IArchiveBuilder archiveBuilder, 
-            ICleanUpProcessor cleanUpProcessor, 
-            IClonePackageBuilder clonePackageBuilder,
-            IPackageBuilder packageBuilder,
-            IPackageTokeniser packageTokeniser,
-            IProgressNotifier progressNotifier,
+            IPackageCreatorTasks packageCreatorTasks,
             IWindowManager windowManager,
             IManageExclusionsView manageExclusionsView)
         {
-            this.archiveBuilder = archiveBuilder;
-            this.cleanUpProcessor = cleanUpProcessor;
-            this.clonePackageBuilder = clonePackageBuilder;
-            this.packageBuilder = packageBuilder;
-            this.packageTokeniser = packageTokeniser;
-            this.progressNotifier = progressNotifier;
+            this.packageCreatorTasks = packageCreatorTasks;
             this.windowManager = windowManager;
             this.manageExclusionsView = manageExclusionsView;
-            this.progressNotifier.Progress += this.OnProgressUpdate;
+            this.packageCreatorTasks.Progress += this.OnProgressUpdate;
         }
 
         #region Properties
@@ -83,6 +69,7 @@ namespace Endjin.Templify.Client.ViewModel
                 if (this.author != value)
                 {
                     this.author = value;
+                    this.CommandOptions.Author = value;
                     this.NotifyOfPropertyChange(() => this.Author);
                     this.NotifyOfPropertyChange(() => this.CanCreatePackage);
                 }
@@ -126,8 +113,11 @@ namespace Endjin.Templify.Client.ViewModel
 
             set
             {
-                this.currentProgress = value;
-                this.NotifyOfPropertyChange(() => this.CurrentProgress);
+                if (this.currentProgress != value)
+                {
+                    this.currentProgress = value;
+                    this.NotifyOfPropertyChange(() => this.CurrentProgress);
+                }
             }
         }
 
@@ -143,6 +133,7 @@ namespace Endjin.Templify.Client.ViewModel
                 if (this.name != value)
                 {
                     this.name = value;
+                    this.CommandOptions.Name = value;
                     this.NotifyOfPropertyChange(() => this.Name);
                     this.NotifyOfPropertyChange(() => this.CanCreatePackage);
                 }
@@ -167,6 +158,7 @@ namespace Endjin.Templify.Client.ViewModel
                 if (this.version != value)
                 {
                     this.version = value;
+                    this.CommandOptions.Version = value;
                     this.NotifyOfPropertyChange(() => this.Version);
                     this.NotifyOfPropertyChange(() => this.CanCreatePackage);
                 }
@@ -217,8 +209,11 @@ namespace Endjin.Templify.Client.ViewModel
 
             set
             {
-                this.progressStatus = value;
-                this.NotifyOfPropertyChange(() => this.ProgressStatus);
+                if (this.progressStatus != value)
+                {
+                    this.progressStatus = value;
+                    this.NotifyOfPropertyChange(() => this.ProgressStatus);
+                }
             }
         }
 
@@ -252,13 +247,7 @@ namespace Endjin.Templify.Client.ViewModel
 
         private void ExecuteCreatePackage()
         {
-            var package = this.packageBuilder.Build(this.CommandOptions.Path, new PackageMetaData { Author = this.Author, Name = this.Name, Version = this.Version });
-
-            var clonedPackage = this.clonePackageBuilder.Build(package);
-            var tokenisedPackage = this.packageTokeniser.Tokenise(clonedPackage, this.CommandOptions.Tokens);
-
-            this.archiveBuilder.Build(tokenisedPackage, this.CommandOptions.Path);
-            this.cleanUpProcessor.Process(FilePaths.TemporaryPackageRepository);
+            this.packageCreatorTasks.CreatePackage(this.CommandOptions);
         }
 
         private void ExecuteCreatePackageComplete(RunWorkerCompletedEventArgs e)

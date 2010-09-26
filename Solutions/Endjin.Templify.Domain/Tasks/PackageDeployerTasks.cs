@@ -3,6 +3,7 @@ namespace Endjin.Templify.Domain.Tasks
     #region Using Directives
 
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.Composition;
 
@@ -61,6 +62,11 @@ namespace Endjin.Templify.Domain.Tasks
             this.commandOptions = options;
 
             BackgroundWorkerManager.RunBackgroundWork(this.RunDeployPackage, this.RunPackageComplete);
+        }
+
+        public IEnumerable<Package> RetrieveAllPackages()
+        {
+            return this.packageRepository.FindAll();
         }
 
         private void RunPackageComplete(RunWorkerCompletedEventArgs e)

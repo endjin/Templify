@@ -27,10 +27,7 @@ namespace Endjin.Templify.Client.ViewModel
     {
         #region Fields
 
-        private readonly IPackageDeploymentProcessor packageDeploymentProcessor;
-        private readonly IPackageProcessor packageProcessor;
-        private readonly IPackageRepository packageRepository;
-        private readonly IProgressNotifier progressNotifier;
+        private readonly IPackageDeployerTasks packageDeployerTasks;
         private readonly IWindowManager windowManager;
         private readonly IManagePackagesView managePackagesView;
 
@@ -46,20 +43,14 @@ namespace Endjin.Templify.Client.ViewModel
 
         [ImportingConstructor]
         public DeployPackageViewModel(
-            IPackageDeploymentProcessor packageDeploymentProcessor, 
-            IPackageProcessor packageProcessor, 
-            IPackageRepository packageRepository, 
-            IProgressNotifier progressNotifier,
+            IPackageDeployerTasks packageDeployerTasks,
             IWindowManager windowManager, 
             IManagePackagesView managePackagesView)
         {
-            this.packageDeploymentProcessor = packageDeploymentProcessor;
-            this.packageProcessor = packageProcessor;
-            this.packageRepository = packageRepository;
-            this.progressNotifier = progressNotifier;
+            this.packageDeployerTasks = packageDeployerTasks;
             this.windowManager = windowManager;
             this.managePackagesView = managePackagesView;
-            this.progressNotifier.Progress += this.OnProgressUpdate;
+            this.packageDeployerTasks.Progress += this.OnProgressUpdate;
         }
 
         #region Properties
@@ -249,8 +240,7 @@ namespace Endjin.Templify.Client.ViewModel
 
         private void ExecutePackageCore(Package package)
         {
-            this.packageDeploymentProcessor.Execute(package);
-            this.packageProcessor.Process(this.CommandOptions.Path, this.CommandOptions.Tokens);
+            this.packageDeployerTasks.DeployPackage(this.CommandOptions);
         }
 
         private void Initialise()
@@ -267,7 +257,7 @@ namespace Endjin.Templify.Client.ViewModel
 
         private void RetrievePackages()
         {
-            this.Packages = new PackageCollection(this.packageRepository.FindAll());
+            this.Packages = new PackageCollection(this.packageDeployerTasks.RetrieveAllPackages());
         }
     }
 }
