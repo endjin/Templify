@@ -4,6 +4,6 @@ UI
 
 Command Line
 
--m c -p C:\Temp\Sample-Create - -n "p10" -a "Howard van Rooijen" -v "1.0.0.0" -t progressten
--m d -p c:\Temp\Sample-Deploy -pn cwfu-v1.0.0.0
--m c -p C:\Temp\Package-Samples -n "Sharp Architecture" -a "Howard van Rooijen" -v "1.6.0.0" -t token=SA169 environment=debug
+-m c -p C:\Temp\Sample-Create\Sharp-Architecture - -n "Sharp Architecture" -a "Howard van Rooijen" -v "1.6.0.0" -t SA169=__NAME__
+
+-m d -p c:\Temp\Sample-Deploy -i sharp-architecture-v1.6.0.0 -t __NAME__=HvR

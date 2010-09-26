@@ -24,12 +24,6 @@
             this.PackageDeployerTasks.Progress += this.OnProgressChanged;
         }
 
-        private void OnProgressChanged(object sender, Domain.Domain.Packages.PackageProgressEventArgs e)
-        {
-            ConsoleProgress.Reset();
-            ConsoleProgress.Update(e.CurrentValue, e.MaxValue, e.ProgressStage.GetDescription());
-        }
-
         [Import]
         private ICommandLineProcessor CommandLineProcessor { get; set; }
 
@@ -54,6 +48,12 @@
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+        }
+
+        private void OnProgressChanged(object sender, Domain.Domain.Packages.PackageProgressEventArgs e)
+        {
+            ConsoleProgress.Reset();
+            ConsoleProgress.Update(e.CurrentValue, e.MaxValue, e.ProgressStage.GetDescription());
         }
     }
 }
