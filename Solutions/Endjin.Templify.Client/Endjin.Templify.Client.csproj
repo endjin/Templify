@@ -158,6 +158,10 @@
       <Project>{9E8B79ED-9C17-485B-B1F9-8D33D8BB4BD2}</Project>
       <Name>Endjin.Templify.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Endjin.Templify.WizardFramework\Endjin.Templify.WizardFramework.csproj">
+      <Project>{D8F709BA-1E52-48FB-A917-7C3A40445F7F}</Project>
+      <Name>Endjin.Templify.WizardFramework</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\app-icon.ico" />

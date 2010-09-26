@@ -19,6 +19,7 @@ namespace Endjin.Templify.Client.ViewModel
     using Endjin.Templify.Domain.Framework;
     using Endjin.Templify.Domain.Framework.Threading;
     using Endjin.Templify.Domain.Infrastructure;
+    using Endjin.Templify.WizardFramework;
 
     #endregion
 
@@ -250,7 +251,11 @@ namespace Endjin.Templify.Client.ViewModel
         private void ExecutePackageCore(Package package)
         {
             this.packageDeploymentProcessor.Execute(package);
-            this.packageProcessor.Process(this.CommandOptions.Path, this.Name);
+
+            // TODO: Due to the WizardFramework being a WinForm, the WPF app does not show anything :-(
+            this.ExecuteWizard(package);
+            
+            this.packageProcessor.Process(this.CommandOptions.Path, this.Name, package.Manifest.Configuration);
         }
 
         private void Initialise()
@@ -268,6 +273,25 @@ namespace Endjin.Templify.Client.ViewModel
         private void RetrievePackages()
         {
             this.Packages = new PackageCollection(this.packageRepository.FindAll());
+        }
+
+        private void ExecuteWizard(Package package)
+        {
+            // TODO: Run the wizard to collect the token info
+            // Instantiate the command list
+            var cmdList = new CommandList();
+
+            // Add the WizardCommand objects in order to the list to provide
+            // the application workflow
+            cmdList.Add(new PackageConfigurationDataWizardFormCommand(package.Manifest.Configuration));
+
+            // The wizard simply uses a flow of objects in order until we
+            // reach the last command, so loop until that condition is
+            // detected
+            while (cmdList.CmdPointer > -1 && !cmdList.IsLastCommand())
+            {
+                cmdList.ExecuteNext();
+            }
         }
     }
 }

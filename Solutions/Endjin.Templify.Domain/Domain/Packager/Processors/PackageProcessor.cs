@@ -43,9 +43,9 @@
             this.templateTokeniser = templateTokeniser;
         }
 
-        public void Process(string path, string name)
+        public void Process(string path, string name, List<PackageConfigurationData> tokens)
         {
-            this.ProcessFiles(path, name);
+            this.ProcessFiles(path, tokens);
             this.ProcessDirectories(path);
         }
 
@@ -67,28 +67,28 @@
             }
         }
 
-        private void ProcessFiles(string path, string name)
+        private void ProcessFiles(string path, List<PackageConfigurationData> tokens)
         {
             var files = this.artefactProcessor.RetrieveFiles(path);
-            
-            this.ProcessFileContents(files, name);
-            this.ProcessDirectoryAndFilePaths(files, name);
+
+            this.ProcessFileContents(files, tokens);
+            this.ProcessDirectoryAndFilePaths(files, tokens);
         }
 
-        private void ProcessDirectoryAndFilePaths(IEnumerable<string> files, string name)
+        private void ProcessDirectoryAndFilePaths(IEnumerable<string> files, List<PackageConfigurationData> tokens)
         {
             int fileCount = files.Count();
             int progress = 0;
 
             foreach (var file in files)
             {
-                this.templateTokeniser.TokeniseDirectoryAndFilePaths(file, name);
+                this.templateTokeniser.TokeniseDirectoryAndFilePaths(file, tokens);
                 this.progressNotifier.UpdateProgress(ProgressStage.TokenisePackageStructure, fileCount, progress);
                 progress++;
             }
         }
 
-        private void ProcessFileContents(IEnumerable<string> files, string name)
+        private void ProcessFileContents(IEnumerable<string> files, List<PackageConfigurationData> tokens)
         {
             var filteredFiles = this.binaryFileFilter.Filter(files);
 
@@ -97,7 +97,7 @@
 
             foreach (var file in filteredFiles)
             {
-                this.templateTokeniser.TokeniseFileContent(file, name);
+                this.templateTokeniser.TokeniseFileContent(file, tokens);
                 this.progressNotifier.UpdateProgress(ProgressStage.TokenisePackageContents, fileCount, progress);
                 progress++;
             }

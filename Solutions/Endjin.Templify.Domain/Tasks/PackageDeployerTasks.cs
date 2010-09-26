@@ -71,7 +71,7 @@ namespace Endjin.Templify.Domain.Tasks
         private void RunDeployPackage(Package package)
         {
             this.packageDeploymentProcessor.Execute(package);
-            this.packageProcessor.Process(this.Path, this.Name);
+            this.packageProcessor.Process(this.Path, this.Name, package.Manifest.Configuration);
         }
 
         private void OnProgressUpdate(object sender, PackageProgressEventArgs e)

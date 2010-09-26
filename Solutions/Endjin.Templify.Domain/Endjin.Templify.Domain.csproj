@@ -99,6 +99,7 @@
     <Compile Include="Domain\Packages\Manifest.cs" />
     <Compile Include="Domain\Packages\ManifestFile.cs" />
     <Compile Include="Domain\Packages\Package.cs" />
+    <Compile Include="Domain\Packages\PackageConfigurationData.cs" />
     <Compile Include="Domain\Packages\PackageMetaData.cs" />
     <Compile Include="Domain\Packages\PackageProgressEventArgs.cs" />
     <Compile Include="Domain\Packages\ProgressStage.cs" />

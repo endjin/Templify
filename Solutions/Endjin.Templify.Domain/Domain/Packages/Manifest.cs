@@ -16,6 +16,7 @@
         public Manifest()
         {
             this.Files = new List<ManifestFile>();
+            this.Configuration = new List<PackageConfigurationData>();
         }
 
         public string Author { get; set; }
@@ -40,5 +41,9 @@
         {
             get { return this.Name + " - " + this.Version; }
         }
+
+        [XmlArray]
+        [XmlArrayItem("Setting")]
+        public List<PackageConfigurationData> Configuration { get; set; }
     }
 }
