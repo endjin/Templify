@@ -194,11 +194,18 @@ namespace Endjin.Templify.Client.ViewModel
 
         public void DeployPackage()
         {
-            var package = this.SelectedPackage;
+            this.DeployingPackage = true;
 
-            package.Manifest.InstallRoot = this.CommandOptions.Path;
-
-            this.ExecuteDeployPackage(package);
+            try
+            {
+                BackgroundWorkerManager.RunBackgroundWork(this.ExecutePackage, this.ExecutePackageComplete);
+            }
+            catch (Exception)
+            {
+                // If we failed to start, then we must reset the deploying package state
+                this.DeployingPackage = false;
+                throw;
+            }
         }
 
         public void Exit()
@@ -212,22 +219,6 @@ namespace Endjin.Templify.Client.ViewModel
             this.Initialise();
         }
 
-        private void ExecuteDeployPackage(Package package)
-        {
-            this.DeployingPackage = true;
-
-            try
-            {
-                BackgroundWorkerManager.RunBackgroundWork(() => this.ExecutePackageCore(package), this.ExecutePackageComplete);
-            }
-            catch (Exception)
-            {
-                // If we failed to start, then we must reset the deploying package state
-                this.DeployingPackage = false;
-                throw;
-            }
-        }
-
         private void ExecutePackageComplete(RunWorkerCompletedEventArgs e)
         {
             this.DeployingPackage = false;
@@ -238,8 +229,9 @@ namespace Endjin.Templify.Client.ViewModel
             }
         }
 
-        private void ExecutePackageCore(Package package)
+        private void ExecutePackage()
         {
+            this.CommandOptions.PackageName = this.SelectedPackage.Manifest.PackageName;
             this.packageDeployerTasks.DeployPackage(this.CommandOptions);
         }
 
