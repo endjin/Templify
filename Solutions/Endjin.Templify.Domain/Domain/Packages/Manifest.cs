@@ -13,6 +13,8 @@
     [XmlRoot("Manifest")]
     public class Manifest : IPackageMetaData
     {
+        private string packageName;
+
         public Manifest()
         {
             this.Files = new List<ManifestFile>();
@@ -29,6 +31,19 @@
         public string InstallRoot { get; set; }
 
         public string Name { get; set; }
+        
+        public string PackageName
+        {
+            get
+            {
+                return this.Name.ToLowerInvariant().Replace(" ", "-") + "-v" + this.Version;
+            }
+
+            set
+            {
+                this.packageName = value;
+            }
+        }
 
         [XmlIgnore]
         public string Path { get; set; }

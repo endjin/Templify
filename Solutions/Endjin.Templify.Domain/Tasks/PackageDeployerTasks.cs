@@ -25,6 +25,7 @@ namespace Endjin.Templify.Domain.Tasks
         private readonly IPackageDeploymentProcessor packageDeploymentProcessor;
         private readonly IPackageProcessor packageProcessor;
         private readonly IPackageRepository packageRepository;
+        private CommandOptions commandOptions;
 
         #endregion
 
@@ -46,19 +47,17 @@ namespace Endjin.Templify.Domain.Tasks
 
         public int CurrentProgress { get; set; }
 
-        public string Name { get; set; }
-
-        public string Path { get; set; }
-
         public int MaxProgress { get; set; }
 
         public string ProgressStatus { get; set; }
 
         #endregion
 
-        public void DeployPackage(CommandOptions commandOptions)
+        public void DeployPackage(CommandOptions options)
         {
-            //BackgroundWorkerManager.RunBackgroundWork(() => this.RunDeployPackage(package), this.RunPackageComplete);
+            this.commandOptions = options;
+
+            BackgroundWorkerManager.RunBackgroundWork(this.RunDeployPackage, this.RunPackageComplete);
         }
 
         private void RunPackageComplete(RunWorkerCompletedEventArgs e)
@@ -68,10 +67,13 @@ namespace Endjin.Templify.Domain.Tasks
             }
         }
 
-        private void RunDeployPackage(Package package)
+        private void RunDeployPackage()
         {
+            var package = this.packageRepository.FindOne(this.commandOptions.PackageName);
+            package.Manifest.InstallRoot = this.commandOptions.Path;
+            
             this.packageDeploymentProcessor.Execute(package);
-            this.packageProcessor.Process(this.Path, this.Name);
+            this.packageProcessor.Process(this.commandOptions.Path, this.commandOptions.Name);
         }
 
         private void OnProgressUpdate(object sender, PackageProgressEventArgs e)

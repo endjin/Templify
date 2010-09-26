@@ -27,26 +27,11 @@
 
         public Mode Mode { get; set; }
 
+        [Option("i", "Package Name")]
+        public string PackageName { get; set; }
+
         [Option("p", "Path")]
         public string Path { get; set; }
-
-        [Option("v", "Version")]
-        public string Version { get; set; }
-
-        [OptionArray("t", "Tokens")]
-        public string[] RawTokens
-        {
-            get
-            {
-                return this.rawTokens;
-            }
-
-            set
-            {
-                this.rawTokens = value;
-                this.Tokens = this.rawTokens.Where(t => !string.IsNullOrEmpty(t)).Select(t => t.Split('=')).ToDictionary(p => p[0], p => p[1]);
-            }
-        }
 
         [Option("m", "Mode")]
         public string RawMode
@@ -72,6 +57,24 @@
             }
         }
 
+        [OptionArray("t", "Tokens")]
+        public string[] RawTokens
+        {
+            get
+            {
+                return this.rawTokens;
+            }
+
+            set
+            {
+                this.rawTokens = value;
+                this.Tokens = this.rawTokens.Where(t => !string.IsNullOrEmpty(t)).Select(t => t.Split('=')).ToDictionary(p => p[0], p => p[1]);
+            }
+        }
+
         public Dictionary<string, string> Tokens { get; set; }
+
+        [Option("v", "Version")]
+        public string Version { get; set; }
     }
 }

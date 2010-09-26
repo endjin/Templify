@@ -17,7 +17,7 @@ namespace Endjin.Templify.Domain.Infrastructure
         {
             var options = new CommandOptions();
 
-            ICommandLineParser parser = new CommandLineParser();
+            var parser = new CommandLineParser();
 
             parser.ParseArguments(args, options);
 

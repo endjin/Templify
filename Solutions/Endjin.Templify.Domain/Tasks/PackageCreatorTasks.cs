@@ -81,7 +81,7 @@ namespace Endjin.Templify.Domain.Tasks
             var clonedPackage = this.clonePackageBuilder.Build(package);
             var tokenisedPackage = this.packageTokeniser.Tokenise(clonedPackage, this.commandOptions.Tokens);
 
-            //this.archiveBuilder.Build(tokenisedPackage, this.commandOptions.PackagePath);
+            this.archiveBuilder.Build(tokenisedPackage, this.commandOptions.Path);
             this.cleanUpProcessor.Process(FilePaths.TemporaryPackageRepository);
         }
 

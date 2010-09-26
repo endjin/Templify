@@ -35,8 +35,6 @@ namespace Endjin.Templify.Domain.Domain.Packager.Processors
 
             using (var extractor = new SevenZipExtractor(archivePath))
             {
-                // extractor.ExtractionFinished += this.ExtractionFinished;
-
                 int progress = 0;
 
                 foreach (var manifestFile in files)

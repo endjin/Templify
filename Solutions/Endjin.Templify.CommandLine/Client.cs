@@ -21,7 +21,7 @@
         }
 
         [Import]
-        public ICommandLineProcessor CommandLineProcessor { get; set; }
+        private ICommandLineProcessor CommandLineProcessor { get; set; }
 
         [Import]
         private IPackageCreatorTasks PackageCreatorTasks { get; set; }

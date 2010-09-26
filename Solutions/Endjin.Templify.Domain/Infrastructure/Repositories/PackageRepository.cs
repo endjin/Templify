@@ -38,6 +38,11 @@
             return this.FindAll().Where(p => p.Manifest.Id == id).FirstOrDefault();
         }
 
+        public Package FindOne(string name)
+        {
+            return this.FindAll().Where(p => p.Manifest.PackageName == name).FirstOrDefault();
+        }
+
         public void Remove(Package package)
         {
             this.artefactProcessor.RemoveFile(package.Manifest.Path);

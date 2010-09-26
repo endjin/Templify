@@ -1,10 +1,8 @@
 ﻿namespace Endjin.Templify.CommandLine
 {
-    using System;
-
     #region Using Directives
 
-    
+    using System;    
 
     #endregion
 
