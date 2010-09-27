@@ -24,10 +24,13 @@ namespace Endjin.Templify.Specifications.Tasks
     using Endjin.Templify.Domain.Contracts.Packager.Processors;
     using Endjin.Templify.Domain.Contracts.Packages;
     using Endjin.Templify.Domain.Contracts.Tasks;
+    using Endjin.Templify.Domain.Domain.Packages;
     using Endjin.Templify.Domain.Tasks;
 
     using Machine.Specifications;
     using Machine.Specifications.AutoMocking.Rhino;
+
+    using Rhino.Mocks;
 
     #endregion
 
@@ -37,6 +40,7 @@ namespace Endjin.Templify.Specifications.Tasks
         protected static IPackageProcessor the_package_processor;
         protected static IPackageRepository the_package_repository;
         protected static IProgressNotifier the_progress_notifier;
+        protected static Package the_package;
 
         protected static string the_package_name;
 
@@ -47,6 +51,12 @@ namespace Endjin.Templify.Specifications.Tasks
             the_package_repository = DependencyOf<IPackageRepository>();
             the_progress_notifier = DependencyOf<IProgressNotifier>();
             the_package_name = "sharp-architecture-v1.6.0.0";
+            the_package = new Package
+                {
+                    Manifest = new Manifest { Tokens = new List<string> { "__NAME__" } }
+                };
+
+            the_package_repository.Stub(x => x.FindOne(the_package_name)).Return(the_package);
         };
     }
 
