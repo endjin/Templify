@@ -32,7 +32,7 @@ namespace Endjin.Templify.Domain.Tasks
 
         [ImportingConstructor]
         public PackageDeployerTasks(
-         IPackageDeploymentProcessor packageDeploymentProcessor,
+            IPackageDeploymentProcessor packageDeploymentProcessor,
             IPackageProcessor packageProcessor,
             IPackageRepository packageRepository, 
             IProgressNotifier progressNotifier)
@@ -66,6 +66,13 @@ namespace Endjin.Templify.Domain.Tasks
         public IEnumerable<Package> RetrieveAllPackages()
         {
             return this.packageRepository.FindAll();
+        }
+
+        public IEnumerable<string> RetrieveTokensForPackage(string packageName)
+        {
+            var package = this.packageRepository.FindOne(packageName);
+
+            return package.Manifest.Tokens;
         }
 
         private void RunPackageComplete(RunWorkerCompletedEventArgs e)

@@ -17,5 +17,7 @@
         void DeployPackage(CommandOptions commandOptions);
 
         IEnumerable<Package> RetrieveAllPackages();
+
+        IEnumerable<string> RetrieveTokensForPackage(string packageName);
     }
 }

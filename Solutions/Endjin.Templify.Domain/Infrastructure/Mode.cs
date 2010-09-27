@@ -4,6 +4,7 @@ namespace Endjin.Templify.Domain.Infrastructure
     {
         NotSet,
         Create,
-        Deploy
+        Deploy,
+        ShowTokens,
     }
 }

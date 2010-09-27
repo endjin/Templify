@@ -17,6 +17,7 @@ namespace Endjin.Templify.Specifications
 {
     #region Using Directives
 
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -33,12 +34,16 @@ namespace Endjin.Templify.Specifications
     {
         protected static string[] create_command_line_args;
         protected static string[] deploy_command_line_args;
+        protected static string[] describe_package_tokens_command_line_args;
+        protected static string[] create_command_line_args_with_malformed_token;
 
         protected static ICommandLineProcessor subject;
+        protected static CommandOptions result;
 
         Establish context = () =>
             {
-                
+                subject = new CommandLineProcessor();
+
                 create_command_line_args = new [] 
                 { 
                     "-m",
@@ -68,19 +73,36 @@ namespace Endjin.Templify.Specifications
                     "__NAME__=SA169", 
                     "__SERVERNAME__=ServerName01"
                 };
+
+                describe_package_tokens_command_line_args = new[] 
+                { 
+                    "-m",
+                    "s",
+                    "-i",
+                    "sharp-architecture-v1.6.0.0",
+                };
+
+                create_command_line_args_with_malformed_token = new[]
+                {
+                    "-m",
+                    "c",
+                    "-p",
+                    @"C:\Temp\Package-Samples",
+                    "-n", 
+                    "Sharp Architecture",
+                    "-a", 
+                    "Howard van Rooijen" ,
+                    "-v",
+                    "1.6.0.0",
+                    "-t", 
+                    "SA169=", 
+                };
             };
     } ;
 
     [Subject(typeof(CommandLineProcessor))]
     public class when_the_command_line_processor_is_given_a_valid_list_of_create_package_args_to_process : specification_for_command_line_processor
     {
-        static CommandOptions result;
-
-        Establish context = () =>
-            {
-                subject = new CommandLineProcessor();
-            };
-
         Because of = () => result = subject.Process(create_command_line_args); 
 
         It should_return_create_mode = () => result.Mode.ShouldEqual(Mode.Create);
@@ -89,6 +111,8 @@ namespace Endjin.Templify.Specifications
         It should_return_the_correct_author = () => result.Author.ShouldEqual(@"Howard van Rooijen");
         It should_return_the_correct_version_number = () => result.Version.ShouldEqual("1.6.0.0");
         It should_return_the_correct_number_of_tokens = () => result.Tokens.Count.ShouldEqual(2);
+        It should_return_the_correct_number_of_raw_tokens = () => result.RawTokens.Count().ShouldEqual(2);
+        It should_return_the_correct_raw_mode = () => result.RawMode.ShouldEqual("c");
         It should_return_the_correct_first_token = () => result.Tokens["SA169"].ShouldEqual("__NAME__");
         It should_return_the_correct_second_token = () => result.Tokens["ServerName01"].ShouldEqual("__SERVERNAME__");
     }
@@ -96,13 +120,6 @@ namespace Endjin.Templify.Specifications
     [Subject(typeof(CommandLineProcessor))]
     public class when_the_command_line_processor_is_given_a_valid_list_of_deploy_package_args_to_process : specification_for_command_line_processor
     {
-        static CommandOptions result;
-
-        Establish context = () =>
-        {
-            subject = new CommandLineProcessor();
-        };
-
         Because of = () => result = subject.Process(deploy_command_line_args);
 
         It should_return_deploy_mode = () => result.Mode.ShouldEqual(Mode.Deploy);
@@ -110,5 +127,24 @@ namespace Endjin.Templify.Specifications
         It should_return_the_correct_number_of_tokens = () => result.Tokens.Count.ShouldEqual(2);
         It should_return_the_correct_first_token = () => result.Tokens["__NAME__"].ShouldEqual("SA169");
         It should_return_the_correct_second_token = () => result.Tokens["__SERVERNAME__"].ShouldEqual("ServerName01");
+    }
+
+    [Subject(typeof(CommandLineProcessor))]
+    public class when_the_command_line_processor_is_given_args_that_ask_for_available_package_tokens_to_be_listed : specification_for_command_line_processor
+    {
+        Because of = () => result = subject.Process(describe_package_tokens_command_line_args);
+
+        It should_return_deploy_mode = () => result.Mode.ShouldEqual(Mode.ShowTokens);
+        It should_return_the_correct_number_of_tokens = () => result.PackageName.ShouldEqual("sharp-architecture-v1.6.0.0");
+    }
+
+    [Subject(typeof(CommandLineProcessor))]
+    public class when_the_command_line_processor_is_given_args_that_malformed_tokens : specification_for_command_line_processor
+    {
+        static Exception the_exception;
+
+        Because of = () => the_exception = Catch.Exception(() => subject.Process(create_command_line_args_with_malformed_token));
+
+        It should_throw_a_precondition_exception_containing_the_error = () => the_exception.InnerException.ShouldBe(typeof(ArgumentException));
     }
 }

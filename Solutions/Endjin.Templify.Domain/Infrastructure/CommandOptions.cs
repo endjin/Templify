@@ -2,6 +2,7 @@
 {
     #region Using Directives
 
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -54,6 +55,9 @@
                     case "d":
                         this.Mode = Mode.Deploy;
                         break;
+                    case "s":
+                        this.Mode = Mode.ShowTokens;
+                        break;
                 }
             }
         }
@@ -74,13 +78,13 @@
 
                 foreach (var token in tokens)
                 {
-                    if (token.Length == 1)
-                    {
-                        this.Tokens.Add(token[0], string.Empty);
-                    }
-
                     if (token.Length == 2)
                     {
+                        if (string.IsNullOrEmpty(token[1]))
+                        {
+                            throw new ArgumentException("Token is Malformed");
+                        }
+
                         if (this.Tokens.ContainsKey(token[0]))
                         {
                             this.Tokens[token[0]] = token[1];

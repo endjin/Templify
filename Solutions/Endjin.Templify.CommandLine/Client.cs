@@ -45,8 +45,23 @@
                 case Mode.Deploy:
                     this.PackageDeployerTasks.DeployPackage(options);
                     break;
+                case Mode.ShowTokens:
+                    this.DisplayTokens(options);
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        private void DisplayTokens(CommandOptions options)
+        {
+            var tokens = this.PackageDeployerTasks.RetrieveTokensForPackage(options.PackageName);
+
+            Console.WriteLine(string.Format("Tokens available in Package {0}:", options.PackageName));
+
+            foreach (var token in tokens)
+            {
+                Console.WriteLine(token);
             }
         }
 
