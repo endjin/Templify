@@ -1,6 +1,10 @@
 UI
--m c -p C:\_Projects\endjin\OSS\Templify\Artefacts\package-samples\sample-mvc-app\files
--m c -p C:\Temp\Sample-Create
+
+Create:
+-m c -p C:\Temp\Sample-Create\Sharp-Architecture
+
+Deploy:
+-m d -p c:\Temp\Sample-Deploy
 
 Command Line
 

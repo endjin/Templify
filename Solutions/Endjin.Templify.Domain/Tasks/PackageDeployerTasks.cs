@@ -4,7 +4,6 @@ namespace Endjin.Templify.Domain.Tasks
 
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.ComponentModel.Composition;
 
     using Endjin.Templify.Domain.Contracts.Packager.Notifiers;
@@ -12,7 +11,6 @@ namespace Endjin.Templify.Domain.Tasks
     using Endjin.Templify.Domain.Contracts.Packages;
     using Endjin.Templify.Domain.Contracts.Tasks;
     using Endjin.Templify.Domain.Domain.Packages;
-    using Endjin.Templify.Domain.Framework.Threading;
     using Endjin.Templify.Domain.Infrastructure;
 
     #endregion
@@ -60,7 +58,7 @@ namespace Endjin.Templify.Domain.Tasks
         {
             this.commandOptions = options;
 
-            BackgroundWorkerManager.RunBackgroundWork(this.RunDeployPackage, this.RunPackageComplete);
+            this.RunDeployPackage();
         }
 
         public IEnumerable<Package> RetrieveAllPackages()
@@ -73,13 +71,6 @@ namespace Endjin.Templify.Domain.Tasks
             var package = this.packageRepository.FindOne(packageName);
 
             return package.Manifest.Tokens;
-        }
-
-        private void RunPackageComplete(RunWorkerCompletedEventArgs e)
-        {
-            if (e.Error == null)
-            {
-            }
         }
 
         private void RunDeployPackage()

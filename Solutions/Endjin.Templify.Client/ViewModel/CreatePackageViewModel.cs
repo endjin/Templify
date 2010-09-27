@@ -64,6 +64,9 @@ namespace Endjin.Templify.Client.ViewModel
 
         private void ExecuteCreatePackage()
         {
+            // HACK: Until we get the dynamic UI Sorted
+            this.CommandOptions.Tokens.Add(this.Token,"__NAME__");
+
             this.packageCreatorTasks.CreatePackage(this.CommandOptions);
         }
 

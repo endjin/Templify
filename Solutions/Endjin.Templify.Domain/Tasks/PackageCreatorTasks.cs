@@ -3,7 +3,6 @@ namespace Endjin.Templify.Domain.Tasks
     #region Using Directives
 
     using System;
-    using System.ComponentModel;
     using System.ComponentModel.Composition;
     using System.Linq;
 
@@ -13,7 +12,6 @@ namespace Endjin.Templify.Domain.Tasks
     using Endjin.Templify.Domain.Contracts.Packager.Tokeniser;
     using Endjin.Templify.Domain.Contracts.Tasks;
     using Endjin.Templify.Domain.Domain.Packages;
-    using Endjin.Templify.Domain.Framework.Threading;
     using Endjin.Templify.Domain.Infrastructure;
 
     #endregion
@@ -67,7 +65,7 @@ namespace Endjin.Templify.Domain.Tasks
         public void CreatePackage(CommandOptions options)
         {
             this.commandOptions = options;
-            BackgroundWorkerManager.RunBackgroundWork(this.RunCreatePackage, this.RunCreatePackageComplete);
+            this.RunCreatePackage();
         }
 
         private void RunCreatePackage()
@@ -89,23 +87,12 @@ namespace Endjin.Templify.Domain.Tasks
             this.cleanUpProcessor.Process(FilePaths.TemporaryPackageRepository);
         }
 
-       private void RunCreatePackageComplete(RunWorkerCompletedEventArgs e)
-       {
-            if (e.Error == null)
-            {
-            }
-        }
-
         private void OnProgressUpdate(object sender, PackageProgressEventArgs e)
         {
             if (this.Progress != null)
             {
                 this.Progress(sender, e);
             }
-
-            //this.CurrentProgress = e.CurrentValue;
-            //this.MaxProgress = e.MaxValue;
-            //this.ProgressStatus = e.ProgressStage.GetDescription();
         }
     }
 }

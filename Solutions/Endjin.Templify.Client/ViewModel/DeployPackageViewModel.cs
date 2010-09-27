@@ -75,6 +75,10 @@ namespace Endjin.Templify.Client.ViewModel
         private void ExecutePackage()
         {
             this.CommandOptions.PackageName = this.SelectedPackage.Manifest.PackageName;
+
+            // HACK: Until we get the dynamic UI Sorted
+            this.CommandOptions.Tokens.Add("__NAME__", this.Name);
+
             this.packageDeployerTasks.DeployPackage(this.CommandOptions);
         }
 
