@@ -2,6 +2,8 @@ namespace Endjin.Templify.Domain.Infrastructure
 {
     #region Using Directives
 
+    using System;
+    using System.Collections.Generic;
     using System.ComponentModel.Composition;
 
     using CommandLine;
@@ -16,10 +18,15 @@ namespace Endjin.Templify.Domain.Infrastructure
         public CommandOptions Process(string[] args)
         {
             var options = new CommandOptions();
-
             var parser = new CommandLineParser();
+            var parsedArgs = new List<string>();
 
-            parser.ParseArguments(args, options);
+            foreach (string arg in args)
+            {
+                parsedArgs.AddRange(arg.Split(Convert.ToChar(" ")));
+            }
+
+            parser.ParseArguments(parsedArgs.ToArray(), options);
 
             return options;
         }

@@ -49,7 +49,8 @@
                     this.DisplayTokens(options);
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    Console.WriteLine("Invalid Args Detected");
+                    break;
             }
         }
 

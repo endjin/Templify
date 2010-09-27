@@ -52,13 +52,13 @@
         "Entry"
         {
         "MsmKey" = "8:_860C956829AC0A8F4D9C457A30642325"
-        "OwnerKey" = "8:_6EDF8FFCD6124182871F38EA89D54D88"
+        "OwnerKey" = "8:_724E10457333461FBEE7ACF65161C098"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_860C956829AC0A8F4D9C457A30642325"
-        "OwnerKey" = "8:_724E10457333461FBEE7ACF65161C098"
+        "OwnerKey" = "8:_6EDF8FFCD6124182871F38EA89D54D88"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -70,13 +70,13 @@
         "Entry"
         {
         "MsmKey" = "8:_964A4AC8678C6C97AEDC8009486B83F7"
-        "OwnerKey" = "8:_6EDF8FFCD6124182871F38EA89D54D88"
+        "OwnerKey" = "8:_724E10457333461FBEE7ACF65161C098"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_964A4AC8678C6C97AEDC8009486B83F7"
-        "OwnerKey" = "8:_724E10457333461FBEE7ACF65161C098"
+        "OwnerKey" = "8:_6EDF8FFCD6124182871F38EA89D54D88"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -142,43 +142,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_6EDF8FFCD6124182871F38EA89D54D88"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_FB8FA9C114F7F8734881FADBC7B54139"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_A63A50CDAA87FE0C95A471A8B5A1DF15"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C6EF5B32610A27A88C13028F710DE894"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_860C956829AC0A8F4D9C457A30642325"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_964A4AC8678C6C97AEDC8009486B83F7"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_6CE173BBDD35508D4D3B1538A09FED8C"
+        "OwnerKey" = "8:_D71902FB3EE6D8A0B2D126451CF71D0F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -190,7 +154,43 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D71902FB3EE6D8A0B2D126451CF71D0F"
+        "OwnerKey" = "8:_6CE173BBDD35508D4D3B1538A09FED8C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_964A4AC8678C6C97AEDC8009486B83F7"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_860C956829AC0A8F4D9C457A30642325"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_C6EF5B32610A27A88C13028F710DE894"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_A63A50CDAA87FE0C95A471A8B5A1DF15"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_FB8FA9C114F7F8734881FADBC7B54139"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_6EDF8FFCD6124182871F38EA89D54D88"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -305,11 +305,6 @@
             "AssemblyAsmDisplayName" = "8:Caliburn.Micro, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_2DCACA359BBC60A6E6F09590045652DD"
-                    {
-                    "Name" = "8:Caliburn.Micro.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Caliburn.Micro.dll"
             "TargetName" = "8:"
@@ -356,11 +351,6 @@
             "AssemblyAsmDisplayName" = "8:CommandLine, Version=1.8.0.5, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_6CE173BBDD35508D4D3B1538A09FED8C"
-                    {
-                    "Name" = "8:CommandLine.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:CommandLine.dll"
             "TargetName" = "8:"
@@ -387,11 +377,6 @@
             "AssemblyAsmDisplayName" = "8:SevenZipSharp, Version=0.64.3890.29348, Culture=neutral, PublicKeyToken=20de82c62b055c88, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_860C956829AC0A8F4D9C457A30642325"
-                    {
-                    "Name" = "8:SevenZipSharp.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:SevenZipSharp.dll"
             "TargetName" = "8:"
@@ -418,11 +403,6 @@
             "AssemblyAsmDisplayName" = "8:ICSharpCode.SharpZipLib, Version=0.85.5.452, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_964A4AC8678C6C97AEDC8009486B83F7"
-                    {
-                    "Name" = "8:ICSharpCode.SharpZipLib.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:ICSharpCode.SharpZipLib.dll"
             "TargetName" = "8:"
@@ -449,11 +429,6 @@
             "AssemblyAsmDisplayName" = "8:Hardcodet.Wpf.TaskbarNotification, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_A63A50CDAA87FE0C95A471A8B5A1DF15"
-                    {
-                    "Name" = "8:Hardcodet.Wpf.TaskbarNotification.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Hardcodet.Wpf.TaskbarNotification.dll"
             "TargetName" = "8:"
@@ -520,11 +495,6 @@
             "AssemblyAsmDisplayName" = "8:Endjin.Templify.Domain, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_C6EF5B32610A27A88C13028F710DE894"
-                    {
-                    "Name" = "8:Endjin.Templify.Domain.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Endjin.Templify.Domain.dll"
             "TargetName" = "8:"
@@ -551,11 +521,6 @@
             "AssemblyAsmDisplayName" = "8:System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_D71902FB3EE6D8A0B2D126451CF71D0F"
-                    {
-                    "Name" = "8:System.Windows.Interactivity.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:System.Windows.Interactivity.dll"
             "TargetName" = "8:"
@@ -582,11 +547,6 @@
             "AssemblyAsmDisplayName" = "8:CommandLine, Version=1.8.0.5, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_FB8FA9C114F7F8734881FADBC7B54139"
-                    {
-                    "Name" = "8:CommandLine.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:CommandLine.dll"
             "TargetName" = "8:"

@@ -2,7 +2,10 @@ namespace Endjin.Templify.Client.Core
 {
     #region Using Directives
 
+    using System;
+    using System.Collections.Generic;
     using System.ComponentModel.Composition;
+    using System.Linq;
 
     using Caliburn.Micro;
 
