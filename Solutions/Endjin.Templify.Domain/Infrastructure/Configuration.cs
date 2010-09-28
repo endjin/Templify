@@ -40,8 +40,10 @@
         private void SaveConfigSetting(string settingName, string value)
         {
             var configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            
             configuration.AppSettings.Settings[settingName].Value = value;
             configuration.Save(ConfigurationSaveMode.Modified);
+
             ConfigurationManager.RefreshSection("appSettings");
         }
     }

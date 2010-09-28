@@ -40,7 +40,7 @@
 
         private List<string> ParseList(string commaSeparatedString)
         {
-            return commaSeparatedString.Split(",".ToCharArray()).ToList(); 
+            return commaSeparatedString.Split(";".ToCharArray()).ToList(); 
         }
     }
 }
