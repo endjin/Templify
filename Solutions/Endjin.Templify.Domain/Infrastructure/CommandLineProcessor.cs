@@ -19,14 +19,8 @@ namespace Endjin.Templify.Domain.Infrastructure
         {
             var options = new CommandOptions();
             var parser = new CommandLineParser();
-            var parsedArgs = new List<string>();
 
-            foreach (string arg in args)
-            {
-                parsedArgs.AddRange(arg.Split(Convert.ToChar(" ")));
-            }
-
-            parser.ParseArguments(parsedArgs.ToArray(), options);
+            parser.ParseArguments(args, options);
 
             return options;
         }

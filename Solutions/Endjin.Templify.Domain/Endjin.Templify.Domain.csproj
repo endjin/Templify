@@ -34,10 +34,6 @@
     <Reference Include="CommandLine">
       <HintPath>..\..\ReferencedAssemblies\CommandLine\CommandLine.dll</HintPath>
     </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib, Version=0.85.5.452, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ReferencedAssemblies\Zip\ICSharpCode.SharpZipLib.dll</HintPath>
-    </Reference>
     <Reference Include="SevenZipSharp">
       <HintPath>..\..\ReferencedAssemblies\7Zip\SevenZipSharp.dll</HintPath>
     </Reference>
@@ -77,7 +73,6 @@
     <Compile Include="Domain\Factories\ManifestFactory.cs" />
     <Compile Include="Domain\Factories\PackageFactory.cs" />
     <Compile Include="Domain\Packager\Builders\SevenZipBuilder.cs" />
-    <Compile Include="Domain\Packager\Builders\ZipBuilder.cs" />
     <Compile Include="Domain\Packager\Builders\ClonePackageBuilder.cs" />
     <Compile Include="Domain\Packager\Builders\ManifestBuilder.cs" />
     <Compile Include="Domain\Packager\Builders\PackageBuilder.cs" />
