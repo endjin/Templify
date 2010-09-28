@@ -44,10 +44,10 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClonePackageBuilderSpecs.cs" />
-    <Compile Include="CommandLineProcessorSpecs.cs" />
-    <Compile Include="FileExclusionSpecificationSpecs.cs" />
-    <Compile Include="PackageTokeniserSpecs.cs" />
+    <Compile Include="Domain\Packager\Builders\ClonePackageBuilderSpecs.cs" />
+    <Compile Include="Infrastructure\CommandLineProcessorSpecs.cs" />
+    <Compile Include="Domain\Packager\Specifications\FileExclusionSpecificationSpecs.cs" />
+    <Compile Include="Domain\Packager\Tokeniser\PackageTokeniserSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tasks\PackageDeployerTasksSpecs.cs" />
   </ItemGroup>

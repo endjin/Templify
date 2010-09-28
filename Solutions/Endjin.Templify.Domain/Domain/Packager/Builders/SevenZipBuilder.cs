@@ -28,10 +28,10 @@
             this.progressNotifier = progressNotifier;
         }
 
-        public void Build(Package package, string path)
+        public void Build(Package package, string path, string packageRepositoryPath)
         {
             var archiveName = package.Manifest.Name.ToLowerInvariant().Replace(" ", "-") + "-v" + package.Manifest.Version;
-            var archive = Path.Combine(FilePaths.PackageRepository, archiveName) + FileTypes.Package;
+            var archive = Path.Combine(packageRepositoryPath, archiveName) + FileTypes.Package;
 
             var file = new FileInfo(Assembly.GetExecutingAssembly().Location);
 

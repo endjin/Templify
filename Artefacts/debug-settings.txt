@@ -9,7 +9,7 @@ Deploy:
 Command Line
 
 Create:
--m c -p C:\Temp\Sample-Create\Sharp-Architecture -n "Sharp Architecture" -a "Howard van Rooijen" -v "1.6.0.0" -t SA169=__NAME__
+-m c -p C:\Temp\Sample-Create\Sharp-Architecture -n "Sharp Architecture" -a "Howard van Rooijen" -v "1.6.0.0" -t SA169=__NAME__ -o "c:\Temp\Sample-Deploy"
 
 Deploy:
 -m d -p c:\Temp\Sample-Deploy -i sharp-architecture-v1.6.0.0 -t __NAME__=HvR

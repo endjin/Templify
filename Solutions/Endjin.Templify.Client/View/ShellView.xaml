@@ -7,7 +7,8 @@
              Background="{DynamicResource WindowBackgroundBrush}"
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel>
-        <TextBox x:Name="Name" />
-        <Button x:Name="SayHello" Content="Click Me" />
+        <TextBlock Foreground="White">Templify cannot be directly.</TextBlock>
+        <TextBlock Foreground="White">Please Execute Templify from Windows Explorer.</TextBlock>
+        <Button x:Name="SayHello" Content="Exit" />
     </StackPanel>
 </UserControl>

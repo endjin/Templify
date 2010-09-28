@@ -4,6 +4,6 @@ namespace Endjin.Templify.Domain.Contracts.Packager.Builders
 
     public interface IArchiveBuilder
     {
-        void Build(Package package, string path);
+        void Build(Package package, string path, string packageRepositoryPath);
     }
 }

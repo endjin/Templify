@@ -19,6 +19,7 @@
         {
             this.Mode = Mode.NotSet;
             this.Tokens = new Dictionary<string, string>();
+            this.OutputPath = FilePaths.PackageRepository;
         }
 
         [Option("a", "Author")]
@@ -34,6 +35,9 @@
 
         [Option("p", "Path")]
         public string Path { get; set; }
+
+        [Option("o", "Output Path")]
+        public string OutputPath { get; set; }
 
         [Option("m", "Mode")]
         public string RawMode

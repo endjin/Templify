@@ -13,7 +13,7 @@
 
 #endregion
 
-namespace Endjin.Templify.Specifications
+namespace Endjin.Templify.Specifications.Domain.Packager.Builders
 {
     #region Using Directives
 

@@ -13,20 +13,17 @@
 
 #endregion
 
-namespace Endjin.Templify.Specifications
+namespace Endjin.Templify.Specifications.Infrastructure
 {
     #region Using Directives
 
     using System;
-    using System.Collections.Generic;
     using System.Linq;
 
-    using Endjin.Templify.Domain.Domain.Packager.Specifications;
     using Endjin.Templify.Domain.Contracts.Infrastructure;
     using Endjin.Templify.Domain.Infrastructure;
 
     using Machine.Specifications;
-    using Machine.Specifications.AutoMocking.Rhino;
 
     #endregion
 
@@ -49,7 +46,7 @@ namespace Endjin.Templify.Specifications
                     "-m",
                     "c",
                     "-p",
-                    @"C:\Temp\Package-Samples",
+                    @"C:\Temp\Sample-Create",
                     "-n", 
                     "Sharp Architecture",
                     "-a", 
@@ -58,7 +55,9 @@ namespace Endjin.Templify.Specifications
                     "1.6.0.0",
                     "-t", 
                     "SA169=__NAME__", 
-                    "ServerName01=__SERVERNAME__"
+                    "ServerName01=__SERVERNAME__",
+                    "-o",
+                    @"C:\Temp\Sample-Deploy"
                 };
 
                 deploy_command_line_args = new[] 
@@ -66,7 +65,7 @@ namespace Endjin.Templify.Specifications
                     "-m",
                     "d",
                     "-p",
-                    @"C:\Temp\Package-Samples",
+                    @"C:\Temp\Sample-Create",
                     "-i",
                     "sharp-architecture-v1.6.0.0",
                     "-t", 
@@ -87,7 +86,7 @@ namespace Endjin.Templify.Specifications
                     "-m",
                     "c",
                     "-p",
-                    @"C:\Temp\Package-Samples",
+                    @"C:\Temp\Sample-Create",
                     "-n", 
                     "Sharp Architecture",
                     "-a", 
@@ -106,7 +105,8 @@ namespace Endjin.Templify.Specifications
         Because of = () => result = subject.Process(create_command_line_args); 
 
         It should_return_create_mode = () => result.Mode.ShouldEqual(Mode.Create);
-        It should_return_the_correct_package_path = () => result.Path.ShouldEqual(@"C:\Temp\Package-Samples");
+        It should_return_the_correct_package_path = () => result.Path.ShouldEqual(@"C:\Temp\Sample-Create");
+        It should_return_the_correct_output_path = () => result.OutputPath.ShouldEqual(@"C:\Temp\Sample-Deploy");
         It should_return_the_correct_name = () => result.Name.ShouldEqual(@"Sharp Architecture");
         It should_return_the_correct_author = () => result.Author.ShouldEqual(@"Howard van Rooijen");
         It should_return_the_correct_version_number = () => result.Version.ShouldEqual("1.6.0.0");
@@ -123,7 +123,7 @@ namespace Endjin.Templify.Specifications
         Because of = () => result = subject.Process(deploy_command_line_args);
 
         It should_return_deploy_mode = () => result.Mode.ShouldEqual(Mode.Deploy);
-        It should_return_the_correct_package_path = () => result.Path.ShouldEqual(@"C:\Temp\Package-Samples");
+        It should_return_the_correct_package_path = () => result.Path.ShouldEqual(@"C:\Temp\Sample-Create");
         It should_return_the_correct_number_of_tokens = () => result.Tokens.Count.ShouldEqual(2);
         It should_return_the_correct_first_token = () => result.Tokens["__NAME__"].ShouldEqual("SA169");
         It should_return_the_correct_second_token = () => result.Tokens["__SERVERNAME__"].ShouldEqual("ServerName01");
