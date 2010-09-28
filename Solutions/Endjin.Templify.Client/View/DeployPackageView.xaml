@@ -6,13 +6,13 @@
         xmlns:tb="clr-namespace:Hardcodet.Wpf.TaskbarNotification;assembly=Hardcodet.Wpf.TaskbarNotification" Title="Templify - powered by endjin"
         Background="{DynamicResource WindowBackgroundBrush}"     
        Icon="/Resources/app-icon.ico" 
-        Width="350"
-             Height="170"
+        Width="360"
+            Height="260"
              mc:Ignorable="d">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </Window.Resources>
-    <StackPanel>
+    <StackPanel Margin="10">
         <tb:TaskbarIcon
           x:Name="NotifyIcon"
           IconSource="/Resources/app-icon.ico"
@@ -29,45 +29,61 @@
             </Grid.ColumnDefinitions>
             <Label Grid.Row="0" 
                    Grid.Column="0" 
-                   Width="Auto">Template</Label>
+                   Width="Auto" VerticalAlignment="Center" Margin="0,0,0,5">Template</Label>
             <fwk:HintTextDecorator
                 HintText="Please select a template" 
                 Padding="3"
                 Grid.Row="0"
-                Grid.Column="1">
+                Grid.Column="1" VerticalAlignment="Center" Margin="0,0,0,5">
                 <ComboBox x:Name="PackageList"
                       ItemsSource="{Binding Path=Packages}" 
                       DisplayMemberPath="Manifest.Title" 
                       SelectedValuePath="Manifest.Id" 
                       SelectedItem="{Binding Path=SelectedPackage}"
-                      Width="Auto" />
+                      Width="Auto" BorderBrush="Black" />
             </fwk:HintTextDecorator>
             <Label Grid.Row="1" 
                    Grid.Column="0" 
-                   Width="Auto">Name</Label>
+                   Width="Auto" VerticalAlignment="Center" Margin="0,0,0,5">Name</Label>
             <fwk:HintTextDecorator 
                 HintText="Please enter the new name for your solution" 
                 Padding="3"
                 Grid.Row="1" 
-                Grid.Column="1" >
+                Grid.Column="1" VerticalAlignment="Center" Margin="0,0,0,5" >
                 <TextBox x:Name="Name" Width="Auto" />
             </fwk:HintTextDecorator>
         </Grid>
-        <ProgressBar 
-            x:Name="progress" 
-            Width="Auto" 
-            Height="20" 
-            Minimum="0" 
-            Maximum="{Binding Path=MaxProgress}" 
-            Value="{Binding Path=CurrentProgress}" 
-            Visibility="{Binding Path=DeployingPackage, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        <Grid Margin="0,5">
+        	<Grid.ColumnDefinitions>
+        		<ColumnDefinition Width="Auto"/>
+        		<ColumnDefinition/>
+        	</Grid.ColumnDefinitions>
+        	<ProgressBar 
+        		x:Name="progress" 
+        		Width="215" 
+        		Height="20" 
+        		Minimum="0" 
+        		Maximum="{Binding MaxProgress}" 
+        		Value="{Binding CurrentProgress}" 
+        		Visibility="{Binding DeployingPackage, Converter={StaticResource BooleanToVisibilityConverter}}" VerticalAlignment="Center" Margin="0,0,10,0" BorderBrush="Black" />
+        	<Button x:Name="DeployPackage" Content="Deploy Template" VerticalAlignment="Center" Grid.Column="1" Padding="5" HorizontalAlignment="Center" Width="100"/>
+        </Grid>
         <TextBlock 
             x:Name="StatusText" 
             Foreground="White" 
             Text="{Binding Path=ProgressStatus}" 
-            Visibility="{Binding Path=DeployingPackage, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-        <Button x:Name="DeployPackage">Deploy Template</Button>
-        <Button x:Name="Manage">Manage Templates</Button>
-        <Button x:Name="Exit">Exit</Button>
+            Visibility="{Binding Path=DeployingPackage, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="0,0,0,5"/>
+        <Grid VerticalAlignment="Bottom" Margin="0,5,0,0">
+        	<Button x:Name="Manage" Content="Manage Templates" VerticalAlignment="Top" HorizontalAlignment="Left" Padding="5" Width="120" Margin="0,7,0,0"/>
+        	<Button x:Name="Exit" Content="Exit" VerticalAlignment="Top" HorizontalAlignment="Right" Padding="5" Width="100" Margin="0,7,0,0"/>
+        	<Rectangle VerticalAlignment="Top" Height="2" Grid.Row="9" Opacity="0.5">
+        		<Rectangle.Fill>
+        			<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+        				<GradientStop Color="Black" Offset="0"/>
+        				<GradientStop Color="White" Offset="1"/>
+        			</LinearGradientBrush>
+        		</Rectangle.Fill>
+        	</Rectangle>
+        </Grid>
     </StackPanel>
 </Window>

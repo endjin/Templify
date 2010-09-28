@@ -7,10 +7,10 @@
         xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro" Title="Templify - powered by endjin"
         Background="{DynamicResource WindowBackgroundBrush}"     
         Icon="/Resources/app-icon.ico" 
-        Width="400"
-        Height="100"
+        Width="360"
+            Height="160"
         mc:Ignorable="d">
-    <StackPanel>
+    <StackPanel Margin="10">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -21,21 +21,21 @@
                 <ColumnDefinition Width="110" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" Width="Auto">File Exclusions</Label>
+            <Label Grid.Row="0" Grid.Column="0" Width="Auto" VerticalAlignment="Center" Margin="0,0,0,5">File Exclusions</Label>
             <TextBox x:Name="FileExclusions" 
                      Grid.Row="0" 
                      Grid.Column="1" 
                      Width="Auto" 
-                     HorizontalAlignment="Stretch" />
+                     HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0,0,0,5" />
             <Label 
                 Grid.Row="1" 
                 Grid.Column="0" 
-                Width="Auto">Directory Exclusions</Label>
+                Width="Auto" VerticalAlignment="Center" Margin="0,0,0,5">Directory Exclusions</Label>
             <TextBox x:Name="DirectoryExclusions" 
                      Grid.Row="1" 
                      Grid.Column="1" 
-                     Width="Auto" />
+                     Width="Auto" VerticalAlignment="Center" Margin="0,0,0,5" />
         </Grid>
-        <Button x:Name="Save">Save</Button>
+        <Button x:Name="Save" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Padding="5" Width="50">Save</Button>
     </StackPanel>
 </Window>

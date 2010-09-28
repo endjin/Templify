@@ -7,29 +7,20 @@
         xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro" Title="Templify - powered by endjin"
         Background="{DynamicResource WindowBackgroundBrush}"     
         Icon="/Resources/app-icon.ico" 
-        Width="300"
-        Height="200"
+        Width="360"
+            Height="260"
         SizeToContent="WidthAndHeight"
         mc:Ignorable="d">
-    <StackPanel>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+        <Grid Margin="10">
             <ListBox x:Name="Packages" 
-                     Grid.Row="0" 
-                     Grid.Column="0" 
-                     ItemsSource="{Binding Path=Packages}">
+                     ItemsSource="{Binding Path=Packages}" Padding="3" BorderBrush="Black">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" 
                                     CanVerticallyScroll="True">
                             <TextBlock Text="{Binding Path=Manifest.Title}" 
                                        HorizontalAlignment="Left" 
-                                       VerticalAlignment="Center" />
+                                       VerticalAlignment="Center" Margin="0,0,5,0" />
                             <Button x:Name="Remove" 
                                     HorizontalAlignment="Right" 
                                     VerticalAlignment="Center"
@@ -41,5 +32,4 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </Grid>
-    </StackPanel>
 </Window>

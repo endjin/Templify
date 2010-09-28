@@ -6,13 +6,13 @@
         xmlns:tb="clr-namespace:Hardcodet.Wpf.TaskbarNotification;assembly=Hardcodet.Wpf.TaskbarNotification" Title="Templify - powered by endjin"
             Background="{DynamicResource WindowBackgroundBrush}"
             Icon="/Resources/app-icon.ico"    
-        Width="300"
-            Height="220"
+        Width="360"
+            Height="260"
             mc:Ignorable="d">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </Window.Resources>
-    <StackPanel>
+    <StackPanel Margin="10">
       <tb:TaskbarIcon
       x:Name="NotifyIcon"
       IconSource="/Resources/app-icon.ico"
@@ -29,57 +29,73 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="0" Grid.Column="0" Width="Auto">Name</Label>
+            <Label Grid.Row="0" Grid.Column="0" Width="Auto" VerticalAlignment="Center" Margin="0,0,0,5">Name</Label>
             <fwk:HintTextDecorator 
                 HintText="Please enter a name for your new template" 
                 Padding="3"
                 Grid.Row="0" 
-                Grid.Column="1">
+                Grid.Column="1" Margin="0,0,0,5" VerticalAlignment="Center">
                 <TextBox x:Name="Name" Width="Auto" />
             </fwk:HintTextDecorator>
             
-            <Label Grid.Row="1" Grid.Column="0" Width="Auto">Token</Label>
+            <Label Grid.Row="1" Grid.Column="0" Width="Auto" VerticalAlignment="Center" Margin="0,0,0,5">Token</Label>
             <fwk:HintTextDecorator 
                 HintText="Please enter the phrase to tokenise" 
                 Padding="3"
                 Grid.Row="1"
-                Grid.Column="1">
+                Grid.Column="1" Margin="0,0,0,5" VerticalAlignment="Center">
                 <TextBox x:Name="Token" Width="Auto" />
             </fwk:HintTextDecorator>
             
-            <Label Grid.Row="2" Grid.Column="0" Width="Auto">Author</Label>
+            <Label Grid.Row="2" Grid.Column="0" Width="Auto" VerticalAlignment="Center" Margin="0,0,0,5">Author</Label>
             <fwk:HintTextDecorator 
                 HintText="Please enter the name of the template author" 
                 Padding="3"
                 Grid.Row="2" 
-                Grid.Column="1">
+                Grid.Column="1" Margin="0,0,0,5" VerticalAlignment="Center">
                 <TextBox x:Name="Author" Width="Auto" />
             </fwk:HintTextDecorator>
             
-            <Label Grid.Row="3" Grid.Column="0" Width="Auto">Version</Label>
+            <Label Grid.Row="3" Grid.Column="0" Width="Auto" VerticalAlignment="Center" Margin="0,0,0,5">Version</Label>
             <fwk:HintTextDecorator 
                 HintText="Please enter the template version" 
                 Padding="3"
                 Grid.Row="3" 
-                Grid.Column="1">
+                Grid.Column="1" Margin="0,0,0,5" VerticalAlignment="Center">
                 <TextBox x:Name="Version" Width="Auto" />
             </fwk:HintTextDecorator>
         </Grid>
-        <ProgressBar 
-            x:Name="progress" 
-            Width="Auto" 
-            Height="20" 
-            Minimum="0" 
-            Maximum="{Binding Path=MaxProgress}" 
-            Value="{Binding Path=CurrentProgress}" 
-            Visibility="{Binding Path=CreatingPackage, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        <Grid d:LayoutOverrides="Width" Margin="0,5">
+        	<Grid.ColumnDefinitions>
+        		<ColumnDefinition Width="Auto"/>
+        		<ColumnDefinition/>
+        	</Grid.ColumnDefinitions>
+        	<ProgressBar 
+        		x:Name="progress" 
+        		Width="215" 
+        		Height="20" 
+        		Minimum="0" 
+        		Maximum="{Binding MaxProgress}" 
+        		Value="{Binding CurrentProgress}" 
+        		Visibility="{Binding CreatingPackage, Converter={StaticResource BooleanToVisibilityConverter}}" VerticalAlignment="Center" Margin="0,0,10,0" BorderBrush="Black"/>
+        	<Button x:Name="CreatePackage" Padding="5" Content="Templify!" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Width="100"/>
+        </Grid>
         <TextBlock 
             x:Name="StatusText" 
             Foreground="White" 
             Text="{Binding Path=ProgressStatus}" 
-            Visibility="{Binding Path=CreatingPackage, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-        <Button x:Name="CreatePackage">Templify!</Button>
-        <Button x:Name="ManageExclusions">Manage Exclusions</Button>
-        <Button x:Name="Exit">Exit</Button>
+            Visibility="{Binding Path=CreatingPackage, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="0,0,0,5"/>
+        <Grid Margin="0,5,0,0" >
+        	<Button x:Name="ManageExclusions" Padding="5" Content="Manage Exclusions" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" HorizontalContentAlignment="Center" Margin="0,7,0,0"/>
+        	<Button x:Name="Exit" Padding="5" Content="Exit" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Margin="110.14,7,0,0" Width="100"/>
+        	<Rectangle VerticalAlignment="Top" Height="2" Grid.Row="9" Opacity="0.5">
+        		<Rectangle.Fill>
+        			<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+        				<GradientStop Color="Black" Offset="0"/>
+        				<GradientStop Color="White" Offset="1"/>
+        			</LinearGradientBrush>
+        		</Rectangle.Fill>
+        	</Rectangle>
+        </Grid>
     </StackPanel>
 </Window>
