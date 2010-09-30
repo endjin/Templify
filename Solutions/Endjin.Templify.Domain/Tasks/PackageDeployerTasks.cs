@@ -6,6 +6,7 @@ namespace Endjin.Templify.Domain.Tasks
     using System.Collections.Generic;
     using System.ComponentModel.Composition;
 
+    using Endjin.Templify.Domain.Contracts.Infrastructure;
     using Endjin.Templify.Domain.Contracts.Packager.Notifiers;
     using Endjin.Templify.Domain.Contracts.Packager.Processors;
     using Endjin.Templify.Domain.Contracts.Packages;
@@ -20,6 +21,7 @@ namespace Endjin.Templify.Domain.Tasks
     {
         #region Fields
 
+        private readonly IConfiguration configuration;
         private readonly IProgressNotifier progressNotifier;
         private readonly IPackageDeploymentProcessor packageDeploymentProcessor;
         private readonly IPackageProcessor packageProcessor;
@@ -30,12 +32,14 @@ namespace Endjin.Templify.Domain.Tasks
 
         [ImportingConstructor]
         public PackageDeployerTasks(
+            IConfiguration configuration,
             IPackageDeploymentProcessor packageDeploymentProcessor,
             IPackageProcessor packageProcessor,
             IPackageRepository packageRepository, 
             IProgressNotifier progressNotifier)
         {
             this.packageDeploymentProcessor = packageDeploymentProcessor;
+            this.configuration = configuration;
             this.packageProcessor = packageProcessor;
             this.packageRepository = packageRepository;
             this.progressNotifier = progressNotifier;
@@ -57,6 +61,7 @@ namespace Endjin.Templify.Domain.Tasks
         public void DeployPackage(CommandOptions options)
         {
             this.commandOptions = options;
+            this.configuration.PackageRepositoryPath = options.PackageRepositoryPath;
 
             this.RunDeployPackage();
         }

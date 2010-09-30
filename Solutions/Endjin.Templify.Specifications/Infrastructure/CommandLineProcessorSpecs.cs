@@ -56,7 +56,7 @@ namespace Endjin.Templify.Specifications.Infrastructure
                     "-t", 
                     "SA169=__NAME__", 
                     "ServerName01=__SERVERNAME__",
-                    "-o",
+                    "-r",
                     @"C:\Temp\Sample-Deploy"
                 };
 
@@ -106,7 +106,7 @@ namespace Endjin.Templify.Specifications.Infrastructure
 
         It should_return_create_mode = () => result.Mode.ShouldEqual(Mode.Create);
         It should_return_the_correct_package_path = () => result.Path.ShouldEqual(@"C:\Temp\Sample-Create");
-        It should_return_the_correct_output_path = () => result.OutputPath.ShouldEqual(@"C:\Temp\Sample-Deploy");
+        It should_return_the_correct_package_repository_path = () => result.PackageRepositoryPath.ShouldEqual(@"C:\Temp\Sample-Deploy");
         It should_return_the_correct_name = () => result.Name.ShouldEqual(@"Sharp Architecture");
         It should_return_the_correct_author = () => result.Author.ShouldEqual(@"Howard van Rooijen");
         It should_return_the_correct_version_number = () => result.Version.ShouldEqual("1.6.0.0");

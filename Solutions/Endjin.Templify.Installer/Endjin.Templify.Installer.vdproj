@@ -15,8 +15,8 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_2DCACA359BBC60A6E6F09590045652DD"
-        "OwnerKey" = "8:_724E10457333461FBEE7ACF65161C098"
+        "MsmKey" = "8:_21C106F85A8140AC9D82A65228052DBB"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -27,14 +27,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_4CA6A36AF89074BC0178BAB7925C1155"
-        "OwnerKey" = "8:_6EDF8FFCD6124182871F38EA89D54D88"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_4CA6A36AF89074BC0178BAB7925C1155"
-        "OwnerKey" = "8:_724E10457333461FBEE7ACF65161C098"
+        "MsmKey" = "8:_4D8AE8F26A584FC1B965D30BC62E6F27"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -51,44 +45,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_860C956829AC0A8F4D9C457A30642325"
-        "OwnerKey" = "8:_4CA6A36AF89074BC0178BAB7925C1155"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_860C956829AC0A8F4D9C457A30642325"
-        "OwnerKey" = "8:_724E10457333461FBEE7ACF65161C098"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_860C956829AC0A8F4D9C457A30642325"
-        "OwnerKey" = "8:_6EDF8FFCD6124182871F38EA89D54D88"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_A63A50CDAA87FE0C95A471A8B5A1DF15"
-        "OwnerKey" = "8:_724E10457333461FBEE7ACF65161C098"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_B4EC11A73A75467C94739491F2ACE2FB"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_D71902FB3EE6D8A0B2D126451CF71D0F"
-        "OwnerKey" = "8:_2DCACA359BBC60A6E6F09590045652DD"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D71902FB3EE6D8A0B2D126451CF71D0F"
-        "OwnerKey" = "8:_724E10457333461FBEE7ACF65161C098"
+        "MsmKey" = "8:_DCDF2860ECA64276B65C417FBA182EA1"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -99,24 +63,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_FD58CD121B3DD27D54C91B6C74A9D7F9"
-        "OwnerKey" = "8:_6EDF8FFCD6124182871F38EA89D54D88"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_FD58CD121B3DD27D54C91B6C74A9D7F9"
-        "OwnerKey" = "8:_724E10457333461FBEE7ACF65161C098"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_FD58CD121B3DD27D54C91B6C74A9D7F9"
-        "OwnerKey" = "8:_4CA6A36AF89074BC0178BAB7925C1155"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_724E10457333461FBEE7ACF65161C098"
         "MsmSig" = "8:_UNDEFINED"
@@ -124,43 +70,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_4CA6A36AF89074BC0178BAB7925C1155"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_FD58CD121B3DD27D54C91B6C74A9D7F9"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_A63A50CDAA87FE0C95A471A8B5A1DF15"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_2DCACA359BBC60A6E6F09590045652DD"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D71902FB3EE6D8A0B2D126451CF71D0F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_6EDF8FFCD6124182871F38EA89D54D88"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_860C956829AC0A8F4D9C457A30642325"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -268,23 +178,12 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2DCACA359BBC60A6E6F09590045652DD"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_21C106F85A8140AC9D82A65228052DBB"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Caliburn.Micro, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_2DCACA359BBC60A6E6F09590045652DD"
-                    {
-                    "Name" = "8:Caliburn.Micro.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Caliburn.Micro.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\..\\Artefacts\\build-samples\\TemplifyCreatePackage.target"
+            "TargetName" = "8:TemplifyCreatePackage.target"
             "Tag" = "8:"
-            "Folder" = "8:_CD13A421E6C74CD1A1284622386CB2CA"
+            "Folder" = "8:_9E18AE2EA58C499CAE177D2C27A6EEF4"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -296,7 +195,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3FB7354644B240F490C83D071F440ECB"
@@ -319,23 +218,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4CA6A36AF89074BC0178BAB7925C1155"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4D8AE8F26A584FC1B965D30BC62E6F27"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Endjin.Templify.Domain, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_4CA6A36AF89074BC0178BAB7925C1155"
-                    {
-                    "Name" = "8:Endjin.Templify.Domain.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Endjin.Templify.Domain.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\..\\Artefacts\\build-samples\\TemplifyDeployPackage.target"
+            "TargetName" = "8:TemplifyDeployPackage.target"
             "Tag" = "8:"
-            "Folder" = "8:_CD13A421E6C74CD1A1284622386CB2CA"
+            "Folder" = "8:_9E18AE2EA58C499CAE177D2C27A6EEF4"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -347,69 +235,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_860C956829AC0A8F4D9C457A30642325"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:SevenZipSharp, Version=0.64.3890.29348, Culture=neutral, PublicKeyToken=20de82c62b055c88, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_860C956829AC0A8F4D9C457A30642325"
-                    {
-                    "Name" = "8:SevenZipSharp.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:SevenZipSharp.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_CD13A421E6C74CD1A1284622386CB2CA"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A63A50CDAA87FE0C95A471A8B5A1DF15"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Hardcodet.Wpf.TaskbarNotification, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_A63A50CDAA87FE0C95A471A8B5A1DF15"
-                    {
-                    "Name" = "8:Hardcodet.Wpf.TaskbarNotification.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Hardcodet.Wpf.TaskbarNotification.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_CD13A421E6C74CD1A1284622386CB2CA"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B4EC11A73A75467C94739491F2ACE2FB"
@@ -432,23 +258,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D71902FB3EE6D8A0B2D126451CF71D0F"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DCDF2860ECA64276B65C417FBA182EA1"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_D71902FB3EE6D8A0B2D126451CF71D0F"
-                    {
-                    "Name" = "8:System.Windows.Interactivity.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:System.Windows.Interactivity.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\..\\README"
+            "TargetName" = "8:README"
             "Tag" = "8:"
-            "Folder" = "8:_CD13A421E6C74CD1A1284622386CB2CA"
+            "Folder" = "8:_C4EC9E20AC6C4441840839882D877F4B"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -460,7 +275,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EFB124921C344EC68F83F7B9EB58372B"
@@ -481,37 +296,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_FD58CD121B3DD27D54C91B6C74A9D7F9"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:CommandLine, Version=1.8.0.5, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_FD58CD121B3DD27D54C91B6C74A9D7F9"
-                    {
-                    "Name" = "8:CommandLine.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:CommandLine.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_CD13A421E6C74CD1A1284622386CB2CA"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
         }
@@ -552,6 +336,28 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_1797B8012F4C4A50A3A0793ED39D4947"
+                    {
+                    "Name" = "8:Samples"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_804BA1AFA7864FF2B7E5465584B65261"
+                        "Folders"
+                        {
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_9E18AE2EA58C499CAE177D2C27A6EEF4"
+                            {
+                            "Name" = "8:MSBuild"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_18D4403CB4944839AFA6017C76707AE6"
+                                "Folders"
+                                {
+                                }
+                            }
+                        }
+                    }
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_CD13A421E6C74CD1A1284622386CB2CA"
                     {
                     "Name" = "8:Framework"
@@ -636,15 +442,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Templify"
-        "ProductCode" = "8:{065FAF56-B72F-46F1-A5D9-1B3EE0C46764}"
-        "PackageCode" = "8:{67FC3E61-7705-4E3C-94BC-DCF73B2CB263}"
+        "ProductCode" = "8:{F546D1DA-F84C-461F-9735-82229F8AA7C4}"
+        "PackageCode" = "8:{DE1F3BA9-E97E-4BD0-B332-BA382C8ADE8B}"
         "UpgradeCode" = "8:{9A3E2F12-2445-4912-BA16-A532F72FD1EA}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:FALSE"
+        "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:0.5.0"
         "Manufacturer" = "8:endjin"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://endjin.com/"

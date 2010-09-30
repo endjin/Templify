@@ -2,6 +2,7 @@
 {
     #region Using Directives
 
+    using System;
     using System.ComponentModel.Composition;
     using System.Configuration;
 
@@ -12,6 +13,13 @@
     [Export(typeof(IConfiguration))]
     public class Configuration : IConfiguration
     {
+        public Configuration()
+        {
+            this.PackageRepositoryPath = FilePaths.PackageRepository;
+        }
+
+        public string PackageRepositoryPath { get; set; }
+
         public string GetFileExclusions()
         {
             return this.GetConfigSetting("FileExclusions");

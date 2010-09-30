@@ -6,6 +6,7 @@ namespace Endjin.Templify.Domain.Tasks
     using System.ComponentModel.Composition;
     using System.Linq;
 
+    using Endjin.Templify.Domain.Contracts.Infrastructure;
     using Endjin.Templify.Domain.Contracts.Packager.Builders;
     using Endjin.Templify.Domain.Contracts.Packager.Notifiers;
     using Endjin.Templify.Domain.Contracts.Packager.Processors;
@@ -24,6 +25,7 @@ namespace Endjin.Templify.Domain.Tasks
         private readonly IArchiveBuilder archiveBuilder;
         private readonly ICleanUpProcessor cleanUpProcessor;
         private readonly IClonePackageBuilder clonePackageBuilder;
+        private readonly IConfiguration configuration;
         private readonly IPackageBuilder packageBuilder;
         private readonly IPackageTokeniser packageTokeniser;
         private readonly IProgressNotifier progressNotifier;
@@ -37,6 +39,7 @@ namespace Endjin.Templify.Domain.Tasks
             IArchiveBuilder archiveBuilder,
             ICleanUpProcessor cleanUpProcessor,
             IClonePackageBuilder clonePackageBuilder,
+            IConfiguration configuration,
             IPackageBuilder packageBuilder,
             IPackageTokeniser packageTokeniser,
             IProgressNotifier progressNotifier)
@@ -44,6 +47,7 @@ namespace Endjin.Templify.Domain.Tasks
             this.archiveBuilder = archiveBuilder;
             this.cleanUpProcessor = cleanUpProcessor;
             this.clonePackageBuilder = clonePackageBuilder;
+            this.configuration = configuration;
             this.packageBuilder = packageBuilder;
             this.packageTokeniser = packageTokeniser;
             this.progressNotifier = progressNotifier;
@@ -65,6 +69,8 @@ namespace Endjin.Templify.Domain.Tasks
         public void CreatePackage(CommandOptions options)
         {
             this.commandOptions = options;
+            this.configuration.PackageRepositoryPath = options.PackageRepositoryPath;
+
             this.RunCreatePackage();
         }
 
@@ -83,7 +89,7 @@ namespace Endjin.Templify.Domain.Tasks
             var clonedPackage = this.clonePackageBuilder.Build(package);
             var tokenisedPackage = this.packageTokeniser.Tokenise(clonedPackage, this.commandOptions.Tokens);
 
-            this.archiveBuilder.Build(tokenisedPackage, this.commandOptions.Path, this.commandOptions.OutputPath);
+            this.archiveBuilder.Build(tokenisedPackage, this.commandOptions.Path, this.commandOptions.PackageRepositoryPath);
             this.cleanUpProcessor.Process(FilePaths.TemporaryPackageRepository);
         }
 

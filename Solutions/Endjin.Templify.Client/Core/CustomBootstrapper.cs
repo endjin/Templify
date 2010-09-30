@@ -3,6 +3,7 @@ namespace Endjin.Templify.Client.Core
     #region Using Directives
 
     using System.ComponentModel.Composition;
+    using System.Diagnostics;
     using System.Windows;
 
     using Caliburn.Micro;
@@ -62,6 +63,7 @@ namespace Endjin.Templify.Client.Core
 
         protected override void OnStartup(object sender, System.Windows.StartupEventArgs e)
         {
+            // Debugger.Launch();
             this.args = e.Args;
 
             base.OnStartup(sender, e);

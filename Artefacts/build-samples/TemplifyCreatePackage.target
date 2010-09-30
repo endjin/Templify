@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Templify">
+
+  <Target Name="TemplifyCreatePackage"
+          Condition=" '$(IsDesktopBuild)' == 'true' AND '$(SkipVersionNumberIncrement)' != 'true' ">
+    
+	<Message Text="---------------"/>
+    <Message Text="TEMPLIFY"/>
+    <Message Text="---------------"/>
+	
+	<PropertyGroup>
+      <TemplifyMode>"c"</TemplifyMode>
+      <TemplifyPath>$(BuildPath)\To-Be-Packaged</TemplifyPath>
+      <TemplifyPackageName>"Sharp Architecture"</TemplifyPackageName>
+      <TemplifyPackageAuthor>"Howard van Rooijen"</TemplifyPackageAuthor>
+      <TemplifyPackageVersion>"1.6.0.0"</TemplifyPackageVersion>
+      <TemplifyPackageTokens>"SA169=__NAME__"</TemplifyPackageTokens>
+      <TemplifyPackageRepositoryPath>$(DropsPath)</TemplifyPackageRepositoryPath>
+	  <TemplifyArgs>"-m" $(TemplifyMode) "-p" $(TemplifyPath) "-n" $(TemplifyPackageName) "-a" $(TemplifyPackageAuthor) "-v" $(TemplifyPackageVersion) "-t" $(TemplifyPackageTokens) "-r" $(TemplifyPackageRepositoryPath)</TemplifyArgs>
+    </PropertyGroup>
+	
+    <Exec Command="&quot;$(ToolsPath)\Templify\TemplifyCmd.exe&quot; $(TemplifyArgs)" 
+          ContinueOnError="false"/>
+
+  </Target>
+
+</Project>

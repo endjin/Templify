@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Templify">
+
+  <Target Name="TemplifyDeployPackage"
+          Condition=" '$(IsDesktopBuild)' == 'true' AND '$(SkipVersionNumberIncrement)' != 'true' ">
+    
+	<Message Text="---------------"/>
+    <Message Text="TEMPLIFY"/>
+    <Message Text="---------------"/>
+	
+	<PropertyGroup>
+      <TemplifyMode>"d"</TemplifyMode>
+      <TemplifyPath>$(BuildPath)\To-Be-Packaged</TemplifyPath>
+	  <TemplifyDeployPath>$(BuildPath)\To-Be-Deployed</TemplifyDeployPath>
+      <TemplifyPackageName>"sharp-architecture-v1.6.0.0"</TemplifyPackageName>
+      <TemplifyPackageTokens>"__NAME__=JetBrains"</TemplifyPackageTokens>
+      <TemplifyPackageRepositoryPath>$(DropsPath)</TemplifyPackageRepositoryPath>
+	  <TemplifyArgs>"-m" $(TemplifyMode) "-i" $(TemplifyPackageName) "-t" $(TemplifyPackageTokens) "-r" $(TemplifyPackageRepositoryPath) "-p" $(TemplifyDeployPath)</TemplifyArgs>
+    </PropertyGroup>
+	
+    <Exec Command="&quot;$(ToolsPath)\Templify\TemplifyCmd.exe&quot; $(TemplifyArgs)" 
+          ContinueOnError="false"/>
+
+  </Target>
+
+</Project>

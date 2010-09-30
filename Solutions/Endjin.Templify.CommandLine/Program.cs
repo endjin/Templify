@@ -2,7 +2,9 @@
 {
     #region Using Directives
 
-    using System;    
+    using System;
+    using System.Diagnostics;
+    using System.IO;
 
     #endregion
 
@@ -12,8 +14,6 @@
         {
             var client = new Client();
             client.Execute(args);
-
-            Console.ReadKey();
         }
     }
 }

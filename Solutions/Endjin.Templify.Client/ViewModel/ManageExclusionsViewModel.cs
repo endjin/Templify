@@ -85,6 +85,11 @@ namespace Endjin.Templify.Client.ViewModel
             MessageBox.Show("Settings have been saved.");
         }
 
+        public void Cancel()
+        {
+            MessageBox.Show("Settings have been saved.");
+        }
+
         private void Initialise()
         {
             BackgroundWorkerManager.RunBackgroundWork(this.RetrieveConfiguration);

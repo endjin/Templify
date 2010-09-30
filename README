@@ -11,9 +11,46 @@ Templify! v1.0 - Powered by endjin
 
 About
 =====
-Templify allows you to template a solution and then re-deploy and customise that solution.
+Templify allows you to template a solution (or folder structure) into a reusable package and then re-deploy that package as a new solution.
+
+Templify was originally created to solve the problem of how the Sharp Architecture project could distribute its sample solution - as the exising Visual Studio Template mechanism was problematic.
 
 
+Usage
+=====
+
+Templify can be executed from either the Windows Explorer Shell or via command line. For Windows Explorer select the parent folder containing the solution you want to templify, right click and select the "Templify This Folder" context menu option. A WPF window will appear asking you to entering information about the solution you are templating; Template Name, Template Version Number, Template Author and most importantly - the repeated word / phrase that will be tokenised. As Templify operates on a convention over configuration principal - it will replace all instances of that token, including internal content, directory & file names - with a bespoke token.
+
+When you want to deploy a new instance of your Templify template package - select a new empty folder in Windows Explorer, right click and select "Templify Here" from the context menu. A WPF window will appear with a drop downlist containing all the templates you have installed in your local package repository - select the ones you want to deploy - then enter a new name into the "name" textbox. This will be used to replace the bespoke token created in the previous step.
+
+Templify can also be used from the command line / MSBuild project. Two sample MSBuild targets were install into %PROGRAMFILES%\endjin\Templify\Samples\MSBuild - these show how to create and deploy packages.
+
+From the command line you would create a package using the following command switches:
+
+  TemplifyCmd.exe -m c -p C:\Temp\Sample-Create\Sharp-Architecture -n "Sharp Architecture" -a "Howard van Rooijen" -v "1.6.0.0" -t "SA169=__NAME__" -r "c:\Temp\Sample-Deploy"
+
+and you would deploy the package created above by using the following command switches:
+
+  TemplifyCmd.exe -m d -p "c:\Temp\Sample-Deploy" -i sharp-architecture-v1.6.0.0 -t __NAME__=HvR -r "c:\Temp\Sample-Deploy"
+
+The switches have the following meaning:
+
+ -m = mode
+      c = create
+      d = deploy
+ -p = path
+ -n = package name
+ -a = author
+ -v = version number
+ -t = token - can be delimited list "Token=__Token__" "Token1=__Token1__"
+ -i = package name
+ -r = package repository path 
+  
+The default package repository path is \Users\%USERNAME%\AppData\Roaming\Endjin\Templify\repo
+
+Packages are simply 7Zip archives - renamed to .pkg. You can open any .pkg file using 7Zip (which is freely downloadable) inside you will find a manifest.xml file - which contains a listing of all the contents in the package and the tokenised solution structure and files.
+ 
+ 
 Ingredients
 ===========
 Templify makes use of the following tools and frameworks:
@@ -59,4 +96,4 @@ Nick Harewood for prettifying the WPF styles.
 
 Version History
 ===============
-2010.09.XX - v0.5.0.0 - 
+2010.09.30 - v0.5.0.0 - First public release

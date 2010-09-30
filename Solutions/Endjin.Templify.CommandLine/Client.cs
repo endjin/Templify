@@ -5,6 +5,7 @@
     using System;
     using System.ComponentModel.Composition;
     using System.ComponentModel.Composition.Hosting;
+    using System.Diagnostics;
 
     using Endjin.Templify.Domain.Contracts.Infrastructure;
     using Endjin.Templify.Domain.Contracts.Tasks;
@@ -68,8 +69,9 @@
 
         private void OnProgressChanged(object sender, Domain.Domain.Packages.PackageProgressEventArgs e)
         {
-            ConsoleProgress.Reset();
-            ConsoleProgress.Update(e.CurrentValue, e.MaxValue, e.ProgressStage.GetDescription());
+            // TODO: Console Progress doesn't work inside msbuild
+            // ConsoleProgress.Reset();
+            // ConsoleProgress.Update(e.CurrentValue, e.MaxValue, e.ProgressStage.GetDescription());
         }
     }
 }
