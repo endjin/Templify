@@ -16,8 +16,9 @@
 
         void DeployPackage(CommandOptions commandOptions);
 
-        IEnumerable<Package> RetrieveAllPackages();
+        IEnumerable<Package> RetrieveAllPackages(); 
+        IEnumerable<Package> RetrieveAllPackages(string repositoryPath);
 
-        IEnumerable<string> RetrieveTokensForPackage(string packageName);
+        IEnumerable<string> RetrieveTokensForPackage(string packageName, string repositoryPath);
     }
 }

@@ -70,9 +70,16 @@ namespace Endjin.Templify.Domain.Tasks
         {
             return this.packageRepository.FindAll();
         }
-
-        public IEnumerable<string> RetrieveTokensForPackage(string packageName)
+        
+        public IEnumerable<Package> RetrieveAllPackages(string repositoryPath)
         {
+            this.configuration.PackageRepositoryPath = repositoryPath;
+            return this.packageRepository.FindAll();
+        }
+
+        public IEnumerable<string> RetrieveTokensForPackage(string packageName, string repositoryPath)
+        {
+            this.configuration.PackageRepositoryPath = repositoryPath;
             var package = this.packageRepository.FindOne(packageName);
 
             return package.Manifest.Tokens;

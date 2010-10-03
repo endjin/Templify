@@ -40,9 +40,12 @@ namespace Endjin.Templify.Specifications.Tasks
         protected static IPackageProcessor the_package_processor;
         protected static IPackageRepository the_package_repository;
         protected static IProgressNotifier the_progress_notifier;
-        protected static Package the_package;
+        protected static Package package1;
+        protected static Package package2;
+        protected static List<Package> the_packages;
 
-        protected static string the_package_name;
+        protected static string package1_name;
+        protected static string package2_name;
 
         Establish context = () =>
         {
@@ -50,13 +53,21 @@ namespace Endjin.Templify.Specifications.Tasks
             the_package_processor = DependencyOf<IPackageProcessor>();
             the_package_repository = DependencyOf<IPackageRepository>();
             the_progress_notifier = DependencyOf<IProgressNotifier>();
-            the_package_name = "sharp-architecture-v1.6.0.0";
-            the_package = new Package
+            package1_name = "sharp-architecture-v1.6.0.0";
+            package1 = new Package
                 {
-                    Manifest = new Manifest { Tokens = new List<string> { "__NAME__" } }
+                    Manifest = new Manifest
+                    {
+                        Name = package1_name,
+                        Tokens = new List<string> { "__NAME__" }
+                    }
                 };
+            package2_name = "templify-sample-v1.0.0.0";
+            package2 = new Package { Manifest = new Manifest { Name = package2_name } };
+            the_packages = new List<Package> { package1, package2 };
 
-            the_package_repository.Stub(x => x.FindOne(the_package_name)).Return(the_package);
+            the_package_repository.Stub(x => x.FindOne(package1_name)).Return(package1);
+            the_package_repository.Stub(x => x.FindAll()).Return(the_packages.AsQueryable());
         };
     }
 
@@ -65,9 +76,20 @@ namespace Endjin.Templify.Specifications.Tasks
     {
         static IEnumerable<string> result;
 
-        Because of = () => result = subject.RetrieveTokensForPackage(the_package_name);
+        Because of = () => result = subject.RetrieveTokensForPackage(package1_name, string.Empty);
 
         It should_return_one_token = () => result.Count().ShouldEqual(1);
         It should_return_the_correct_token = () => result.First().ShouldEqual("__NAME__");
+    }
+
+    [Subject(typeof(PackageDeployerTasks))]
+    public class when_the_package_deployer_tasks_is_asked_to_retrieve_packages : specification_for_package_deployer_tasks
+    {
+        static IEnumerable<Package> result;
+
+        Because of = () => result = subject.RetrieveAllPackages();
+
+        It should_return_two_packages = () => result.Count().ShouldEqual(2);
+        It should_return_the_correct_packages = () => result.ElementAt(1).Manifest.Name.ShouldEqual(package2_name);
     }
 }

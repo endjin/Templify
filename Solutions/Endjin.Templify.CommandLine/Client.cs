@@ -60,7 +60,7 @@
 
         private void DisplayTokens(CommandOptions options)
         {
-            var tokens = this.PackageDeployerTasks.RetrieveTokensForPackage(options.PackageName);
+            var tokens = this.PackageDeployerTasks.RetrieveTokensForPackage(options.PackageName, options.PackageRepositoryPath);
 
             Console.WriteLine(string.Format("Tokens available in Package {0}:", options.PackageName));
 
@@ -72,11 +72,10 @@
 
         private void DisplayAvailablePackages(CommandOptions options)
         {
-            var packages = this.PackageDeployerTasks.RetrieveAllPackages();
+            var packages = this.PackageDeployerTasks.RetrieveAllPackages(options.PackageRepositoryPath);
 
             Console.WriteLine(string.Format("Templify packages available in repository '{0}':",
                                                 options.PackageRepositoryPath));
-
             foreach (var package in packages)
             {
                 Console.WriteLine("   {0}", package.Manifest.Name);
