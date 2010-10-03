@@ -49,6 +49,9 @@
                 case Mode.ShowTokens:
                     this.DisplayTokens(options);
                     break;
+                case Mode.ListPackages:
+                    this.DisplayAvailablePackages(options);
+                    break;
                 default:
                     Console.WriteLine(options.GetUsage());
                     break;
@@ -64,6 +67,19 @@
             foreach (var token in tokens)
             {
                 Console.WriteLine(token);
+            }
+        }
+
+        private void DisplayAvailablePackages(CommandOptions options)
+        {
+            var packages = this.PackageDeployerTasks.RetrieveAllPackages();
+
+            Console.WriteLine(string.Format("Templify packages available in repository '{0}':",
+                                                options.PackageRepositoryPath));
+
+            foreach (var package in packages)
+            {
+                Console.WriteLine("   {0}", package.Manifest.Name);
             }
         }
 

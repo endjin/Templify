@@ -49,7 +49,7 @@
 
         [Option("m", "mode",
                 Required = true,
-                HelpText = "Specifies whether to (c)reate/(d)eploy a package or (s)how all tokens inside a package")]
+                HelpText = "Specifies whether to (c)reate/(d)eploy a package, (l)ist packages in the repository or (s)how all tokens inside a package")]
         public string RawMode
         {
             get
@@ -71,6 +71,9 @@
                         break;
                     case "s":
                         this.Mode = Mode.ShowTokens;
+                        break;
+                    case "l":
+                        this.Mode = Mode.ListPackages;
                         break;
                 }
             }
@@ -132,6 +135,7 @@
             help.AddPreOptionsLine("Usage:");
             help.AddPreOptionsLine("    TemplifyCmd.exe -m c -p C:\\MySolution -i MyTemplate -t \"__NAME__=MySolution\" -a \"AN Other\" -v 1.0");
             help.AddPreOptionsLine("    TemplifyCmd.exe -m d -n MyTemplate -p C:\\NewSol -t \"__NAME__=NewSol\" ");
+            help.AddPreOptionsLine("    TemplifyCmd.exe -m l");
             help.AddPreOptionsLine("    TemplifyCmd.exe -m s -n MyTemplate");
             help.AddOptions(this);
 

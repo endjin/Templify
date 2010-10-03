@@ -6,5 +6,6 @@ namespace Endjin.Templify.Domain.Infrastructure
         Create,
         Deploy,
         ShowTokens,
+        ListPackages,
     }
 }

@@ -33,6 +33,7 @@ namespace Endjin.Templify.Specifications.Infrastructure
         protected static string[] deploy_command_line_args;
         protected static string[] describe_package_tokens_command_line_args;
         protected static string[] create_command_line_args_with_malformed_token;
+        protected static string[] list_packages_command_line_args;
 
         protected static ICommandLineProcessor subject;
         protected static CommandOptions result;
@@ -96,6 +97,12 @@ namespace Endjin.Templify.Specifications.Infrastructure
                     "-t", 
                     "SA169=", 
                 };
+
+                list_packages_command_line_args = new[]
+                {
+                    "-m",
+                    "l"
+                };
             };
     } ;
 
@@ -146,5 +153,13 @@ namespace Endjin.Templify.Specifications.Infrastructure
         Because of = () => the_exception = Catch.Exception(() => subject.Process(create_command_line_args_with_malformed_token));
 
         It should_throw_a_precondition_exception_containing_the_error = () => the_exception.InnerException.ShouldBe(typeof(ArgumentException));
+    }
+
+    [Subject(typeof(CommandLineProcessor))]
+    public class when_the_command_line_processor_is_given_args_that_ask_for_available_package_to_be_listed : specification_for_command_line_processor
+    {
+        Because of = () => result = subject.Process(list_packages_command_line_args);
+
+        It should_return_deploy_mode = () => result.Mode.ShouldEqual(Mode.ListPackages);
     }
 }
