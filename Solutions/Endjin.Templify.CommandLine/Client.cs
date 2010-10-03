@@ -50,7 +50,7 @@
                     this.DisplayTokens(options);
                     break;
                 default:
-                    Console.WriteLine("Invalid Args Detected");
+                    Console.WriteLine(options.GetUsage());
                     break;
             }
         }
