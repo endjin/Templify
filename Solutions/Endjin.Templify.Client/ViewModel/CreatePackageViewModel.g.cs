@@ -8,8 +8,6 @@ namespace Endjin.Templify.Client.ViewModel
     using Endjin.Templify.Domain.Contracts.Tasks;
     using Endjin.Templify.Domain.Infrastructure;
 
-    using Hardcodet.Wpf.TaskbarNotification;
-
     #endregion
 
     public partial class CreatePackageViewModel

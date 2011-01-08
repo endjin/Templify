@@ -8,6 +8,7 @@
     using System.IO;
     using System.Linq;
     using System.Linq.Expressions;
+    using System.Text.RegularExpressions;
 
     using Endjin.Templify.Domain.Contracts.Packager.Specifications;
     using Endjin.Templify.Domain.Framework.Specifications;
@@ -30,7 +31,12 @@
         {
             string[] segments = path.Split(new[] { Path.DirectorySeparatorChar }, StringSplitOptions.RemoveEmptyEntries);
 
-            bool shouldExclude = segments.Any(directory => this.DirectoryExclusions.Contains(directory));
+            bool shouldExclude = false;
+
+            foreach (string directory in segments.Where(directory => this.DirectoryExclusions.Any(exclusion => Regex.IsMatch(directory, exclusion))))
+            {
+                shouldExclude = true;
+            }
 
             if (!shouldExclude)
             {

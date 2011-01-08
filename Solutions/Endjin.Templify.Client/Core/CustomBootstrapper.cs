@@ -3,8 +3,6 @@ namespace Endjin.Templify.Client.Core
     #region Using Directives
 
     using System.ComponentModel.Composition;
-    using System.Diagnostics;
-    using System.Windows;
 
     using Caliburn.Micro;
 

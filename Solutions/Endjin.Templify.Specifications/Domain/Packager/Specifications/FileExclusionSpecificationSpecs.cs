@@ -33,10 +33,10 @@ namespace Endjin.Templify.Specifications.Domain.Packager.Specifications
         protected static List<string> file_list;
         protected static IConfiguration config;
 
-        private Establish context = () =>
+        Establish context = () =>
             {
                 subject.FileExclusions = new List<string> {".cache",".mst",".msm",".gitignore",".idx",".pack",".user",".resharper",".suo"};
-                subject.DirectoryExclusions = new List<string> { "bin", "obj", "debug", "release", ".git" };
+                subject.DirectoryExclusions = new List<string> { "bin", "obj", "debug", "release", ".git", "_ReSharper.*" };
 
                 file_list = new List<string>
                     {
@@ -53,6 +53,10 @@ namespace Endjin.Templify.Specifications.Domain.Packager.Specifications
                         @"C:\__NAME__\hooks\applypatch-msg.user",
                         @"C:\__NAME__\hooks\applypatch-msg.resharper",
                         @"C:\__NAME__\hooks\applypatch-msg.suo",
+                        @"C:\__NAME__\_ReSharper.__NAME__\ModuleIds.xml",
+                        @"C:\__NAME__\_ReSharper.__NAME__\SymbolCache.bin",
+                        @"C:\__NAME__\_ReSharper.__NAME__\BuildScriptCache\.crc",
+                        @"C:\__NAME__\_ReSharper.__NAME__\BuildScriptCache\7\6d0481a2.dat",
                     };
             };
     } ;
