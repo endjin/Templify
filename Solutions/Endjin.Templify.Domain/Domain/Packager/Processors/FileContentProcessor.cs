@@ -4,6 +4,7 @@ namespace Endjin.Templify.Domain.Domain.Packager.Processors
 
     using System.ComponentModel.Composition;
     using System.IO;
+    using System.Text;
 
     using Endjin.Templify.Domain.Contracts.Packager.Processors;
 
@@ -28,7 +29,7 @@ namespace Endjin.Templify.Domain.Domain.Packager.Processors
                 this.Unhide(path);
             }
 
-            File.WriteAllText(path, content);
+            File.WriteAllText(path, content, Encoding.UTF8);
 
             if (hidden)
             {
