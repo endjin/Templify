@@ -45,6 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\Common\AssemblyVersion.cs">
+      <Link>Properties\AssemblyVersion.cs</Link>
+    </Compile>
+    <Compile Include="Contracts\Framework\Loggers\IErrorLogger.cs" />
     <Compile Include="Contracts\Framework\Specifications\ILinqSpecification.cs" />
     <Compile Include="Contracts\Infrastructure\IConfiguration.cs" />
     <Compile Include="Contracts\Packager\Builders\IArchiveBuilder.cs" />
@@ -101,6 +105,7 @@
     <Compile Include="Domain\Packages\ProgressStep.cs" />
     <Compile Include="Framework\Container\MefContainer.cs" />
     <Compile Include="Framework\EnumExtensions.cs" />
+    <Compile Include="Framework\Loggers\FileSystemErrorLogger.cs" />
     <Compile Include="Framework\Serialization\Serializer.cs" />
     <Compile Include="Framework\Specifications\AdHocSpecification.cs" />
     <Compile Include="Framework\Specifications\QuerySpecification.cs" />

@@ -10,6 +10,7 @@ namespace Endjin.Templify.Client.ViewModel
 
     using Endjin.Templify.Client.Contracts;
     using Endjin.Templify.Client.Domain;
+    using Endjin.Templify.Domain.Contracts.Framework.Loggers;
     using Endjin.Templify.Domain.Contracts.Packages;
     using Endjin.Templify.Domain.Domain.Packages;
     using Endjin.Templify.Domain.Framework.Threading;
@@ -21,12 +22,15 @@ namespace Endjin.Templify.Client.ViewModel
     public class ManagePackagesViewModel : PropertyChangedBase, IManagePackagesView
     {
         private readonly IPackageRepository packageRepository;
+        private readonly IErrorLogger errorLogger;
+
 
         private PackageCollection packages;
 
         [ImportingConstructor]
-        public ManagePackagesViewModel(IPackageRepository packageRepository)
+        public ManagePackagesViewModel(IErrorLogger errorLogger, IPackageRepository packageRepository)
         {
+            this.errorLogger = errorLogger;
             this.packageRepository = packageRepository;
         }
 
@@ -67,6 +71,7 @@ namespace Endjin.Templify.Client.ViewModel
             }
             catch (Exception exception)
             {
+                this.errorLogger.Log(exception);
                 MessageBox.Show("Package Could not be deleted.");
             }
 

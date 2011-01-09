@@ -24,6 +24,11 @@ namespace Endjin.Templify.Domain.Infrastructure
             get { return Path.Combine(AppUserDataPath, @"config\"); }
         }
 
+        public static string ErrorLogs
+        {
+            get { return Path.Combine(AppUserDataPath, @"errors\"); }
+        }
+
         public static string PackageRepository 
         { 
             get { return Path.Combine(AppUserDataPath, @"repo\"); }

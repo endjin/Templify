@@ -11,6 +11,7 @@ namespace Endjin.Templify.Client.ViewModel
 
     using Endjin.Templify.Client.Contracts;
     using Endjin.Templify.Client.Domain;
+    using Endjin.Templify.Domain.Contracts.Framework.Loggers;
     using Endjin.Templify.Domain.Contracts.Tasks;
     using Endjin.Templify.Domain.Domain.Packages;
     using Endjin.Templify.Domain.Framework;
@@ -23,11 +24,13 @@ namespace Endjin.Templify.Client.ViewModel
     {
         [ImportingConstructor]
         public DeployPackageViewModel(
+            IErrorLogger errorLogger,
             INotificationManager notificationManager,
             IPackageDeployerTasks packageDeployerTasks,
             IWindowManager windowManager, 
             IManagePackagesView managePackagesView)
         {
+            this.errorLogger = errorLogger;
             this.notificationManager = notificationManager;
             this.packageDeployerTasks = packageDeployerTasks;
             this.windowManager = windowManager;
@@ -43,8 +46,9 @@ namespace Endjin.Templify.Client.ViewModel
             {
                 BackgroundWorkerManager.RunBackgroundWork(this.ExecutePackage, this.ExecutePackageComplete);
             }
-            catch (Exception)
+            catch (Exception exception)
             {
+                this.errorLogger.Log(exception);
                 // If we failed to start, then we must reset the deploying package state
                 this.DeployingPackage = false;
                 throw;
@@ -72,6 +76,7 @@ namespace Endjin.Templify.Client.ViewModel
             }
             else
             {
+                this.errorLogger.Log(e.Error);
                 this.notificationManager.ShowNotification("Templify", e.Error.Message);                        
             }
         }

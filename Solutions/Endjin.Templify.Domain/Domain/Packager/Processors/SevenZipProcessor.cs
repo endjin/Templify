@@ -9,6 +9,7 @@ namespace Endjin.Templify.Domain.Domain.Packager.Processors
     using System.Linq;
     using System.Reflection;
 
+    using Endjin.Templify.Domain.Contracts.Framework.Loggers;
     using Endjin.Templify.Domain.Contracts.Packager.Notifiers;
     using Endjin.Templify.Domain.Contracts.Packager.Processors;
     using Endjin.Templify.Domain.Domain.Packages;
@@ -21,10 +22,12 @@ namespace Endjin.Templify.Domain.Domain.Packager.Processors
     public class SevenZipProcessor : IArchiveProcessor
     {
         private readonly IProgressNotifier progressNotifier;
+        private readonly IErrorLogger errorLogger;
 
         [ImportingConstructor]
-        public SevenZipProcessor(IProgressNotifier progressNotifier)
+        public SevenZipProcessor(IErrorLogger errorLogger, IProgressNotifier progressNotifier)
         {
+            this.errorLogger = errorLogger;
             this.progressNotifier = progressNotifier;
         }
 
@@ -62,6 +65,7 @@ namespace Endjin.Templify.Domain.Domain.Packager.Processors
                 }
                 catch (Exception exception)
                 {
+                    this.errorLogger.Log(exception);
                 }
 
                 destFileStream.Flush();

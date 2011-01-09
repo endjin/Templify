@@ -5,6 +5,7 @@ Debug
 Debug_NoPostSharp
 release
 Release
+Drops
 _Resharper.*
 _ReSharper.*
 *.old

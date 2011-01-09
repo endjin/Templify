@@ -6,6 +6,7 @@ namespace Endjin.Templify.Client.ViewModel
 
     using Endjin.Templify.Client.Contracts;
     using Endjin.Templify.Client.Domain;
+    using Endjin.Templify.Domain.Contracts.Framework.Loggers;
     using Endjin.Templify.Domain.Contracts.Tasks;
     using Endjin.Templify.Domain.Domain.Packages;
     using Endjin.Templify.Domain.Infrastructure;
@@ -16,6 +17,7 @@ namespace Endjin.Templify.Client.ViewModel
     {
         #region Fields
 
+        private readonly IErrorLogger errorLogger;
         private readonly INotificationManager notificationManager;
         private readonly IPackageDeployerTasks packageDeployerTasks;
         private readonly IWindowManager windowManager;

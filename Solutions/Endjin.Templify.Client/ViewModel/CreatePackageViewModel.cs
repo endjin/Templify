@@ -10,6 +10,7 @@ namespace Endjin.Templify.Client.ViewModel
     using Caliburn.Micro;
 
     using Endjin.Templify.Client.Contracts;
+    using Endjin.Templify.Domain.Contracts.Framework.Loggers;
     using Endjin.Templify.Domain.Contracts.Tasks;
     using Endjin.Templify.Domain.Domain.Packages;
     using Endjin.Templify.Domain.Framework;
@@ -24,11 +25,13 @@ namespace Endjin.Templify.Client.ViewModel
     {
         [ImportingConstructor]
         public CreatePackageViewModel(
+            IErrorLogger errorLogger,
             INotificationManager notificationManager,
             IPackageCreatorTasks packageCreatorTasks,
             IWindowManager windowManager,
             IManageExclusionsView manageExclusionsView)
         {
+            this.errorLogger = errorLogger;
             this.notificationManager = notificationManager;
             this.packageCreatorTasks = packageCreatorTasks;
             this.windowManager = windowManager;
@@ -44,8 +47,9 @@ namespace Endjin.Templify.Client.ViewModel
             {
                 BackgroundWorkerManager.RunBackgroundWork(this.ExecuteCreatePackage, this.ExecuteCreatePackageComplete);
             }
-            catch (Exception)
+            catch (Exception exception)
             {
+                this.errorLogger.Log(exception);
                 // If we threw on startup, then we are no longer creating the package
                 this.CreatingPackage = false;
                 throw;
@@ -77,6 +81,11 @@ namespace Endjin.Templify.Client.ViewModel
             if (e.Error == null)
             {
                 this.notificationManager.ShowNotification("Templify", "Package Created and Deployed to the Package Repository.");
+            }
+            else
+            {
+                this.errorLogger.Log(e.Error);
+                this.notificationManager.ShowNotification("Templify", e.Error.Message);
             }
         }
 
