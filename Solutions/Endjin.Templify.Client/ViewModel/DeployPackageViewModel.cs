@@ -70,6 +70,10 @@ namespace Endjin.Templify.Client.ViewModel
             {
                 this.notificationManager.ShowNotification("Templify", "Package Sucessfully Deployed");
             }
+            else
+            {
+                this.notificationManager.ShowNotification("Templify", e.Error.Message);                        
+            }
         }
 
         private void ExecutePackage()
