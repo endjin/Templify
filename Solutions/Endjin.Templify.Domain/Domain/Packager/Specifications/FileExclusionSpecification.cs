@@ -31,18 +31,14 @@
         {
             string[] segments = path.Split(new[] { Path.DirectorySeparatorChar }, StringSplitOptions.RemoveEmptyEntries);
 
-            bool shouldExclude = false;
-
-            foreach (string directory in segments.Where(directory => this.DirectoryExclusions.Any(exclusion => Regex.IsMatch(directory, exclusion))))
-            {
-                shouldExclude = true;
-            }
+            bool shouldExclude = segments.Any(directory => this.DirectoryExclusions.Any(exclusion => Regex.IsMatch(directory, exclusion)));
 
             if (!shouldExclude)
             {
                 string file = segments[segments.Length - 1];
+                string fileExtension = new FileInfo(file).Extension.ToLowerInvariant();
 
-                shouldExclude = this.FileExclusions.Contains(new FileInfo(file).Extension.ToLowerInvariant());
+                shouldExclude = this.FileExclusions.Any(exclusion => Regex.IsMatch(fileExtension, exclusion));
             }
 
             return shouldExclude;

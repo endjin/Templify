@@ -35,7 +35,7 @@ namespace Endjin.Templify.Specifications.Domain.Packager.Specifications
 
         Establish context = () =>
             {
-                subject.FileExclusions = new List<string> {".cache",".mst",".msm",".gitignore",".idx",".pack",".user",".resharper",".suo"};
+                subject.FileExclusions = new List<string> {".cache",".mst",".msm",".gitignore",".idx",".pack",".user",".resharper",".suo", ".zz*"};
                 subject.DirectoryExclusions = new List<string> { "bin", "obj", "debug", "release", ".git", "_ReSharper.*" };
 
                 file_list = new List<string>
@@ -53,6 +53,7 @@ namespace Endjin.Templify.Specifications.Domain.Packager.Specifications
                         @"C:\__NAME__\hooks\applypatch-msg.user",
                         @"C:\__NAME__\hooks\applypatch-msg.resharper",
                         @"C:\__NAME__\hooks\applypatch-msg.suo",
+                        @"C:\__NAME__\hooks\applypatch-msg.zza",
                         @"C:\__NAME__\_ReSharper.__NAME__\ModuleIds.xml",
                         @"C:\__NAME__\_ReSharper.__NAME__\SymbolCache.bin",
                         @"C:\__NAME__\_ReSharper.__NAME__\BuildScriptCache\.crc",
