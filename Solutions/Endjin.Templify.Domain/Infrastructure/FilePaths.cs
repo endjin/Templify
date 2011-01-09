@@ -9,24 +9,29 @@ namespace Endjin.Templify.Domain.Infrastructure
 
     public static class FilePaths
     {
-        public static string PackageRepository 
-        { 
-            get
-            {
-                return Path.Combine(
-                    Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-                    @"Endjin\Templify\repo\");
-            }
-        }
-
-        public static string TemporaryPackageRepository
+        public static string AppUserDataPath
         {
             get
             {
                 return Path.Combine(
                     Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-                    @"Endjin\Templify\tmp-repo\");
+                    @"Endjin\Templify\");
             }
+        }
+
+        public static string ConfigurationDirectory
+        {
+            get { return Path.Combine(AppUserDataPath, @"config\"); }
+        }
+
+        public static string PackageRepository 
+        { 
+            get { return Path.Combine(AppUserDataPath, @"repo\"); }
+        }
+
+        public static string TemporaryPackageRepository
+        {
+            get { return Path.Combine(AppUserDataPath, @"tmp-repo\"); }
         }
     }
 }

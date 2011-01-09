@@ -5,6 +5,7 @@
     using System;
     using System.ComponentModel.Composition;
     using System.Configuration;
+    using System.IO;
 
     using Endjin.Templify.Domain.Contracts.Infrastructure;
 
@@ -40,14 +41,26 @@
             this.SaveConfigSetting("FileExclusions", fileExclusions);
         }
 
+        private System.Configuration.Configuration GetConfiguration()
+        {
+            var exeConfig = new ExeConfigurationFileMap
+                {
+                    ExeConfigFilename = Path.Combine(FilePaths.ConfigurationDirectory, "Templify.config")
+                };
+
+            return ConfigurationManager.OpenMappedExeConfiguration(exeConfig, ConfigurationUserLevel.None);
+        }
+
         private string GetConfigSetting(string settingName)
         {
-            return ConfigurationManager.AppSettings[settingName] ?? string.Empty;
+            var configuration = this.GetConfiguration();
+
+            return configuration.AppSettings.Settings[settingName].Value ?? string.Empty;
         }
 
         private void SaveConfigSetting(string settingName, string value)
         {
-            var configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            var configuration = this.GetConfiguration();
             
             configuration.AppSettings.Settings[settingName].Value = value;
             configuration.Save(ConfigurationSaveMode.Modified);

@@ -45,6 +45,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Infrastructure\ConfigurationSpecs.cs" />
     <Compile Include="Domain\Packager\Builders\ClonePackageBuilderSpecs.cs" />
     <Compile Include="Infrastructure\CommandLineProcessorSpecs.cs" />
     <Compile Include="Domain\Packager\Specifications\FileExclusionSpecificationSpecs.cs" />
