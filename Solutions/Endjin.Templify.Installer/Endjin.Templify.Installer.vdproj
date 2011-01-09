@@ -549,8 +549,8 @@
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EFB124921C344EC68F83F7B9EB58372B"
             {
-            "SourcePath" = "8:..\\..\\Artefacts\\package-samples\\sharp-architecture\\sharp-architecture-v1.6.0.0.pkg"
-            "TargetName" = "8:sharp-architecture-v1.6.0.0.pkg"
+            "SourcePath" = "8:..\\..\\Artefacts\\package-samples\\sharp-architecture\\sharp-architecture-v1.9.0.0.pkg"
+            "TargetName" = "8:sharp-architecture-v1.9.0.0.pkg"
             "Tag" = "8:"
             "Folder" = "8:_DC2BAA85754F4CBCA6EA427753205F22"
             "Condition" = "8:"
