@@ -35,7 +35,23 @@ namespace Endjin.Templify.Specifications.Domain.Packager.Specifications
 
         Establish context = () =>
             {
-                subject.FileExclusions = new List<string> {".cache",".mst",".msm",".gitignore",".idx",".pack",".user",".resharper",".suo", ".zz*"};
+                subject.FileExclusions = new List<string>
+                    {
+                        ".nupkg", 
+                        ".cache",
+                        ".mst",
+                        ".msm",
+                        ".gitignore",
+                        ".idx",
+                        ".pack",
+                        ".user",
+                        ".resharper",
+                        ".suo", 
+                        ".zz*", 
+                        "desktop.ini", 
+                        "thumbs.db"
+                    };
+
                 subject.DirectoryExclusions = new List<string> { "bin", "obj", "debug", "release", ".git", "_ReSharper.*" };
 
                 file_list = new List<string>
@@ -48,6 +64,10 @@ namespace Endjin.Templify.Specifications.Domain.Packager.Specifications
                         @"C:\__NAME__\hooks\applypatch-msg.cache",
                         @"C:\__NAME__\hooks\applypatch-msg.mst",
                         @"C:\__NAME__\hooks\.gitignore",
+                        @"C:\__NAME__\hooks\desktop.cs",
+                        @"C:\__NAME__\hooks\templify.nupkg",
+                        @"C:\__NAME__\hooks\thumbs.db",
+                        @"C:\__NAME__\hooks\desktop.ini",
                         @"C:\__NAME__\hooks\applypatch-msg.idx",
                         @"C:\__NAME__\hooks\applypatch-msg.pack",
                         @"C:\__NAME__\hooks\applypatch-msg.user",
@@ -63,12 +83,12 @@ namespace Endjin.Templify.Specifications.Domain.Packager.Specifications
     } ;
 
     [Subject(typeof(FileExclusionSpecification))]
-    public class when_the_file_exclusion_specification_is_given_a_list_of_items_to_exclude : specification_for_file_exclusion_specification
+    public class when_the_file_exclusion_specification_is_given_a_list_of_items_to_exclude_with_one_valid_file : specification_for_file_exclusion_specification
     {
         static IEnumerable<string> result;
 
         Because of = () => result = subject.SatisfyingElementsFrom(file_list.AsQueryable());
 
-        It should_return_no_files = () => result.Count().ShouldEqual(0);
+        It should_return_one_file = () => result.Count().ShouldEqual(1);
     }
 }

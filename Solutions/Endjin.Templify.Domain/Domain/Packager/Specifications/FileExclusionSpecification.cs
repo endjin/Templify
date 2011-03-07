@@ -35,10 +35,9 @@
 
             if (!shouldExclude)
             {
-                string file = segments[segments.Length - 1];
-                string fileExtension = new FileInfo(file).Extension.ToLowerInvariant();
+                string file = segments.Last();
 
-                shouldExclude = this.FileExclusions.Any(exclusion => Regex.IsMatch(fileExtension, exclusion));
+                shouldExclude = this.FileExclusions.Any(exclusion => Regex.IsMatch(file, exclusion));
             }
 
             return shouldExclude;
