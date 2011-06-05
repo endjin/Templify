@@ -8,11 +8,12 @@
         Icon="/Resources/app-icon.ico" 
         WindowStartupLocation="CenterOwner"
         Width="360"
-        Height="160"
+        Height="170"
         mc:Ignorable="d">
     <StackPanel Margin="10">
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -33,6 +34,14 @@
                 Width="Auto" VerticalAlignment="Center" Margin="0,0,0,5">Directory Exclusions</Label>
             <TextBox x:Name="DirectoryExclusions" 
                      Grid.Row="1" 
+                     Grid.Column="1" 
+                     Width="Auto" VerticalAlignment="Center" Margin="0,0,0,5" />
+            <Label 
+                Grid.Row="2" 
+                Grid.Column="0" 
+                Width="Auto" VerticalAlignment="Center" Margin="0,0,0,5">Tokenise Exclusions</Label>
+            <TextBox x:Name="TokeniseFileExclusions" 
+                     Grid.Row="2" 
                      Grid.Column="1" 
                      Width="Auto" VerticalAlignment="Center" Margin="0,0,0,5" />
         </Grid>

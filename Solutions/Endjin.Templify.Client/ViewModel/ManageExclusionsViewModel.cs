@@ -18,8 +18,10 @@ namespace Endjin.Templify.Client.ViewModel
     public class ManageExclusionsViewModel : PropertyChangedBase, IManageExclusionsView
     {
         private readonly IConfiguration configuration;
-        private string fileExclusions;
+
         private string directoryExclusions;
+        private string fileExclusions;
+        private string tokeniseFileExclusions;
 
         [ImportingConstructor]
         public ManageExclusionsViewModel(IConfiguration configuration)
@@ -31,28 +33,6 @@ namespace Endjin.Templify.Client.ViewModel
         {
             get;
             set;
-        }
-
-        public string FileExclusions
-        {
-            get
-            {
-                if (this.fileExclusions == null)
-                {
-                    this.Initialise();
-                }
-
-                return this.fileExclusions;
-            }
-
-            set
-            {
-                if (this.fileExclusions != value)
-                {
-                    this.fileExclusions = value;
-                    this.NotifyOfPropertyChange(() => this.FileExclusions);
-                }
-            }
         }
 
         public string DirectoryExclusions
@@ -77,16 +57,61 @@ namespace Endjin.Templify.Client.ViewModel
             }
         }
 
-        public void Save()
+        public string FileExclusions
         {
-            this.configuration.SaveDirectoryExclusions(this.directoryExclusions);
-            this.configuration.SaveFileExclusions(this.fileExclusions);
+            get
+            {
+                if (this.fileExclusions == null)
+                {
+                    this.Initialise();
+                }
 
-            MessageBox.Show("Settings have been saved.");
+                return this.fileExclusions;
+            }
+
+            set
+            {
+                if (this.fileExclusions != value)
+                {
+                    this.fileExclusions = value;
+                    this.NotifyOfPropertyChange(() => this.FileExclusions);
+                }
+            }
+        }
+
+        public string TokeniseFileExclusions
+        {
+            get
+            {
+                if (this.tokeniseFileExclusions == null)
+                {
+                    this.Initialise();
+                }
+
+                return this.tokeniseFileExclusions;
+            }
+
+            set
+            {
+                if (this.tokeniseFileExclusions != value)
+                {
+                    this.tokeniseFileExclusions = value;
+                    this.NotifyOfPropertyChange(() => this.TokeniseFileExclusions);
+                }
+            }
         }
 
         public void Cancel()
         {
+            MessageBox.Show("Settings have been saved.");
+        }
+
+        public void Save()
+        {
+            this.configuration.SaveDirectoryExclusions(this.directoryExclusions);
+            this.configuration.SaveFileExclusions(this.fileExclusions);
+            this.configuration.SaveTokeniseFileExclusions(this.tokeniseFileExclusions);
+
             MessageBox.Show("Settings have been saved.");
         }
 
@@ -99,6 +124,7 @@ namespace Endjin.Templify.Client.ViewModel
         {
             this.FileExclusions = this.configuration.GetFileExclusions();
             this.DirectoryExclusions = this.configuration.GetDirectoryExclusions();
+            this.TokeniseFileExclusions = this.configuration.GetTokeniseFileExclusions();
         }
     }
 }

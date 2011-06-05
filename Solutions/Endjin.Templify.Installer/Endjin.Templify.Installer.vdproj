@@ -774,7 +774,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Templify"
         "ProductCode" = "8:{0FA8C482-F6F1-49B7-8A09-4CA7938C9752}"
-        "PackageCode" = "8:{783EAE4E-2BBA-426E-AEAB-7B33C360039A}"
+        "PackageCode" = "8:{611C43E1-4F6D-46BD-9CC5-7D90404EE311}"
         "UpgradeCode" = "8:{9A3E2F12-2445-4912-BA16-A532F72FD1EA}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -1423,7 +1423,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_6EDF8FFCD6124182871F38EA89D54D88"
             {
-            "SourcePath" = "8:..\\Endjin.Templify.CommandLine\\obj\\x86\\Release\\TemplifyCmd.exe"
+            "SourcePath" = "8:..\\Endjin.Templify.CommandLine\\obj\\x86\\Debug\\TemplifyCmd.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_CD13A421E6C74CD1A1284622386CB2CA"
@@ -1451,7 +1451,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_724E10457333461FBEE7ACF65161C098"
             {
-            "SourcePath" = "8:..\\Endjin.Templify.Client\\obj\\x86\\Release\\Endjin.Templify.Client.exe"
+            "SourcePath" = "8:..\\Endjin.Templify.Client\\obj\\x86\\Debug\\Endjin.Templify.Client.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_CD13A421E6C74CD1A1284622386CB2CA"
