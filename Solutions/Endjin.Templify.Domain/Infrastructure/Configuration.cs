@@ -21,14 +21,19 @@
 
         public string PackageRepositoryPath { get; set; }
 
+        public string GetDirectoryExclusions()
+        {
+            return this.GetConfigSetting("DirectoryExclusions");
+        }
+
         public string GetFileExclusions()
         {
             return this.GetConfigSetting("FileExclusions");
         }
-        
-        public string GetDirectoryExclusions()
+
+        public string GetTokeniseFileExclusions()
         {
-            return this.GetConfigSetting("DirectoryExclusions");
+            return this.GetConfigSetting("TokeniseFileExclusions");
         }
 
         public void SaveDirectoryExclusions(string directoryExclusions)
@@ -39,6 +44,11 @@
         public void SaveFileExclusions(string fileExclusions)
         {
             this.SaveConfigSetting("FileExclusions", fileExclusions);
+        }
+
+        public void SaveTokeniseFileExclusions(string tokeniseFileExclusions)
+        {
+            this.SaveConfigSetting("TokeniseFileExclusions", tokeniseFileExclusions);
         }
 
         private System.Configuration.Configuration GetConfiguration()

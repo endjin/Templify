@@ -50,6 +50,7 @@
     </Compile>
     <Compile Include="Domain\Infrastructure\ConfigurationSpecs.cs" />
     <Compile Include="Domain\Packager\Builders\ClonePackageBuilderSpecs.cs" />
+    <Compile Include="Domain\Packager\Filters\BinaryFileFilterSpec.cs" />
     <Compile Include="Infrastructure\CommandLineProcessorSpecs.cs" />
     <Compile Include="Domain\Packager\Specifications\FileExclusionSpecificationSpecs.cs" />
     <Compile Include="Domain\Packager\Tokeniser\PackageTokeniserSpecs.cs" />

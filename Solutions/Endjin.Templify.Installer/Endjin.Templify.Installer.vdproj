@@ -63,6 +63,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_890F53A371CB43419C379335F32310F4"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_A63A50CDAA87FE0C95A471A8B5A1DF15"
         "OwnerKey" = "8:_724E10457333461FBEE7ACF65161C098"
         "MsmSig" = "8:_UNDEFINED"
@@ -111,12 +117,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_EFB124921C344EC68F83F7B9EB58372B"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_F48939EED283452DA11FAEA98282A83B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -142,13 +142,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_4CA6A36AF89074BC0178BAB7925C1155"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_FD58CD121B3DD27D54C91B6C74A9D7F9"
+        "OwnerKey" = "8:_6EDF8FFCD6124182871F38EA89D54D88"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -178,13 +172,19 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_6EDF8FFCD6124182871F38EA89D54D88"
+        "OwnerKey" = "8:_4CA6A36AF89074BC0178BAB7925C1155"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_B3833D18A81B45876CDE9DA8D0A2E8E7"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_FD58CD121B3DD27D54C91B6C74A9D7F9"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -367,7 +367,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Endjin.Templify.Domain, Version=0.6.14983.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Endjin.Templify.Domain, Version=0.6.15130.1, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_4CA6A36AF89074BC0178BAB7925C1155"
@@ -400,6 +400,26 @@
             "TargetName" = "8:TemplifyDeployPackage.target"
             "Tag" = "8:"
             "Folder" = "8:_9E18AE2EA58C499CAE177D2C27A6EEF4"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_890F53A371CB43419C379335F32310F4"
+            {
+            "SourcePath" = "8:..\\..\\Artefacts\\package-samples\\sharp-architecture\\sharp-architecture-v2.0.0.2.pkg"
+            "TargetName" = "8:sharp-architecture-v2.0.0.2.pkg"
+            "Tag" = "8:"
+            "Folder" = "8:_DC2BAA85754F4CBCA6EA427753205F22"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -533,26 +553,6 @@
             "TargetName" = "8:README"
             "Tag" = "8:"
             "Folder" = "8:_C4EC9E20AC6C4441840839882D877F4B"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EFB124921C344EC68F83F7B9EB58372B"
-            {
-            "SourcePath" = "8:..\\..\\Artefacts\\package-samples\\sharp-architecture\\sharp-architecture-v1.9.0.0.pkg"
-            "TargetName" = "8:sharp-architecture-v1.9.0.0.pkg"
-            "Tag" = "8:"
-            "Folder" = "8:_DC2BAA85754F4CBCA6EA427753205F22"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -773,15 +773,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Templify"
-        "ProductCode" = "8:{3DA64381-E148-40FB-A286-867375877A1B}"
-        "PackageCode" = "8:{2B2AFB92-C0A6-4CA6-8CDD-486AB2B732E8}"
+        "ProductCode" = "8:{0FA8C482-F6F1-49B7-8A09-4CA7938C9752}"
+        "PackageCode" = "8:{783EAE4E-2BBA-426E-AEAB-7B33C360039A}"
         "UpgradeCode" = "8:{9A3E2F12-2445-4912-BA16-A532F72FD1EA}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:0.6.14983"
+        "ProductVersion" = "8:0.6.15130"
         "Manufacturer" = "8:endjin"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://endjin.com/"

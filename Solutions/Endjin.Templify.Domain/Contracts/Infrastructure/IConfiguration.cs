@@ -4,12 +4,16 @@ namespace Endjin.Templify.Domain.Contracts.Infrastructure
     {
         string PackageRepositoryPath { get; set; }
 
+        string GetDirectoryExclusions();
+
         string GetFileExclusions();
 
-        string GetDirectoryExclusions();
+        string GetTokeniseFileExclusions();
 
         void SaveDirectoryExclusions(string directoryExclusions);
 
         void SaveFileExclusions(string fileExclusions);
+
+        void SaveTokeniseFileExclusions(string tokeniseFileExclusions);
     }
 }

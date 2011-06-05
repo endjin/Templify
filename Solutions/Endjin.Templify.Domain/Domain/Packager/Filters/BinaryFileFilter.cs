@@ -8,6 +8,7 @@ namespace Endjin.Templify.Domain.Domain.Packager.Filters
     using System.IO;
     using System.Linq;
 
+    using Endjin.Templify.Domain.Contracts.Infrastructure;
     using Endjin.Templify.Domain.Contracts.Packager.Filters;
     using Endjin.Templify.Domain.Domain.Packages;
 
@@ -16,34 +17,35 @@ namespace Endjin.Templify.Domain.Domain.Packager.Filters
     [Export(typeof(IBinaryFileFilter))]
     public class BinaryFileFilter : IBinaryFileFilter
     {
-        private readonly List<string> fileExclusions = new List<string>();
+        private readonly IConfiguration configuration;
+        private List<string> fileExclusions = new List<string>();
 
-        public BinaryFileFilter()
+        [ImportingConstructor]
+        public BinaryFileFilter(IConfiguration configuration)
         {
-            this.fileExclusions = new List<string>
-                {
-                    ".dll", 
-                    ".doc",
-                    ".docx",
-                    ".exe", 
-                    ".gif",
-                    ".jpg",
-                    ".pdf",
-                    ".png",
-                    ".snk",
-                    ".xls",
-                    ".xlsx",
-                };
+            this.configuration = configuration;
         }
 
         public IEnumerable<ManifestFile> Filter(IEnumerable<ManifestFile> files)
         {
+            this.SetFilters();
             return files.Where(file => !this.fileExclusions.Contains(new FileInfo(file.File).Extension.ToLowerInvariant())).ToList();
         }
 
         public IEnumerable<string> Filter(IEnumerable<string> files)
         {
+            this.SetFilters();
             return files.Where(file => !this.fileExclusions.Contains(new FileInfo(file).Extension.ToLowerInvariant())).ToList();
+        }
+
+        private void SetFilters()
+        {
+            this.fileExclusions = this.ParseList(this.configuration.GetTokeniseFileExclusions());
+        }
+
+        private List<string> ParseList(string commaSeparatedString)
+        {
+            return commaSeparatedString.Split(";".ToCharArray()).ToList();
         }
     }
 }
