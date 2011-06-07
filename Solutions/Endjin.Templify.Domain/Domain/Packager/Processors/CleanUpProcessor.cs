@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Endjin.Templify.Domain.Domain.Packager.Processors
 {
     #region Using Directives
@@ -28,10 +30,34 @@ namespace Endjin.Templify.Domain.Domain.Packager.Processors
             
             if (Directory.Exists(path))
             {
-                Directory.Delete(path, true);
+                ForceDeleteDirectory(path);
             }
             
             this.progressNotifier.UpdateProgress(ProgressStage.CreatingArchive, 2, 2);
+        }
+
+        private static void ForceDeleteDirectory(string path)
+        {
+            DirectoryInfo currentFolder;
+            Stack<DirectoryInfo> folders = new Stack<DirectoryInfo>();
+            DirectoryInfo root = new DirectoryInfo(path);
+            folders.Push(root);
+            while (folders.Count > 0)
+            {
+                currentFolder = folders.Pop();
+                currentFolder.Attributes = currentFolder.Attributes & ~(FileAttributes.Archive | FileAttributes.ReadOnly | FileAttributes.Hidden);
+                foreach (DirectoryInfo d in currentFolder.GetDirectories())
+                {
+                    folders.Push(d);
+                }
+                foreach (FileInfo fileInFolder in currentFolder.GetFiles())
+                {
+                    fileInFolder.Attributes = fileInFolder.Attributes & ~(FileAttributes.Archive | FileAttributes.ReadOnly | FileAttributes.Hidden);
+                    fileInFolder.Delete();
+                }
+            }
+
+            root.Delete(true);
         }
     }
 }
