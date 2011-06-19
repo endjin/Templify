@@ -38,6 +38,9 @@
     <Reference Include="Machine.Specifications.AutoMocking">
       <HintPath>..\..\ReferencedAssemblies\Machine.Specifications\Machine.Specifications.AutoMocking.dll</HintPath>
     </Reference>
+    <Reference Include="Machine.Specifications.AutoMocking.Rhino">
+      <HintPath>..\..\ReferencedAssemblies\Machine.Specifications\Machine.Specifications.AutoMocking.Rhino.dll</HintPath>
+    </Reference>
     <Reference Include="Rhino.Mocks">
       <HintPath>..\..\ReferencedAssemblies\RhinoMocks\Rhino.Mocks.dll</HintPath>
     </Reference>

@@ -1,0 +1,15 @@
+<Configuration>
+  <SnapshotDialog>
+    <InitialDirectory>C:\_Projects\endjin\OSS\Templify\Solutions</InitialDirectory>
+  </SnapshotDialog>
+  <CoverageFilters>
+    <AllowFilters>
+      <Filter>
+        <ClassFilter>*</ClassFilter>
+        <FunctionFilter>*</FunctionFilter>
+        <ModuleFilter>*</ModuleFilter>
+      </Filter>
+    </AllowFilters>
+    <DenyFilters />
+  </CoverageFilters>
+</Configuration>

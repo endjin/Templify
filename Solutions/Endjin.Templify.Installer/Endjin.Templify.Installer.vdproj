@@ -63,7 +63,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_890F53A371CB43419C379335F32310F4"
+        "MsmKey" = "8:_959F20A9C90641D38D78703B1C182DBF"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -370,11 +370,6 @@
             "AssemblyAsmDisplayName" = "8:Endjin.Templify.Domain, Version=0.6.15130.1, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_4CA6A36AF89074BC0178BAB7925C1155"
-                    {
-                    "Name" = "8:Endjin.Templify.Domain.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Endjin.Templify.Domain.dll"
             "TargetName" = "8:"
@@ -414,10 +409,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_890F53A371CB43419C379335F32310F4"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_959F20A9C90641D38D78703B1C182DBF"
             {
-            "SourcePath" = "8:..\\..\\Artefacts\\package-samples\\sharp-architecture\\sharp-architecture-v2.0.0.2.pkg"
-            "TargetName" = "8:sharp-architecture-v2.0.0.2.pkg"
+            "SourcePath" = "8:..\\..\\Artefacts\\package-samples\\sharp-architecture\\sharp-architecture-v2.0.0.3.pkg"
+            "TargetName" = "8:sharp-architecture-v2.0.0.3.pkg"
             "Tag" = "8:"
             "Folder" = "8:_DC2BAA85754F4CBCA6EA427753205F22"
             "Condition" = "8:"
@@ -472,11 +467,6 @@
             "AssemblyAsmDisplayName" = "8:SevenZipSharp, Version=0.64.3890.29348, Culture=neutral, PublicKeyToken=20de82c62b055c88, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_B3833D18A81B45876CDE9DA8D0A2E8E7"
-                    {
-                    "Name" = "8:SevenZipSharp.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:SevenZipSharp.dll"
             "TargetName" = "8:"
@@ -594,11 +584,6 @@
             "AssemblyAsmDisplayName" = "8:CommandLine, Version=1.8.0.5, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_FD58CD121B3DD27D54C91B6C74A9D7F9"
-                    {
-                    "Name" = "8:CommandLine.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:CommandLine.dll"
             "TargetName" = "8:"
@@ -774,7 +759,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Templify"
         "ProductCode" = "8:{0FA8C482-F6F1-49B7-8A09-4CA7938C9752}"
-        "PackageCode" = "8:{611C43E1-4F6D-46BD-9CC5-7D90404EE311}"
+        "PackageCode" = "8:{D553949F-C3C0-4715-BC47-EA7D8173E1C7}"
         "UpgradeCode" = "8:{9A3E2F12-2445-4912-BA16-A532F72FD1EA}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -1423,7 +1408,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_6EDF8FFCD6124182871F38EA89D54D88"
             {
-            "SourcePath" = "8:..\\Endjin.Templify.CommandLine\\obj\\x86\\Debug\\TemplifyCmd.exe"
+            "SourcePath" = "8:..\\Endjin.Templify.CommandLine\\obj\\x86\\Release\\TemplifyCmd.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_CD13A421E6C74CD1A1284622386CB2CA"
@@ -1451,7 +1436,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_724E10457333461FBEE7ACF65161C098"
             {
-            "SourcePath" = "8:..\\Endjin.Templify.Client\\obj\\x86\\Debug\\Endjin.Templify.Client.exe"
+            "SourcePath" = "8:..\\Endjin.Templify.Client\\obj\\x86\\Release\\Endjin.Templify.Client.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_CD13A421E6C74CD1A1284622386CB2CA"

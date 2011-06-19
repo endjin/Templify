@@ -1,9 +1,8 @@
-using System.Collections.Generic;
-
 namespace Endjin.Templify.Domain.Domain.Packager.Processors
 {
     #region Using Directives
 
+    using System.Collections.Generic;
     using System.ComponentModel.Composition;
     using System.IO;
 
@@ -42,6 +41,7 @@ namespace Endjin.Templify.Domain.Domain.Packager.Processors
             Stack<DirectoryInfo> folders = new Stack<DirectoryInfo>();
             DirectoryInfo root = new DirectoryInfo(path);
             folders.Push(root);
+
             while (folders.Count > 0)
             {
                 currentFolder = folders.Pop();
