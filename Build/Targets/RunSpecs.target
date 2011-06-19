@@ -26,7 +26,8 @@
   </Choose>
   
   <Target Name="RunSpecs"
-          DependsOnTargets="CreateDrops">
+          DependsOnTargets="CreateDrops"
+          Condition="'$(IsDesktopBuild)' = 'true'">
 
     <MakeDir Directories="$(DropsPath)\$(GlobalBuildVersionNumber)\BDDSpecs"/>
     
