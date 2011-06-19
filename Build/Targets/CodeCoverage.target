@@ -2,7 +2,7 @@
   
   <Target Name="CodeCoverage"
           DependsOnTargets="RunSpecs"
-          Condition="'$(IsDesktopBuild)' = 'true'">
+          Condition="'$(IsDesktopBuild)' == 'true'">
     
     <PropertyGroup>
       <DotCoverToolPath>C:\Program Files (x86)\JetBrains\TeamCity\buildAgent\plugins\dotCover\bin\dotCover.exe</DotCoverToolPath>

@@ -367,9 +367,14 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Endjin.Templify.Domain, Version=0.6.15130.1, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Endjin.Templify.Domain, Version=0.6.15144.1, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_4CA6A36AF89074BC0178BAB7925C1155"
+                    {
+                    "Name" = "8:Endjin.Templify.Domain.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:Endjin.Templify.Domain.dll"
             "TargetName" = "8:"
@@ -467,6 +472,11 @@
             "AssemblyAsmDisplayName" = "8:SevenZipSharp, Version=0.64.3890.29348, Culture=neutral, PublicKeyToken=20de82c62b055c88, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_B3833D18A81B45876CDE9DA8D0A2E8E7"
+                    {
+                    "Name" = "8:SevenZipSharp.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:SevenZipSharp.dll"
             "TargetName" = "8:"
@@ -584,6 +594,11 @@
             "AssemblyAsmDisplayName" = "8:CommandLine, Version=1.8.0.5, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_FD58CD121B3DD27D54C91B6C74A9D7F9"
+                    {
+                    "Name" = "8:CommandLine.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:CommandLine.dll"
             "TargetName" = "8:"
@@ -759,7 +774,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Templify"
         "ProductCode" = "8:{0FA8C482-F6F1-49B7-8A09-4CA7938C9752}"
-        "PackageCode" = "8:{D553949F-C3C0-4715-BC47-EA7D8173E1C7}"
+        "PackageCode" = "8:{B884465C-FA05-4C32-A08C-B9FDF974DD47}"
         "UpgradeCode" = "8:{9A3E2F12-2445-4912-BA16-A532F72FD1EA}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
