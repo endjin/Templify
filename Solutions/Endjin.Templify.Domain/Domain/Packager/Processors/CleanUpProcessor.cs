@@ -38,19 +38,21 @@ namespace Endjin.Templify.Domain.Domain.Packager.Processors
         private static void ForceDeleteDirectory(string path)
         {
             DirectoryInfo currentFolder;
-            Stack<DirectoryInfo> folders = new Stack<DirectoryInfo>();
-            DirectoryInfo root = new DirectoryInfo(path);
+            var folders = new Stack<DirectoryInfo>();
+            var root = new DirectoryInfo(path);
             folders.Push(root);
 
             while (folders.Count > 0)
             {
                 currentFolder = folders.Pop();
                 currentFolder.Attributes = currentFolder.Attributes & ~(FileAttributes.Archive | FileAttributes.ReadOnly | FileAttributes.Hidden);
-                foreach (DirectoryInfo d in currentFolder.GetDirectories())
+
+                foreach (var d in currentFolder.GetDirectories())
                 {
                     folders.Push(d);
                 }
-                foreach (FileInfo fileInFolder in currentFolder.GetFiles())
+
+                foreach (var fileInFolder in currentFolder.GetFiles())
                 {
                     fileInFolder.Attributes = fileInFolder.Attributes & ~(FileAttributes.Archive | FileAttributes.ReadOnly | FileAttributes.Hidden);
                     fileInFolder.Delete();

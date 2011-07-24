@@ -4,7 +4,7 @@
           DependsOnTargets="RunSpecs"
           Condition="'$(IsDesktopBuild)' == 'true'">
     
-    <PropertyGroup>
+    <!--<PropertyGroup>
       <DotCoverToolPath>C:\Program Files (x86)\JetBrains\TeamCity\buildAgent\plugins\dotCover\bin\dotCover.exe</DotCoverToolPath>
       <CoverageOptions>c</CoverageOptions>
       <CoverageArgs>$(ToolsPath)\DotCover\dotcover.xml</CoverageArgs>
@@ -15,7 +15,7 @@
     
     <Exec Command="$(CoverageCommand)" />
 
-    <Message Text="##teamcity[importData type='dotNetCoverage' tool='dotcover' path='C:\Builds\Endjin\OSS\Templify\Solutions\Endjin.Templify.Specifications\bin\Release\coverage.xml']"/>
+    <Message Text="##teamcity[importData type='dotNetCoverage' tool='dotcover' path='C:\Builds\Endjin\OSS\Templify\Solutions\Endjin.Templify.Specifications\bin\Release\coverage.xml']"/>-->
   
   </Target>
 

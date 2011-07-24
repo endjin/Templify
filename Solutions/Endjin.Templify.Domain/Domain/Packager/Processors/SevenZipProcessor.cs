@@ -55,7 +55,7 @@ namespace Endjin.Templify.Domain.Domain.Packager.Processors
             }
         }
 
-        private void ExtractFile( SevenZipExtractor extractor, ManifestFile file)
+        private void ExtractFile(SevenZipExtractor extractor, ManifestFile file)
         {
             using (var destFileStream = new FileStream(file.InstallPath, FileMode.Create, FileAccess.Write))
             { 
