@@ -16,13 +16,15 @@ namespace Endjin.Templify.Domain.Domain.Packager.Tokeniser
     public class TemplateTokeniser : ITemplateTokeniser
     {
         private readonly IFileContentProcessor fileContentProcessor;
+        private readonly IEnumerable<IFunctionTokenizer> functionTokenizers;
         private readonly IRenameFileProcessor renameFileProcessor;
 
         [ImportingConstructor]
-        public TemplateTokeniser(IRenameFileProcessor renameFileProcessor, IFileContentProcessor fileContentProcessor)
+		public TemplateTokeniser(IRenameFileProcessor renameFileProcessor, IFileContentProcessor fileContentProcessor, [ImportMany] IEnumerable<IFunctionTokenizer> FunctionTokenizers)
         {
             this.renameFileProcessor = renameFileProcessor;
             this.fileContentProcessor = fileContentProcessor;
+            this.functionTokenizers = FunctionTokenizers;
         }
 
         public void TokeniseDirectoryAndFilePaths(string file, Dictionary<string, string> tokens)
@@ -38,9 +40,13 @@ namespace Endjin.Templify.Domain.Domain.Packager.Tokeniser
             this.fileContentProcessor.WriteContents(file, contents);
         }
 
-        private static string Replace(Dictionary<string, string> tokens, string value)
+		private string Replace(Dictionary<string, string> tokens, string value)
         {
-            return tokens.Aggregate(value, (current, token) => Regex.Replace(current, token.Key, match => token.Value));
+            string val = tokens.Aggregate(value, (current, token) => Regex.Replace(current, token.Key, match => token.Value));
+            if ( this.functionTokenizers != null ) {
+                val = this.functionTokenizers.Aggregate(val, (current, tokenizer) => tokenizer.TokenizeContent(current));
+            }
+            return val;
         }
     }
 }
