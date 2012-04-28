@@ -36,25 +36,33 @@
 
         public void Execute(string[] args)
         {
-            var options = this.CommandLineProcessor.Process(args);
-
-            switch (options.Mode)
+            try
             {
-                case Mode.Create:
-                    this.PackageCreatorTasks.CreatePackage(options);
-                    break;
-                case Mode.Deploy:
-                    this.PackageDeployerTasks.DeployPackage(options);
-                    break;
-                case Mode.ShowTokens:
-                    this.DisplayTokens(options);
-                    break;
-                case Mode.ListPackages:
-                    this.DisplayAvailablePackages(options);
-                    break;
-                default:
-                    Console.WriteLine(options.GetUsage());
-                    break;
+                var options = this.CommandLineProcessor.Process(args);
+
+                switch (options.Mode)
+                {
+                    case Mode.Create:
+                        this.PackageCreatorTasks.CreatePackage(options);
+                        break;
+                    case Mode.Deploy:
+                        this.PackageDeployerTasks.DeployPackage(options);
+                        break;
+                    case Mode.ShowTokens:
+                        this.DisplayTokens(options);
+                        break;
+                    case Mode.ListPackages:
+                        this.DisplayAvailablePackages(options);
+                        break;
+                    default:
+                        Console.WriteLine(options.GetUsage());
+                        break;
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine("Templify encountered an error: ");
+                Console.WriteLine(exception.Message);
             }
         }
 
@@ -74,8 +82,8 @@
         {
             var packages = this.PackageDeployerTasks.RetrieveAllPackages(options.PackageRepositoryPath);
 
-            Console.WriteLine(string.Format("Templify packages available in repository '{0}':",
-                                                options.PackageRepositoryPath));
+            Console.WriteLine(string.Format("Templify packages available in repository '{0}':", options.PackageRepositoryPath));
+
             foreach (var package in packages)
             {
                 Console.WriteLine("   {0}", package.Manifest.Name);
