@@ -64,8 +64,14 @@
         private string GetConfigSetting(string settingName)
         {
             var configuration = this.GetConfiguration();
+            var setting = string.Empty;
 
-            return configuration.AppSettings.Settings[settingName].Value ?? string.Empty;
+            if (configuration.AppSettings.Settings[settingName] != null)
+            {
+                setting = configuration.AppSettings.Settings[settingName].Value ?? string.Empty;
+            }
+
+            return setting;
         }
 
         private void SaveConfigSetting(string settingName, string value)

@@ -4,12 +4,9 @@
 
     using System;
     using System.ComponentModel.Composition;
-    using System.ComponentModel.Composition.Hosting;
-    using System.Diagnostics;
 
     using Endjin.Templify.Domain.Contracts.Infrastructure;
     using Endjin.Templify.Domain.Contracts.Tasks;
-    using Endjin.Templify.Domain.Framework;
     using Endjin.Templify.Domain.Framework.Container;
     using Endjin.Templify.Domain.Infrastructure;
 
