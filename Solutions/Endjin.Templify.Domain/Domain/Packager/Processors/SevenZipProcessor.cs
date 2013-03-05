@@ -31,7 +31,7 @@ namespace Endjin.Templify.Domain.Domain.Packager.Processors
             this.progressNotifier = progressNotifier;
         }
 
-        public void Extract(string archivePath, List<ManifestFile> files)
+        public void Extract(string archivePath, string tempPath, List<ManifestFile> files)
         {
             this.SetLibraryPath();
 
@@ -39,6 +39,9 @@ namespace Endjin.Templify.Domain.Domain.Packager.Processors
             {
                 int progress = 0;
 
+                extractor.ExtractArchive(tempPath);
+                extractor.ExtractionFinished += this.ExtractionFinished;
+                
                 foreach (var manifestFile in files)
                 {
                     progress++;
@@ -48,7 +51,7 @@ namespace Endjin.Templify.Domain.Domain.Packager.Processors
                         Directory.CreateDirectory(Path.GetDirectoryName(manifestFile.InstallPath));
                     }
 
-                    this.ExtractFile(extractor, manifestFile);
+                    File.Copy(manifestFile.TempPath, manifestFile.InstallPath);
 
                     this.progressNotifier.UpdateProgress(ProgressStage.ExtractFilesFromPackage, files.Count, progress);
                 }
