@@ -49,7 +49,7 @@
             foreach (var file in this.manifest.Files)
             {
                 file.InstallPath = this.GetDestFilePath(file);
-                file.TempPath = this.GetTempPath(this.manifest.InstallRoot, file);
+                file.TempPath = this.GetTempPath(file);
             }
 
             this.archiveProcessor.Extract(this.manifest.Path, this.tempFolder, package.Manifest.Files);
@@ -75,9 +75,9 @@
             return Path.Combine(baseDestPath, String.IsNullOrEmpty(manifestFile.InstallPath) ? manifestFile.File : Path.GetFileName(manifestFile.File));
         }
 
-        private string GetTempPath(string replaceToken, ManifestFile file)
+        private string GetTempPath(ManifestFile file)
         {
-            return file.InstallPath.Replace(replaceToken, this.tempFolder);
+            return file.InstallPath.Replace(this.manifest.InstallRoot, this.tempFolder);
         }
     }
 }

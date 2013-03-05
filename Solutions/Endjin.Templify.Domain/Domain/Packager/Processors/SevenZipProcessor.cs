@@ -37,24 +37,23 @@ namespace Endjin.Templify.Domain.Domain.Packager.Processors
 
             using (var extractor = new SevenZipExtractor(archivePath))
             {
-                int progress = 0;
+                extractor.ExtractArchive(tempPath);   
+            }
 
-                extractor.ExtractArchive(tempPath);
-                extractor.ExtractionFinished += this.ExtractionFinished;
-                
-                foreach (var manifestFile in files)
+            int progress = 0;
+
+            foreach (var manifestFile in files)
+            {
+                progress++;
+
+                if (!Directory.Exists(Path.GetDirectoryName(manifestFile.InstallPath)))
                 {
-                    progress++;
-
-                    if (!Directory.Exists(Path.GetDirectoryName(manifestFile.InstallPath)))
-                    {
-                        Directory.CreateDirectory(Path.GetDirectoryName(manifestFile.InstallPath));
-                    }
-
-                    File.Copy(manifestFile.TempPath, manifestFile.InstallPath);
-
-                    this.progressNotifier.UpdateProgress(ProgressStage.ExtractFilesFromPackage, files.Count, progress);
+                    Directory.CreateDirectory(Path.GetDirectoryName(manifestFile.InstallPath));
                 }
+
+                File.Copy(manifestFile.TempPath, manifestFile.InstallPath);
+
+                this.progressNotifier.UpdateProgress(ProgressStage.ExtractFilesFromPackage, files.Count, progress);
             }
         }
 
