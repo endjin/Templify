@@ -11,7 +11,7 @@ namespace Endjin.Templify.Domain.Contracts.Packager.Processors
 
     public interface IArchiveProcessor
     {
-        void Extract(string archivePath, string tempPath, List<ManifestFile> files);
+        void Extract(string archivePath, string installPath, List<ManifestFile> files);
 
         Stream Extract(string archivePath, string filePath);
     }

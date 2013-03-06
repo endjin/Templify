@@ -49,10 +49,9 @@
             foreach (var file in this.manifest.Files)
             {
                 file.InstallPath = this.GetDestFilePath(file);
-                file.TempPath = this.GetTempPath(file);
             }
 
-            this.archiveProcessor.Extract(this.manifest.Path, this.tempFolder, package.Manifest.Files);
+            this.archiveProcessor.Extract(this.manifest.Path, this.manifest.InstallRoot, package.Manifest.Files);
         }
 
         private void CreateTempFolder()
@@ -73,11 +72,6 @@
             // ensure that files get installed into the correct location if they have specific InstallPath
             // irrespective of any folder structure within the manifest file.
             return Path.Combine(baseDestPath, String.IsNullOrEmpty(manifestFile.InstallPath) ? manifestFile.File : Path.GetFileName(manifestFile.File));
-        }
-
-        private string GetTempPath(ManifestFile file)
-        {
-            return file.InstallPath.Replace(this.manifest.InstallRoot, this.tempFolder);
         }
     }
 }

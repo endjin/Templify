@@ -9,8 +9,5 @@
 
         [XmlAttribute]
         public string InstallPath { get; set; }
-
-        [XmlAttribute]
-        public string TempPath { get; set; }
     }
 }

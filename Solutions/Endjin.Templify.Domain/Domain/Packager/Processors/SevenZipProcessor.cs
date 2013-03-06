@@ -8,12 +8,11 @@ namespace Endjin.Templify.Domain.Domain.Packager.Processors
     using System.IO;
     using System.Linq;
     using System.Reflection;
-
+    using System.Threading;
     using Endjin.Templify.Domain.Contracts.Framework.Loggers;
     using Endjin.Templify.Domain.Contracts.Packager.Notifiers;
     using Endjin.Templify.Domain.Contracts.Packager.Processors;
     using Endjin.Templify.Domain.Domain.Packages;
-
     using SevenZip;
 
     #endregion
@@ -31,30 +30,33 @@ namespace Endjin.Templify.Domain.Domain.Packager.Processors
             this.progressNotifier = progressNotifier;
         }
 
-        public void Extract(string archivePath, string tempPath, List<ManifestFile> files)
+        public void Extract(string archivePath, string installPath, List<ManifestFile> files)
         {
             this.SetLibraryPath();
 
-            using (var extractor = new SevenZipExtractor(archivePath))
-            {
-                extractor.ExtractArchive(tempPath);   
-            }
-
             int progress = 0;
 
-            foreach (var manifestFile in files)
+            var thread = new Thread(() =>
             {
-                progress++;
+                var extractor = new SevenZipExtractor(archivePath);
 
-                if (!Directory.Exists(Path.GetDirectoryName(manifestFile.InstallPath)))
-                {
-                    Directory.CreateDirectory(Path.GetDirectoryName(manifestFile.InstallPath));
-                }
+                extractor.ExtractionFinished += ExtractionFinished;
+                extractor.FileExtractionFinished += (sender, e) =>
+                    {
+                        progress++;
+                        this.progressNotifier.UpdateProgress(ProgressStage.ExtractFilesFromPackage, files.Count, progress);
+                    };
 
-                File.Copy(manifestFile.TempPath, manifestFile.InstallPath);
+                extractor.ExtractArchive(installPath);
+            });
 
-                this.progressNotifier.UpdateProgress(ProgressStage.ExtractFilesFromPackage, files.Count, progress);
-            }
+            thread.Start();
+            thread.Join();
+        }
+
+        void extractor_FileExtractionFinished(object sender, FileInfoEventArgs e)
+        {
+            
         }
 
         private void ExtractFile(SevenZipExtractor extractor, ManifestFile file)
