@@ -6,10 +6,10 @@
     <Message Text="DropLocation: $(DropLocation)"
              Importance="high" />
 
-    <RemoveDir Condition=" Exists('$(DropLocation)') "
+    <!--<RemoveDir Condition=" Exists('$(DropLocation)') "
                Directories="$(DropLocation)" />
     
-    <MakeDir Directories="$(DropLocation)" />
+    <MakeDir Directories="$(DropLocation)" />-->
     
   </Target>
 

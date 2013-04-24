@@ -10,6 +10,8 @@
   <PropertyGroup>
     <SolutionsRoot>$(BuildPath)\..\Solutions</SolutionsRoot>
     <VersionNumber>1.0.0.0</VersionNumber>
+    <InstallerProjectPath>$(SolutionsRoot)\Endjin.Templify.Installer\Installer.aip</InstallerProjectPath>
+    <RunCreateInstaller>true</RunCreateInstaller>
   </PropertyGroup>
 
   <!-- Define all the Visual Studio solutions to be compiled -->
