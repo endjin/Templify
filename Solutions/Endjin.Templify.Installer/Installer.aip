@@ -12,8 +12,8 @@
     <ROW Property="ARPHELPLINK" Value="http://endjin.com/"/>
     <ROW Property="ARPPRODUCTICON" Value="appicon.exe" Type="8"/>
     <ROW Property="ARPURLINFOABOUT" Value="http://opensource.endjin.com/templify/"/>
-    <ROW Property="BannerBitmap" Value="banner" MultiBuildValue="DefaultBuild:installerbanner.bmp" Type="1" MsiKey="BannerBitmap"/>
-    <ROW Property="DialogBitmap" Value="dialog" MultiBuildValue="DefaultBuild:installerdialog.bmp" Type="1" MsiKey="DialogBitmap"/>
+    <ROW Property="BannerBitmap" Value="banner" MultiBuildValue="DefaultBuild:installerbanner.jpg" Type="1" MsiKey="BannerBitmap"/>
+    <ROW Property="DialogBitmap" Value="dialog" MultiBuildValue="DefaultBuild:installerdialog.jpg" Type="1" MsiKey="DialogBitmap"/>
     <ROW Property="Manufacturer" Value="endjin" ValueLocId="*"/>
     <ROW Property="ProductCode" Value="1033:{9d3a0dc8-d4f4-40df-b127-6f0c0a0b0730} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
@@ -109,8 +109,8 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
     <ROW Name="Prereq.dll" SourcePath="&lt;AI_CUSTACTS&gt;Prereq.dll"/>
     <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
-    <ROW Name="installerbanner.bmp" SourcePath="..\..\Artefacts\installer-banner.bmp"/>
-    <ROW Name="installerdialog.bmp" SourcePath="..\..\Artefacts\installer-dialog.bmp"/>
+    <ROW Name="installerbanner.jpg" SourcePath="..\..\Artefacts\installer-banner.jpg"/>
+    <ROW Name="installerdialog.jpg" SourcePath="..\..\Artefacts\installer-dialog.jpg"/>
     <ROW Name="lzmaextractor.dll" SourcePath="&lt;AI_CUSTACTS&gt;lzmaextractor.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlComponent">
