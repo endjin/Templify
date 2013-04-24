@@ -42,39 +42,16 @@ namespace Endjin.Templify.Domain.Domain.Packager.Processors
 
                 extractor.ExtractionFinished += ExtractionFinished;
                 extractor.FileExtractionFinished += (sender, e) =>
-                    {
-                        progress++;
-                        this.progressNotifier.UpdateProgress(ProgressStage.ExtractFilesFromPackage, files.Count, progress);
-                    };
+                {
+                    progress++;
+                    this.progressNotifier.UpdateProgress(ProgressStage.ExtractFilesFromPackage, files.Count, progress);
+                };
 
                 extractor.ExtractArchive(installPath);
             });
 
             thread.Start();
             thread.Join();
-        }
-
-        void extractor_FileExtractionFinished(object sender, FileInfoEventArgs e)
-        {
-            
-        }
-
-        private void ExtractFile(SevenZipExtractor extractor, ManifestFile file)
-        {
-            using (var destFileStream = new FileStream(file.InstallPath, FileMode.Create, FileAccess.Write))
-            { 
-                try
-                {
-                    extractor.ExtractFile(file.File, destFileStream);
-                }
-                catch (Exception exception)
-                {
-                    this.errorLogger.Log(exception);
-                }
-
-                destFileStream.Flush();
-                destFileStream.Close();
-            }
         }
 
         public Stream Extract(string archivePath, string filePath)
@@ -86,7 +63,7 @@ namespace Endjin.Templify.Domain.Domain.Packager.Processors
 
             var stream = new MemoryStream();
 
-            var matchingfile = extractor.ArchiveFileData.Where(x => x.FileName == filePath).FirstOrDefault();
+            var matchingfile = extractor.ArchiveFileData.FirstOrDefault(x => x.FileName == filePath);
 
             extractor.ExtractFile(matchingfile.Index, stream);
 
