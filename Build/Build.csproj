@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CEFAA4F0-A83F-42D7-85E4-BE5DDC157D5C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BuildFwk</RootNamespace>
+    <AssemblyName>BuildFwk</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="Definitions\DevBuild\build.proj" />
+    <None Include="Definitions\DevBuild\clean-build.cmd" />
+    <None Include="Definitions\DevBuild\desktop-build.cmd" />
+    <None Include="Definitions\DevBuild\package-build.cmd" />
+    <None Include="Definitions\DevBuild\server-build.cmd" />
+    <None Include="Targets\CodeAnalysis\StyleCop.Targets" />
+    <None Include="Targets\Common\Common.properties" />
+    <None Include="Targets\Common\Global.imports" />
+    <None Include="Targets\Build.properties" />
+    <None Include="Targets\Build.targets" />
+    <None Include="Targets\Common\OnBuildBreak.targets" />
+    <None Include="Targets\Compile\CleanSolutions.targets" />
+    <None Include="Targets\Compile\Compile.targets" />
+    <None Include="Targets\Compile\CompileSolutions.targets" />
+    <None Include="Targets\Drop\InitialiseDropLocation.targets" />
+    <None Include="Targets\Drop\Drop.properties" />
+    <None Include="Targets\Drop\Drop.targets" />
+    <None Include="Targets\Package\Installer\Installer.targets">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Targets\Package\Package.targets">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Targets\Test\MSpec.targets" />
+    <None Include="Targets\Test\Test.properties" />
+    <None Include="Targets\Test\Test.targets" />
+    <None Include="Tools\StyleCop\Settings.StyleCop" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Definitions\DevBuild\StyleCopViolations.xml" />
+    <Content Include="Tools\StyleCop\de-DE\StyleCop.CSharp.Rules.resources.dll" />
+    <Content Include="Tools\StyleCop\en-GB\StyleCop.CSharp.Rules.resources.dll" />
+    <Content Include="Tools\StyleCop\fr-FR\StyleCop.CSharp.Rules.resources.dll" />
+    <Content Include="Tools\StyleCop\pl-PL\StyleCop.CSharp.Rules.resources.dll" />
+    <Content Include="Tools\StyleCop\pt-BR\StyleCop.CSharp.Rules.resources.dll" />
+    <Content Include="Tools\StyleCop\ru-RU\StyleCop.CSharp.Rules.resources.dll" />
+    <Content Include="Tools\StyleCop\StyleCop.CSharp.dll" />
+    <Content Include="Tools\StyleCop\StyleCop.CSharp.Rules.dll" />
+    <Content Include="Tools\StyleCop\StyleCop.dll" />
+    <Content Include="Tools\StyleCop\StyleCop.VSPackage.dll" />
+    <Content Include="Tools\StyleCop\StyleCopSettingsEditor.exe" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

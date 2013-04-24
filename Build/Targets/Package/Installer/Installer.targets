@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Target Name="Installer"
+          Condition=" '$(RunCreateInstaller)' == 'true' AND '$(IsDesktopBuild)' != 'true' ">
+
+    <Message Text="$(NewLineChar)***********$(NewLineChar)* Build Installers:$(NewLineChar)***********"
+             Importance="high" />
+    
+    <PropertyGroup>
+      <InstallerPath>"C:\Program Files (x86)\Caphyon\Advanced Installer 9.4\bin\x86\AdvancedInstaller.com"</InstallerPath>
+    </PropertyGroup>
+
+    <ConvertToAbsolutePath Paths="$(InstallerProjectPath)">
+      <Output TaskParameter="AbsolutePaths" PropertyName="AbsoluteInstallerProjectPath" />
+    </ConvertToAbsolutePath>
+
+    <PropertyGroup>
+      <InstallerEditCommand>$(InstallerPath) /edit $(AbsoluteInstallerProjectPath)</InstallerEditCommand>
+      <InstallerBuildCommand>$(InstallerPath) /build $(AbsoluteInstallerProjectPath)</InstallerBuildCommand>
+    </PropertyGroup>
+    
+    <Exec Command="$(InstallerEditCommand) /SetProductCode -langid 1033 -guid {$([System.Guid]::NewGuid())}" />
+    <Exec Command="$(InstallerEditCommand) /SetVersion &quot;$(VersionNumber)&quot;" />
+	
+    <Exec Command="$(InstallerBuildCommand)" />
+    
+  </Target>
+
+</Project>

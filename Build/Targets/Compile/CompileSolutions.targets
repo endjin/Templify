@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Target Name="CompileSolutions">
+
+    <Message Text="$(NewLineChar)***********$(NewLineChar)* Solutions to compile:$(NewLineChar)@(SolutionsToBuild->'*$(TabChar)%(FullPath)', '$(NewLineChar)')$(NewLineChar)***********"
+             Importance="high" />
+    
+    <MSBuild Condition=" '@(SolutionsToBuild)' != '' "
+             Projects="%(SolutionsToBuild.Identity)"
+             Properties="Configuration=%(SolutionsToBuild.Configuration);
+                         Platform=%(SolutionsToBuild.Platform);
+                         OutDir=%(SolutionsToBuild.OutputDir);"
+             Targets="$(BuildTarget)">
+    </MSBuild>
+    
+  </Target>
+
+</Project>

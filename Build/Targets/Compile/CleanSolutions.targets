@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Target Name="CleanSolutions">
+
+    <Message Text="$(NewLineChar)***********$(NewLineChar)* Solutions to clean:$(NewLineChar)@(SolutionsToBuild->'*$(TabChar)%(FullPath)', '$(NewLineChar)')$(NewLineChar)***********"
+             Importance="high" />
+    
+    <MSBuild
+      Projects="%(SolutionsToBuild.Identity)"
+      Properties="Configuration=%(SolutionsToBuild.Configuration);
+                  Platform=%(SolutionsToBuild.Platform);
+                  OutDir=%(SolutionsToBuild.OutputDir);"
+      Targets="$(CleanTarget)">
+    </MSBuild>
+    
+  </Target>
+  
+</Project>

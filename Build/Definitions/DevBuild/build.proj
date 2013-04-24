@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <BuildPath>$(MsBuildProjectDirectory)\..\..</BuildPath>
+  </PropertyGroup>
+
+  <Import Project="$(BuildPath)\Targets\Build.targets" />
+
+  <PropertyGroup>
+    <SolutionsRoot>$(BuildPath)\..\Solutions</SolutionsRoot>
+    <VersionNumber>1.0.0.0</VersionNumber>
+  </PropertyGroup>
+
+  <!-- Define all the Visual Studio solutions to be compiled -->
+  <ItemGroup>
+    <SolutionsToBuild Include="$(SolutionsRoot)\Endjin.Templify.sln">
+      <Configuration>Release</Configuration>
+      <Platform>Any CPU</Platform>
+      <OutputDir>$(OutDir)\</OutputDir>
+    </SolutionsToBuild>
+  </ItemGroup>
+
+  <!-- Define all the Visual Studio Project to be packaged -->
+  <!--<ItemGroup>
+    <ProjectsToPackage Include="$(SolutionsRoot)\.ccproj">
+      <Configuration>Release</Configuration>
+      <Platform>Any CPU</Platform>
+      <OutputDir>$(OutDir)\</OutputDir>
+      <PublishDir>$(OutDir)\Azure\</PublishDir>
+    </ProjectsToPackage>
+  </ItemGroup>-->
+
+</Project>

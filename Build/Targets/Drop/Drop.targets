@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  
+  <Import Project="Drop.properties" />
+  <Import Project="InitialiseDropLocation.targets" />
+
+  <PropertyGroup>
+    <DropBuildDependsOn>
+      InitaliseDropLocation;
+      CoreDrop;
+    </DropBuildDependsOn>
+  </PropertyGroup>
+  
+  <Target Name="DropBuild"
+          Condition=" !$(SkipDropBuild) "
+          DependsOnTargets="$(DropBuildDependsOn)" />
+
+  <Target Name="CoreDrop"
+          DependsOnTargets="$(CoreDropDependsOn)">
+
+    <Copy SourceFiles="@(BuildArtefacts)"
+          DestinationFiles="@(BuildArtefacts -> '$(BuildArtefacts)\%(RecursiveDir)%(Filename)%(Extension)')" />
+
+  </Target>
+
+</Project>

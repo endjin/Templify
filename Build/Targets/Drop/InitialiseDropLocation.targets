@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Target Name="InitaliseDropLocation">
+
+    <Message Text="DropLocation: $(DropLocation)"
+             Importance="high" />
+
+    <RemoveDir Condition=" Exists('$(DropLocation)') "
+               Directories="$(DropLocation)" />
+    
+    <MakeDir Directories="$(DropLocation)" />
+    
+  </Target>
+
+</Project>
