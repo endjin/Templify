@@ -24,4 +24,4 @@ _ReSharper.*
 *.dbmdl
 *.log
 *.ser
-*.dbmdl
+/BuildArtefacts/

@@ -93,7 +93,9 @@ James Broome for Manage Package / Exclusions feature
 Jon George for testing & moral support
 Matthew Adams for WPF / MVVM / XAML help
 Nick Harewood for prettifying the WPF styles.
+David Perlman for fixing the long standing performance issue.
 
 Version History
 ===============
 2010.09.30 - v0.5.0.0 - First public release
+2013.04.24 - v0.7.0.0 - Performance improvements, fixes around file encoding issues, replace Visual Studio Installer Project with Advanced Installer Project.
