@@ -46,9 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\Common\AssemblyVersion.cs">
-      <Link>Properties\AssemblyVersion.cs</Link>
-    </Compile>
     <Compile Include="Contracts\Framework\Loggers\IErrorLogger.cs" />
     <Compile Include="Contracts\Framework\Specifications\ILinqSpecification.cs" />
     <Compile Include="Contracts\Infrastructure\IConfiguration.cs" />

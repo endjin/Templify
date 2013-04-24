@@ -20,8 +20,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{324E1002
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Endjin.Templify.CommandLine", "Endjin.Templify.CommandLine\Endjin.Templify.CommandLine.csproj", "{585FCA37-58D1-4E7C-93BB-30C1FC755437}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Features", "Features", "{A7386483-49EF-4276-A3C1-30644D3B3472}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Build", "..\Build\Build.csproj", "{CEFAA4F0-A83F-42D7-85E4-BE5DDC157D5C}"
 EndProject
 Global

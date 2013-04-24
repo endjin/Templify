@@ -38,9 +38,6 @@
     <Reference Include="System.ComponentModel.Composition" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\Common\AssemblyVersion.cs">
-      <Link>Properties\AssemblyVersion.cs</Link>
-    </Compile>
     <Compile Include="Client.cs" />
     <Compile Include="ConsoleProgress.cs" />
     <Compile Include="Program.cs" />
