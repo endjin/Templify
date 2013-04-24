@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DOCUMENT Type="Advanced Installer" CreateVersion="9.4" version="9.4" Modules="professional" RootPath="." Language="en" Id="{960FCE7F-29D9-4AD6-BCDD-94DD14F1BC69}">
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiValidationComponent">
+    <ROW Table="File" Column="Sequence" MinValue="1" MaxValue="32767" Description="Sequence with respect to the media images; order must track cabinet order." Options="0" ColumnType="2" ColumnIndex="7" ColumnSize="2" MsiKey="File#Sequence"/>
+    <ROW Table="Media" Column="LastSequence" MinValue="0" MaxValue="32767" Description="File sequence number for the last file for this media." Options="0" ColumnType="2" ColumnIndex="1" ColumnSize="2" MsiKey="Media#LastSequence"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
+    <ROW Property="AI_FINDEXE_TITLE" Value="Select the installation package for [|ProductName]" ValueLocId="AI.Property.FindExeTitle"/>
+    <ROW Property="AI_ThemeStyle" Value="default" MsiKey="AI_ThemeStyle"/>
+    <ROW Property="ALLUSERS" Value="1"/>
+    <ROW Property="ARPCOMMENTS" Value="Making Solution Creation Simple" ValueLocId="*"/>
+    <ROW Property="ARPHELPLINK" Value="http://endjin.com/"/>
+    <ROW Property="ARPPRODUCTICON" Value="appicon.exe" Type="8"/>
+    <ROW Property="ARPURLINFOABOUT" Value="http://opensource.endjin.com/templify/"/>
+    <ROW Property="BannerBitmap" Value="banner" MultiBuildValue="DefaultBuild:installerbanner.bmp" Type="1" MsiKey="BannerBitmap"/>
+    <ROW Property="DialogBitmap" Value="dialog" MultiBuildValue="DefaultBuild:installerdialog.bmp" Type="1" MsiKey="DialogBitmap"/>
+    <ROW Property="Manufacturer" Value="endjin" ValueLocId="*"/>
+    <ROW Property="ProductCode" Value="1033:{0FA8C482-F6F1-49B7-8A09-4CA7938C9752} " Type="16"/>
+    <ROW Property="ProductLanguage" Value="1033"/>
+    <ROW Property="ProductName" Value="Templify" ValueLocId="*"/>
+    <ROW Property="ProductVersion" Value="1.0.0" Type="32"/>
+    <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
+    <ROW Property="UpgradeCode" Value="{9A3E2F12-2445-4912-BA16-A532F72FD1EA}"/>
+    <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsType9XDisplay" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
+    <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
+    <ROW Directory="AppDataFolder" Directory_Parent="TARGETDIR" DefaultDir="AppDat~1|AppDataFolder" IsPseudoRoot="1"/>
+    <ROW Directory="Endjin_Dir" Directory_Parent="AppDataFolder" DefaultDir="Endjin"/>
+    <ROW Directory="Framework_Dir" Directory_Parent="APPDIR" DefaultDir="Framew~1|Framework"/>
+    <ROW Directory="MSBuild_Dir" Directory_Parent="Samples_Dir" DefaultDir="MSBuild"/>
+    <ROW Directory="Samples_Dir" Directory_Parent="APPDIR" DefaultDir="Samples"/>
+    <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
+    <ROW Directory="Templify_Dir" Directory_Parent="Endjin_Dir" DefaultDir="Templify"/>
+    <ROW Directory="config_Dir" Directory_Parent="Templify_Dir" DefaultDir="config"/>
+    <ROW Directory="repo_Dir" Directory_Parent="Templify_Dir" DefaultDir="repo"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
+    <ROW Component="AI_ExePath" ComponentId="{0456BC86-43CA-4602-B484-AB060F9BC64B}" Directory_="APPDIR" Attributes="4" KeyPath="AI_ExePath"/>
+    <ROW Component="Caliburn.Micro.dll" ComponentId="{A3CBF2DD-9AD9-4FF3-94DF-8E3586622114}" Directory_="Framework_Dir" Attributes="0" KeyPath="Caliburn.Micro.dll"/>
+    <ROW Component="CommandLine.dll" ComponentId="{C43C5910-A2F4-46B8-89FA-17E766FF6BFF}" Directory_="Framework_Dir" Attributes="0" KeyPath="CommandLine.dll"/>
+    <ROW Component="Endjin.Templify.Client.exe" ComponentId="{A916E533-752A-4DA2-8D20-D58E096727BB}" Directory_="Framework_Dir" Attributes="0" KeyPath="Endjin.Templify.Client.exe"/>
+    <ROW Component="Endjin.Templify.Domain.dll" ComponentId="{49B65F3E-BBDA-472A-955E-48A751118E8D}" Directory_="Framework_Dir" Attributes="0" KeyPath="Endjin.Templify.Domain.dll"/>
+    <ROW Component="Hardcodet.Wpf.TaskbarNotification.dll" ComponentId="{FF373CC8-B180-4519-A303-7120A35A9F4F}" Directory_="Framework_Dir" Attributes="0" KeyPath="Hardcodet.Wpf.TaskbarNotification.dll"/>
+    <ROW Component="NewValue" ComponentId="{10EFD0CD-BB3C-455F-AFDB-F27C3A580B98}" Directory_="APPDIR" Attributes="4" KeyPath="NewValue"/>
+    <ROW Component="NewValue_1" ComponentId="{88D37166-F08D-4D18-986F-DCC1E6370460}" Directory_="APPDIR" Attributes="4" KeyPath="NewValue_1"/>
+    <ROW Component="ProductInformation" ComponentId="{B9D61197-460E-4E1A-8339-5BE32F0E749D}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
+    <ROW Component="SevenZipSharp.dll" ComponentId="{C3F31A61-4699-4D1F-A841-5BAF9C015B09}" Directory_="Framework_Dir" Attributes="0" KeyPath="SevenZipSharp.dll"/>
+    <ROW Component="System.Windows.Interactivity.dll" ComponentId="{37373630-A98F-44B0-9F5A-0DB3A4A4DE3F}" Directory_="Framework_Dir" Attributes="0" KeyPath="System.Windows.Interactivity.dll"/>
+    <ROW Component="Templify.config" ComponentId="{0AC1F8E6-C8AF-46C5-888E-7104DB3EDF61}" Directory_="config_Dir" Attributes="0" KeyPath="Templify.config" Type="0"/>
+    <ROW Component="TemplifyCmd.exe" ComponentId="{4D918505-EF54-4F06-BCC4-7EA181E436A1}" Directory_="Framework_Dir" Attributes="0" KeyPath="TemplifyCmd.exe"/>
+    <ROW Component="TemplifyCreatePackage.target" ComponentId="{A8013F56-FF28-492D-8959-168016FC2DF2}" Directory_="MSBuild_Dir" Attributes="0" KeyPath="TemplifyCreatePackage.target" Type="0"/>
+    <ROW Component="repo" ComponentId="{AE1E98AF-FB65-43F9-B634-555B9FFD1D13}" Directory_="repo_Dir" Attributes="0"/>
+    <ROW Component="z.dll" ComponentId="{25E3B25E-5362-41FB-9AB7-E2830DD9E89C}" Directory_="Framework_Dir" Attributes="0" KeyPath="z.dll"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
+    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0" Components="AI_ExePath Caliburn.Micro.dll CommandLine.dll Endjin.Templify.Client.exe Endjin.Templify.Domain.dll Hardcodet.Wpf.TaskbarNotification.dll NewValue NewValue_1 ProductInformation SevenZipSharp.dll System.Windows.Interactivity.dll Templify.config TemplifyCmd.exe TemplifyCreatePackage.target repo z.dll"/>
+    <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
+    <ROW File="Caliburn.Micro.dll" Component_="Caliburn.Micro.dll" FileName="Calibu~1.dll|Caliburn.Micro.dll" Attributes="0" SourcePath="..\..\BuildArtefacts\Caliburn.Micro.dll" SelfReg="false" NextFile="CommandLine.dll"/>
+    <ROW File="CommandLine.dll" Component_="CommandLine.dll" FileName="Comman~1.dll|CommandLine.dll" Attributes="0" SourcePath="..\..\BuildArtefacts\CommandLine.dll" SelfReg="false" NextFile="Endjin.Templify.Client.exe"/>
+    <ROW File="Endjin.Templify.Client.exe" Component_="Endjin.Templify.Client.exe" FileName="Endjin~1.exe|Endjin.Templify.Client.exe" Attributes="0" SourcePath="..\..\BuildArtefacts\Endjin.Templify.Client.exe" SelfReg="false" NextFile="Endjin.Templify.Client.pdb"/>
+    <ROW File="Endjin.Templify.Client.pdb" Component_="Endjin.Templify.Client.exe" FileName="Endjin~1.pdb|Endjin.Templify.Client.pdb" Attributes="0" SourcePath="..\..\BuildArtefacts\Endjin.Templify.Client.pdb" SelfReg="false" NextFile="Endjin.Templify.Domain.dll"/>
+    <ROW File="Endjin.Templify.Domain.dll" Component_="Endjin.Templify.Domain.dll" FileName="Endjin~1.dll|Endjin.Templify.Domain.dll" Attributes="0" SourcePath="..\..\BuildArtefacts\Endjin.Templify.Domain.dll" SelfReg="false" NextFile="Endjin.Templify.Domain.pdb"/>
+    <ROW File="Endjin.Templify.Domain.pdb" Component_="Endjin.Templify.Domain.dll" FileName="Endjin~2.pdb|Endjin.Templify.Domain.pdb" Attributes="0" SourcePath="..\..\BuildArtefacts\Endjin.Templify.Domain.pdb" SelfReg="false" NextFile="Hardcodet.Wpf.TaskbarNotification.dll"/>
+    <ROW File="Hardcodet.Wpf.TaskbarNotification.dll" Component_="Hardcodet.Wpf.TaskbarNotification.dll" FileName="Hardco~1.dll|Hardcodet.Wpf.TaskbarNotification.dll" Attributes="0" SourcePath="..\..\BuildArtefacts\Hardcodet.Wpf.TaskbarNotification.dll" SelfReg="false" NextFile="SevenZipSharp.dll"/>
+    <ROW File="SevenZipSharp.dll" Component_="SevenZipSharp.dll" FileName="SevenZ~1.dll|SevenZipSharp.dll" Attributes="0" SourcePath="..\..\BuildArtefacts\SevenZipSharp.dll" SelfReg="false" NextFile="System.Windows.Interactivity.dll"/>
+    <ROW File="System.Windows.Interactivity.dll" Component_="System.Windows.Interactivity.dll" FileName="System~1.dll|System.Windows.Interactivity.dll" Attributes="0" SourcePath="..\..\BuildArtefacts\System.Windows.Interactivity.dll" SelfReg="false" NextFile="TemplifyCmd.exe"/>
+    <ROW File="Templify.config" Component_="Templify.config" FileName="Templi~1.con|Templify.config" Attributes="0" SourcePath="..\..\BuildArtefacts\Templify.config" SelfReg="false"/>
+    <ROW File="TemplifyCmd.exe" Component_="TemplifyCmd.exe" FileName="Templi~1.exe|TemplifyCmd.exe" Attributes="0" SourcePath="..\..\BuildArtefacts\TemplifyCmd.exe" SelfReg="false" NextFile="TemplifyCmd.pdb"/>
+    <ROW File="TemplifyCmd.pdb" Component_="TemplifyCmd.exe" FileName="Templi~1.pdb|TemplifyCmd.pdb" Attributes="0" SourcePath="..\..\BuildArtefacts\TemplifyCmd.pdb" SelfReg="false" NextFile="TemplifyCreatePackage.target"/>
+    <ROW File="TemplifyCreatePackage.target" Component_="TemplifyCreatePackage.target" FileName="Templi~1.tar|TemplifyCreatePackage.target" Attributes="0" SourcePath="..\..\Artefacts\build-samples\TemplifyCreatePackage.target" SelfReg="false" NextFile="TemplifyDeployPackage.target"/>
+    <ROW File="TemplifyDeployPackage.target" Component_="TemplifyCreatePackage.target" FileName="Templi~2.tar|TemplifyDeployPackage.target" Attributes="0" SourcePath="..\..\Artefacts\build-samples\TemplifyDeployPackage.target" SelfReg="false" NextFile="Templify.config"/>
+    <ROW File="z.dll" Component_="z.dll" FileName="7z.dll" Attributes="0" SourcePath="..\..\BuildArtefacts\7z.dll" SelfReg="false" NextFile="Caliburn.Micro.dll"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
+    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="0" PackageFolder="..\..\Drops" Languages="en" InstallationType="4" CabsLocation="1" PackageType="1" FilesInsideExe="true" ExeIconPath="..\..\Artefacts\app-icon.ico" ExtractionFolder="[AppDataFolder][|Manufacturer]\[|ProductName] [|ProductVersion]\install" UseLargeSchema="true" ExeName="Templify-Installer"/>
+    <ATTRIBUTE name="CurrentBuild" value="DefaultBuild"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
+    <ROW Path="&lt;AI_DICTS&gt;ui.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_en.ail"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.FragmentComponent">
+    <ROW Fragment="CommonUI.aip" Path="&lt;AI_FRAGS&gt;CommonUI.aip"/>
+    <ROW Fragment="FolderDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\FolderDlg.aip"/>
+    <ROW Fragment="MaintenanceTypeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\MaintenanceTypeDlg.aip"/>
+    <ROW Fragment="MaintenanceWelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\MaintenanceWelcomeDlg.aip"/>
+    <ROW Fragment="SequenceDialogs.aip" Path="&lt;AI_THEMES&gt;classic\fragments\SequenceDialogs.aip"/>
+    <ROW Fragment="Sequences.aip" Path="&lt;AI_FRAGS&gt;Sequences.aip"/>
+    <ROW Fragment="StaticUIStrings.aip" Path="&lt;AI_FRAGS&gt;StaticUIStrings.aip"/>
+    <ROW Fragment="UI.aip" Path="&lt;AI_THEMES&gt;classic\fragments\UI.aip"/>
+    <ROW Fragment="Validation.aip" Path="&lt;AI_FRAGS&gt;Validation.aip"/>
+    <ROW Fragment="VerifyRemoveDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\VerifyRemoveDlg.aip"/>
+    <ROW Fragment="VerifyRepairDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\VerifyRepairDlg.aip"/>
+    <ROW Fragment="WelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\WelcomeDlg.aip"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiActionTextComponent">
+    <ROW Action="AI_DeleteLzma" Description="Deleting files extracted from archive" DescriptionLocId="ActionText.Description.AI_DeleteLzma" TemplateLocId="-"/>
+    <ROW Action="AI_DeleteRLzma" Description="Deleting files extracted from archive" DescriptionLocId="ActionText.Description.AI_DeleteLzma" TemplateLocId="-"/>
+    <ROW Action="AI_ExtractLzma" Description="Extracting files from archive" DescriptionLocId="ActionText.Description.AI_ExtractLzma" TemplateLocId="-"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiAppSearchComponent">
+    <ROW Property="AI_SETUPEXEPATH" Signature_="AI_EXE_PATH_CU" Builds="DefaultBuild"/>
+    <ROW Property="AI_SETUPEXEPATH" Signature_="AI_EXE_PATH_LM" Builds="DefaultBuild"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
+    <ROW Name="Prereq.dll" SourcePath="&lt;AI_CUSTACTS&gt;Prereq.dll"/>
+    <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
+    <ROW Name="installerbanner.bmp" SourcePath="..\..\Artefacts\installer-banner.bmp"/>
+    <ROW Name="installerdialog.bmp" SourcePath="..\..\Artefacts\installer-dialog.bmp"/>
+    <ROW Name="lzmaextractor.dll" SourcePath="&lt;AI_CUSTACTS&gt;lzmaextractor.dll"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiControlComponent">
+    <ATTRIBUTE name="FixedSizeBitmaps" value="2"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
+    <ROW Dialog_="WelcomeDlg" Control_="Next" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="FolderDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_INSTALL" Ordering="201"/>
+    <ROW Dialog_="FolderDlg" Control_="Back" Event="NewDialog" Argument="WelcomeDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="MaintenanceWelcomeDlg" Control_="Next" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="99"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_MAINT" Ordering="101"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_INSTALL" Ordering="197"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="201"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="1"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_MAINT" Ordering="198"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="CustomizeDlg" Condition="AI_MAINT" Ordering="202"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="ChangeButton" Event="NewDialog" Argument="CustomizeDlg" Condition="AI_MAINT" Ordering="501"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceWelcomeDlg" Condition="AI_MAINT" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="RemoveButton" Event="NewDialog" Argument="VerifyRemoveDlg" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="601"/>
+    <ROW Dialog_="VerifyRemoveDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="RepairButton" Event="NewDialog" Argument="VerifyRepairDlg" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="601"/>
+    <ROW Dialog_="VerifyRepairDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="1"/>
+    <ROW Dialog_="VerifyRepairDlg" Control_="Repair" Event="EndDialog" Argument="Return" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="399"/>
+    <ROW Dialog_="VerifyRemoveDlg" Control_="Remove" Event="EndDialog" Argument="Return" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="299"/>
+    <ROW Dialog_="PatchWelcomeDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_PATCH" Ordering="201"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_PATCH" Ordering="199"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="PatchWelcomeDlg" Condition="AI_PATCH" Ordering="203"/>
+    <ROW Dialog_="ResumeDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_RESUME" Ordering="299"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
+    <ROW Directory_="repo_Dir" Component_="repo"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
+    <ROW Action="AI_AppSearchEx" Type="1" Source="Prereq.dll" Target="DoAppSearchEx"/>
+    <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH_ORIGINAL" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
+    <ROW Action="AI_DeleteCadLzma" Type="51" Source="AI_DeleteLzma" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_DeleteLzma" Type="1025" Source="lzmaextractor.dll" Target="DeleteLZMAFiles"/>
+    <ROW Action="AI_DeleteRCadLzma" Type="51" Source="AI_DeleteRLzma" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_DeleteRLzma" Type="1281" Source="lzmaextractor.dll" Target="DeleteLZMAFiles"/>
+    <ROW Action="AI_ExtractCadLzma" Type="51" Source="AI_ExtractLzma" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_ExtractLzma" Type="1025" Source="lzmaextractor.dll" Target="ExtractLZMAFiles"/>
+    <ROW Action="AI_FindExeLzma" Type="1" Source="lzmaextractor.dll" Target="FindEXE"/>
+    <ROW Action="AI_InstallModeCheck" Type="1" Source="aicustact.dll" Target="UpdateInstallMode" WithoutSeq="true"/>
+    <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="aicustact.dll" Target="PrepareUpgrade"/>
+    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH" Target="[AI_SETUPEXEPATH_ORIGINAL]"/>
+    <ROW Action="AI_RESTORE_LOCATION" Type="65" Source="aicustact.dll" Target="RestoreLocation"/>
+    <ROW Action="AI_ResolveKnownFolders" Type="1" Source="aicustact.dll" Target="AI_ResolveKnownFolders"/>
+    <ROW Action="AI_ResolveLocalizedCredentials" Type="1" Source="aicustact.dll" Target="GetLocalizedCredentials"/>
+    <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
+    <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
+    <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]"/>
+    <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
+    <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
+    <ROW Name="appicon.exe" SourcePath="..\..\Artefacts\app-icon.ico" Index="0"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
+    <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
+    <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
+    <ROW Action="AI_STORE_LOCATION" Condition="(Not Installed) OR REINSTALL" Sequence="1501"/>
+    <ROW Action="AI_PREPARE_UPGRADE" Condition="AI_UPGRADE=&quot;No&quot; AND (Not Installed)" Sequence="1399"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="52"/>
+    <ROW Action="AI_ResolveLocalizedCredentials" Sequence="51"/>
+    <ROW Action="AI_AppSearchEx" Sequence="102"/>
+    <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="99" Builds="DefaultBuild"/>
+    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="101" Builds="DefaultBuild"/>
+    <ROW Action="AI_DeleteCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (NOT PATCH)" Sequence="199" Builds="DefaultBuild"/>
+    <ROW Action="AI_DeleteRCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (NOT PATCH)" Sequence="198" Builds="DefaultBuild"/>
+    <ROW Action="AI_ExtractCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (NOT PATCH)" Sequence="197" Builds="DefaultBuild"/>
+    <ROW Action="AI_FindExeLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (NOT PATCH)" Sequence="196" Builds="DefaultBuild"/>
+    <ROW Action="AI_ExtractLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (NOT PATCH)" Sequence="1549" Builds="DefaultBuild"/>
+    <ROW Action="AI_DeleteRLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (NOT PATCH)" Sequence="1548" Builds="DefaultBuild"/>
+    <ROW Action="AI_DeleteLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (NOT PATCH)" Sequence="6599" Builds="DefaultBuild"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
+    <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="52"/>
+    <ROW Action="AI_ResolveLocalizedCredentials" Sequence="51"/>
+    <ROW Action="AI_AppSearchEx" Sequence="102"/>
+    <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="99"/>
+    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="101"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
+    <ROW Condition="VersionNT" Description="[ProductName] cannot be installed on [WindowsType9XDisplay]" DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="DefaultBuild"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiRegLocatorComponent">
+    <ROW Signature_="AI_EXE_PATH_CU" Root="1" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="AI_ExePath" Type="2"/>
+    <ROW Signature_="AI_EXE_PATH_LM" Root="2" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="AI_ExePath" Type="2"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiRegsComponent">
+    <ROW Registry="AI_ExePath" Root="-1" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="AI_ExePath" Value="[AI_SETUPEXEPATH]" Component_="AI_ExePath"/>
+    <ROW Registry="NewValue" Root="0" Key="Folder\shell\Templify Here\command" Value="&quot;[APPDIR]Framework\\Endjin.Templify.Client.exe&quot; &quot;-m&quot; &quot;d&quot; &quot;-p&quot; &quot;%1&quot;" Component_="NewValue"/>
+    <ROW Registry="NewValue_1" Root="0" Key="Folder\shell\Templify This Folder\command" Value="&quot;[APPDIR]Framework\\Endjin.Templify.Client.exe&quot; &quot;-m&quot; &quot;c&quot; &quot;-p&quot; &quot;%1&quot;" Component_="NewValue_1"/>
+    <ROW Registry="Path" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Path" Value="[APPDIR]" Component_="ProductInformation"/>
+    <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
+    <ATTRIBUTE name="UsedTheme" value="classic"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiUpgradeComponent">
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMax="[|ProductVersion]" Attributes="1025" ActionProperty="OLDPRODUCTS"/>
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMin="[|ProductVersion]" Attributes="2" ActionProperty="AI_NEWERPRODUCTFOUND"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.PreReqComponent">
+    <ROW PrereqKey="D62CCA_449F_4EB4_AA2F_C4376D7FBDAD" DisplayName=".NET Framework 4.0" VersionMin="4.0" SetupFileUrl="http://download.microsoft.com/download/1/B/E/1BE39E79-7E39-46A3-96FF-047F95396215/dotNetFx40_Full_setup.exe" Location="1" ExactSize="0" Win9xVersions="Windows 9x/ME" WinNTVersions="Windows NT 4.0, Windows NT 4.0 Service Pack 1, Windows NT 4.0 Service Pack 2, Windows NT 4.0 Service Pack 3, Windows NT 4.0 Service Pack 4, Windows NT 4.0 Service Pack 5, Windows NT 4.0 Service Pack 6, Windows 2000, Windows 2000 Service Pack 1, Windows 2000 Service Pack 2, Windows 2000 Service Pack 3, Windows 2000 Service Pack 4, Windows XP x86, Windows XP x86 Service Pack 1, Windows XP x86 Service Pack 2" Operator="1"/>
+    <ATTRIBUTE name="PrereqsOrder" value="D62CCA_449F_4EB4_AA2F_C4376D7FBDAD"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.PreReqSearchComponent">
+    <ROW SearchKey="D62CCA_449F_4EB4_AA2F_C4376D7FBDAD_NET_40_SEARCH" Prereq="D62CCA_449F_4EB4_AA2F_C4376D7FBDAD" SearchType="2" SearchString="HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full\Version" VerMin="4.0" Order="1" Property="AI_NET_40_ORIGINAL_PREREQSEARCH_PROP"/>
+    <ROW SearchKey="D62CCA_449F_4EB4_AA2F_C4376D7FBDAD_NET_45_SEARCH" Prereq="D62CCA_449F_4EB4_AA2F_C4376D7FBDAD" SearchType="2" SearchString="HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full\Version" VerMin="4.5" Order="2" Property="AI_NET_40_45_PREREQSEARCH_PROP"/>
+  </COMPONENT>
+</DOCUMENT>
