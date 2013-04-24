@@ -24,6 +24,7 @@
         private readonly IReservedTokenResolver reservedTokenResolver;
 
         private Manifest manifest;
+        private string tempFolder;
 
         #endregion
         
@@ -43,13 +44,21 @@
         public void Execute(Package package)
         {
             this.manifest = package.Manifest;
+            CreateTempFolder();
 
             foreach (var file in this.manifest.Files)
             {
                 file.InstallPath = this.GetDestFilePath(file);
             }
 
-            this.archiveProcessor.Extract(this.manifest.Path, package.Manifest.Files);
+            this.archiveProcessor.Extract(this.manifest.Path, this.manifest.InstallRoot, package.Manifest.Files);
+        }
+
+        private void CreateTempFolder()
+        {
+            this.tempFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+
+            Directory.CreateDirectory(tempFolder);
         }
 
         private string GetDestFilePath(ManifestFile manifestFile)
