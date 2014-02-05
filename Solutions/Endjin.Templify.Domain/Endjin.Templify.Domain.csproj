@@ -64,6 +64,7 @@
     <Compile Include="Contracts\Packager\Processors\IRenameFileProcessor.cs" />
     <Compile Include="Contracts\Packager\Specifications\IFileExclusionsSpecification.cs" />
     <Compile Include="Contracts\Packager\Tokeniser\IEnvironmentalTokenResolver.cs" />
+    <Compile Include="Contracts\Packager\Tokeniser\IFunctionTokenizer.cs" />
     <Compile Include="Contracts\Packager\Tokeniser\ITemplateTokeniser.cs" />
     <Compile Include="Contracts\Packager\Tokeniser\IReservedTokenResolver.cs" />
     <Compile Include="Contracts\Packages\IPackageFactory.cs" />
@@ -90,7 +91,9 @@
     <Compile Include="Domain\Packager\Processors\PackageProcessor.cs" />
     <Compile Include="Domain\Packager\Processors\RenameFileProcessor.cs" />
     <Compile Include="Domain\Packager\Specifications\FileExclusionSpecification.cs" />
+    <Compile Include="Domain\Packager\Tokeniser\DateFunctionTokenizer.cs" />
     <Compile Include="Domain\Packager\Tokeniser\EnvironmentalTokenResolver.cs" />
+    <Compile Include="Domain\Packager\Tokeniser\GuidFunctionTokenizer.cs" />
     <Compile Include="Domain\Packager\Tokeniser\PackageTokeniser.cs" />
     <Compile Include="Domain\Packager\Tokeniser\TemplateTokeniser.cs" />
     <Compile Include="Domain\Packager\Tokeniser\ReservedTokenResolver.cs" />
